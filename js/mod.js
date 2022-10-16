@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "The Easy Prestige Tree",
+	name: "The Inflation Tree",
 	id: "372586492132784",
 	author: "ThePrestigeTreeGuy",
 	pointsName: "points",
@@ -8,13 +8,13 @@ let modInfo = {
 	discordName: "random57854",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
-	offlineLimit: 1,  // In hours
+	offlineLimit: 0,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.01",
+	name: "first update I guess",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -39,10 +39,13 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
-	if(!canGenPoints())
-		return new Decimal(0)
-
+	if(!canGenPoints()
+		)return new Decimal(0)
 	let gain = new Decimal(1)
+	if (hasUpgrade('p', 11)) gain = gain.times(3)
+	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
+	if (hasUpgrade('p', 15)) gain = gain.times(upgradeEffect('p', 15))
+	if (hasUpgrade('p', 21)) gain = gain.times(upgradeEffect('p', 21))
 	return gain
 }
 
@@ -56,7 +59,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("eee308"))
 }
 
 
