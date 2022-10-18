@@ -17,6 +17,7 @@ addLayer("p", {
         let mult = new Decimal(1)
         if (hasUpgrade('p', 13)) mult = mult.times(upgradeEffect('p', 13))
         if (hasUpgrade('p', 14)) mult = mult.times(upgradeEffect('p', 14))
+        if (hasUpgrade('i', 13)) mult = mult.times(upgradeEffect('i', 13))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -81,3 +82,54 @@ addLayer("p", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"1" }, // Add formatting to the effect
     }
  })
+ addLayer("i", {
+    startData() { return {                  // startData is a function that returns default data for a layer. 
+        unlocked: true,                     // You can add more variables here to add them to your layer.
+        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
+    }},
+
+    color: "#00FF00",                       // The color for this layer, which affects many elements.
+    resource: "inflation",            // The name of this layer's main prestige resource.
+    row: 1,                                 // The row this layer is on (0 is the first row).
+
+    baseResource: "points",                 // The name of the resource your prestige gain is based on.
+    baseAmount() { return player.points },  // A function to return the current amount of baseResource.
+
+    requires: new Decimal("e17142860"),              // The amount of the base needed to  gain 1 of the prestige currency.
+                                            // Also the amount required to unlock the layer.
+
+    type: "normal",                         // Determines the formula used for calculating prestige currency.
+    exponent: 0.75,                          // "normal" prestige gain is (currency^exponent).
+
+    gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
+        return new Decimal(1)               // Factor in any bonuses multiplying gain here.
+    },
+    gainExp() {                             // Returns the exponent to your gain of the prestige resource.
+        return new Decimal(1)
+    },
+
+    layerShown() { return true },          // Returns a bool for if this layer's node should be visible in the tree.
+
+    upgrades: {
+        11: {
+        title: "Beginning II",
+        description: "Points are multiplied by 100.",
+        cost: new Decimal(1),
+        },
+        12: {
+        title: "haha point gain go brrrrr",
+        description: "MORE POINTS by inflation.",
+        cost: new Decimal("e1e20"),
+        effect() {
+            return player[this.layer].points.add(1).pow(1)
+        }},
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"1" }, // Add formatting to the effect
+        13: {
+        title: "brrrrrrrrrr!!!!!!!!",
+        description: "hahaha!!!!!",
+        cost: new Decimal("ee40"),
+        effect() {
+            return player.points.add(1).pow(1)
+        }},
+    }
+})
