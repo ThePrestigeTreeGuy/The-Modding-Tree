@@ -49,6 +49,7 @@ function getPointGen() {
 	if (hasUpgrade('p', 22)) gain = gain.times(upgradeEffect('p', 22))
 	if (hasUpgrade('i', 11)) gain = gain.times(100)
 	if (hasUpgrade('i', 12)) gain = gain.times(upgradeEffect('i', 12))
+	if (hasUpgrade('po', 11)) gain = gain.times("ee50")
 	return gain
 }
 
@@ -62,7 +63,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("eee308"))
+	return player.points.gte(new Decimal("F10000"))
 }
 
 
