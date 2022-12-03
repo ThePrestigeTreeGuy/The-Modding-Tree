@@ -13,14 +13,19 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "dors",
+	num: "0.2",
+	name: "Now you can hide",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.2</h3><br>
+		- Added the second layer, closets.<br>
+		- Added an upgrade.<br>
+		- Endgame: 10 closets.<br>
 	<h3>v0.1</h3><br>
 		- Added the first layer, doors.<br>
-		- added an upgrade.`
+		- Added an upgrade.<br>
+		- Endgame: 5 doors.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -43,6 +48,7 @@ function getPointGen() {
 		)return new Decimal(0)
 	let gain = new Decimal(1)
 	if (hasUpgrade('d', 11)) gain = gain.times(upgradeEffect('d', 11))
+	if (hasUpgrade('c', 11)) gain = gain.times(upgradeEffect('c', 11))
 	return gain
 }
 
