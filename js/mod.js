@@ -1,26 +1,26 @@
 let modInfo = {
-	name: "The Inflation Tree",
+	name: "The Doors Tree",
 	id: "372586492132784",
 	author: "ThePrestigeTreeGuy",
-	pointsName: "points",
+	pointsName: "studs",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "random57854",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 0,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
 	num: "0.1",
-	name: "The Inflated Update",
+	name: "dors",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added the inflation layer.<br>
-		- haha.`
+	<h3>v0.1</h3><br>
+		- Added the first layer, doors.<br>
+		- added an upgrade.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -42,14 +42,7 @@ function getPointGen() {
 	if(!canGenPoints()
 		)return new Decimal(0)
 	let gain = new Decimal(1)
-	if (hasUpgrade('p', 11)) gain = gain.times(3)
-	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
-	if (hasUpgrade('p', 15)) gain = gain.times(upgradeEffect('p', 15))
-	if (hasUpgrade('p', 21)) gain = gain.times(upgradeEffect('p', 21))
-	if (hasUpgrade('p', 22)) gain = gain.times(upgradeEffect('p', 22))
-	if (hasUpgrade('i', 11)) gain = gain.times(100)
-	if (hasUpgrade('i', 12)) gain = gain.times(upgradeEffect('i', 12))
-	if (hasUpgrade('po', 11)) gain = gain.times("ee50")
+	if (hasUpgrade('d', 11)) gain = gain.times(upgradeEffect('d', 11))
 	return gain
 }
 
@@ -63,7 +56,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("F10000"))
+	return player.points.gte(new Decimal("eee100"))
 }
 
 
