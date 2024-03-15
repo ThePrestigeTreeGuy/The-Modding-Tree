@@ -13,11 +13,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2",
-	name: "Now you can hide",
+	num: "0.3",
+	name: "Capitalism (real)",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.3</h3><br>
+		- Added the third layer, knobs.<br>
+		- Added 5 upgrades!<br>
+		- Endgame: Knob Upgrade 3.<br>
 	<h3>v0.2</h3><br>
 		- Added the second layer, closets.<br>
 		- Added an upgrade.<br>
@@ -48,7 +52,11 @@ function getPointGen() {
 		)return new Decimal(0)
 	let gain = new Decimal(1)
 	if (hasUpgrade('d', 11)) gain = gain.times(upgradeEffect('d', 11))
-	if (hasUpgrade('c', 11)) gain = gain.times(upgradeEffect('c', 11))
+	if (hasUpgrade('d', 12)) gain = gain.times(upgradeEffect('d', 12))
+	if (hasUpgrade('c', 11)) gain = gain.times(10)
+	if (hasUpgrade('c', 12)) gain = gain.times(upgradeEffect('c', 12))
+	if (hasUpgrade('k', 11)) gain = gain.times(10)
+	if (hasUpgrade('k', 12)) gain = gain.times(upgradeEffect('k', 12))
 	return gain
 }
 
@@ -62,7 +70,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("eeee100"))
+	return player.points.gte(new Decimal("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee100"))
 }
 
 

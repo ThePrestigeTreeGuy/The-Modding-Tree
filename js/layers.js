@@ -1,6 +1,6 @@
 addLayer("d", {
     name: "doors", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "D", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "🚪", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -35,6 +35,15 @@ addLayer("d", {
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
+        12: {
+            title: "Doored Doors 2",
+            description: "Doors boost your stud gain.",
+            cost: new Decimal(12),
+            effect() {
+                return player[this.layer].points.add(1).log2().add(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            },
     },
 })
 addLayer("c", {
@@ -46,7 +55,9 @@ addLayer("c", {
     color: "#3F0D06",                       // The color for this layer, which affects many elements.
     resource: "closets",            // The name of this layer's main prestige resource.
     row: 0,                                 // The row this layer is on (0 is the first row).
-
+    hotkeys: [
+        {key: "c", description: "C: Reset for closets", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
     baseResource: "studs",                 // The name of the resource your prestige gain is based on.
     baseAmount() { return player.points },  // A function to return the current amount of baseResource.
 
@@ -62,14 +73,17 @@ addLayer("c", {
     gainExp() {                             // Returns the exponent to your gain of the prestige resource.
         return new Decimal(1)
     },
-
     layerShown() { return true },          // Returns a bool for if this layer's node should be visible in the tree.
-
     upgrades: {
         11: {
+        title: "Speed Boost",
+        description: "x10 point gain!",
+        cost: new Decimal(1),
+        },
+        12: {
         title: "Closeted Closets",
         description: "Closets boost your stud gain.",
-        cost: new Decimal(1),
+        cost: new Decimal(2),
         effect() {
             return player[this.layer].points.add(1).pow(3)
         },
@@ -77,4 +91,57 @@ addLayer("c", {
         },
 
     },
+})
+addLayer("k", {
+    name: "knobs", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "K", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#FFDDBB",
+    requires: new Decimal(1e8), // Can be a function that takes requirement increases into account
+    resource: "knobs", // Name of prestige currency
+    baseResource: "studs", // Name of resource prestige is based on
+    baseAmount() {return player.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.5, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        let mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 0, // Row the layer is in on the tree (0 is the first row)
+    hotkeys: [
+        {key: "k", description: "K: Reset for knobs", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+    upgrades: {
+        11: {
+            title: "Vitamins",
+            description: "x10 point gain!",
+            cost: new Decimal(1),
+            },
+        12: {
+            title: "Knobbed Knobs",
+            description: "Knobs boost your stud gain.",
+            cost: new Decimal(10),
+            effect() {
+                return player[this.layer].points.add(1).log2().add(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            },
+        13: {
+            title: "Knobbed Knobs 2",
+            description: "Knobs boost your stud gain.",
+            cost: new Decimal(100),
+            effect() {
+                return player[this.layer].points.add(1).ln().add(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            },
+        },
+    layerShown(){return true},
 })
