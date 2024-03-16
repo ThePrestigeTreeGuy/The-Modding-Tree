@@ -13,11 +13,17 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3",
-	name: "Capitalism (real)",
+	num: "0.4",
+	name: "Hide in the closet! Rush is coming!",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.4</h3><br>
+		- Added the fourth layer, RUSH<br>
+		- Added 10 upgrades!<br>
+		- Some design improvements!<br>
+		- Expanded 1st row!<br>
+		- Endgame: e30 studs.<br>
 	<h3>v0.3</h3><br>
 		- Added the third layer, knobs.<br>
 		- Added 5 upgrades!<br>
@@ -53,10 +59,18 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	if (hasUpgrade('d', 11)) gain = gain.times(upgradeEffect('d', 11))
 	if (hasUpgrade('d', 12)) gain = gain.times(upgradeEffect('d', 12))
+	if (hasUpgrade('d', 13)) gain = gain.times(upgradeEffect('d', 13))
+	if (hasUpgrade('d', 14)) gain = gain.times(upgradeEffect('d', 14))
 	if (hasUpgrade('c', 11)) gain = gain.times(10)
 	if (hasUpgrade('c', 12)) gain = gain.times(upgradeEffect('c', 12))
+	if (hasUpgrade('c', 13)) gain = gain.times(upgradeEffect('c', 13))
 	if (hasUpgrade('k', 11)) gain = gain.times(10)
 	if (hasUpgrade('k', 12)) gain = gain.times(upgradeEffect('k', 12))
+	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
+	if (hasUpgrade('k', 14)) gain = gain.times(upgradeEffect('k', 14))
+	if (hasUpgrade('k', 15)) gain = gain.times(upgradeEffect('k', 15))
+	if (hasUpgrade('r', 11)) gain = gain.times(10)
+	if (hasUpgrade('r', 12)) gain = gain.times(upgradeEffect('r', 12))
 	return gain
 }
 
@@ -70,7 +84,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee100"))
+	return player.points.gte(new Decimal(1e30))
 }
 
 
