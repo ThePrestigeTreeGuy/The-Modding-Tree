@@ -18,6 +18,11 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.51</h3><br>
+		- an update for sure<br>
+		- More content in dupe layer.<br>
+		- Endgame: Dupe 4.<br>
+		- Bug fixing!<br>
 	<h3>v0.5</h3><br>
 		- smaller update here<br>
 		- Added  5th layer, dupe<br>
@@ -81,6 +86,9 @@ function getPointGen() {
 	if (hasUpgrade('r', 11)) gain = gain.times(10)
 	if (hasUpgrade('r', 12)) gain = gain.times(upgradeEffect('r', 12))
 	if (hasMilestone('du', 1)) gain = gain.times(100)
+	if (hasUpgrade('du', 12)) gain = gain.times(upgradeEffect('du', 12))
+	if (hasUpgrade('du', 13)) gain = gain.times(upgradeEffect('du', 13))
+	if (hasUpgrade('du', 14)) gain = gain.times(upgradeEffect('du', 14))
 	return gain
 }
 

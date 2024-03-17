@@ -15,7 +15,6 @@ addLayer("d", {
     exponent: 1.2, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
-        if (hasUpgrade('r', 13)) mult = mult.times(upgradeEffect('r', 13))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -69,7 +68,7 @@ addLayer("d", {
         },
         15: {
             title: "Doors 5",
-            description: "x (doors+1) knob and stud gain and unlock more closet and knob upgrades",
+            description: "x (doors+1) knob and stud gain and unlock a closet upgrade",
             cost: new Decimal(67),
             unlocked(){return hasUpgrade("c",23)},
             effect() {
@@ -104,7 +103,6 @@ addLayer("c", {
 
     gainMult() {                            // Returns your multiplier to your gain of the prestige resource.
         let mult = new Decimal(1)
-        if (hasUpgrade('r', 14)) mult = mult.times(upgradeEffect('r', 14))
         return mult
     },
     gainExp() {                             // Returns the exponent to your gain of the prestige resource.
@@ -113,6 +111,8 @@ addLayer("c", {
     layerShown() { return true },          // Returns a bool for if this layer's node should be visible in the tree.
     canBuyMax() {return hasUpgrade("r",14)},
     autoPrestige() {return hasMilestone("du",2)},
+    resetsNothing() {if (hasMilestone ('du',3))
+                {return true}},
     milestones: {
         1: {
             requirementDescription: "Requires: 22 Closets",
@@ -229,6 +229,7 @@ addLayer("k", {
         if (hasUpgrade('c', 13)) mult = mult.times(upgradeEffect('c', 13))
         if (hasUpgrade('c', 15)) mult = mult.times(upgradeEffect('c', 15))
         if (hasUpgrade('d', 15)) mult = mult.times(upgradeEffect('d', 15))
+        if (hasUpgrade('du', 14)) mult = mult.times(upgradeEffect('d', 14))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -238,6 +239,9 @@ addLayer("k", {
     hotkeys: [
         {key: "k", description: "K: Reset for knobs", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
+    passiveGeneration() {
+        if (hasMilestone("du",4)) return 1;
+      },
     upgrades: {
         11: {
             title: "Knobs 1",
@@ -308,6 +312,7 @@ addLayer("r", {
         if (hasUpgrade('c', 14)) mult = mult.times(upgradeEffect('c', 14))
         if (hasUpgrade('c', 21)) mult = mult.times(upgradeEffect('c', 21))
         if (hasUpgrade('c', 24)) mult = mult.times(upgradeEffect('c', 24))
+        if (hasUpgrade('du', 11)) mult = mult.times(upgradeEffect('du', 11))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -320,7 +325,6 @@ addLayer("r", {
     layerShown(){return true},
     passiveGeneration() {
         if (player.r.points.gte(500)) return 1;
-        return 0; // default value, only here for clarity
       },
     milestones: {
         1: {
@@ -352,7 +356,7 @@ addLayer("r", {
         },
         13: {
             title: "Rush 3",
-            description: "x (log2(closets+1)+1)^0.1 door gain and unlock a door and a closet upgrade",
+            description: "Unlock a door and a closet upgrade",
             cost: new Decimal(5),
             unlocked(){return hasUpgrade("r",12)},
             effect() {
@@ -362,7 +366,7 @@ addLayer("r", {
         },
         14: {
             title: "Rush 4",
-            description: "yay another log boost, anyway x (log10(door+1)+1)^0.1 closet gain, and you can bulk buy closets",
+            description: "You can bulk buy closets",
             cost: new Decimal(1e5),
             unlocked(){return hasUpgrade("c",21)},
             effect() {
@@ -401,6 +405,7 @@ addLayer("du", {
         {key: "u", description: "U: Reset for dupe", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return hasMilestone ('r',2)},
+    canBuyMax() {return hasUpgrade("du",12)},
     milestones: {
         1: {
             requirementDescription: "Requires: 1 Dupe",
@@ -410,7 +415,62 @@ addLayer("du", {
         2: {
             requirementDescription: "Requires: 2 Dupes",
             effectDescription: "Autobuy closets",
-            done() { return player.r.points.gte(2) }
+            done() { return player.r.points.gte(2) },
+            unlocked(){return hasMilestone("du",1)},
+        },
+        3: {
+            requirementDescription: "Requires: 3 Dupes",
+            effectDescription: "Closets reset nothing!",
+            done() { return player.r.points.gte(3) },
+            unlocked(){return hasMilestone("du",2)},
+        },
+        4: {
+            requirementDescription: "Requires: 5 Dupes",
+            effectDescription: "Unlocks Dupe upgrades, gain 100% of knobs per second",
+            done() { return player.r.points.gte(5) },
+            unlocked(){return hasMilestone("du",3)},
+        },
+    },
+    upgrades: {
+        11: {
+            title: "Dupe 1",
+            description: "x (dupe+1)^0.5 rush gain",
+            cost: new Decimal(5),
+            unlocked(){return hasMilestone("du",4)},
+            effect() {
+                return player["du"].points.add(1).pow(0.5)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        12: {
+            title: "Dupe 2",
+            description: "x (dupe+1)^2 stud gain",
+            cost: new Decimal(6),
+            unlocked(){return hasUpgrade("du",11)},
+            effect() {
+                return player["du"].points.add(1).pow(2)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        13: {
+            title: "Dupe 3",
+            description: "x (log10(doors+1)+1)^5 stud gain",
+            cost: new Decimal(7),
+            unlocked(){return hasUpgrade("du",12)},
+            effect() {
+                return player["d"].points.add(1).log10().add(1).pow(5)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        14: {
+            title: "Dupe 4",
+            description: "x log2(knobs+1)+1 stud and knob gain",
+            cost: new Decimal(11),
+            unlocked(){return hasUpgrade("du",13)},
+            effect() {
+                return player["k"].points.add(1).log2().add(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
     },
 })
