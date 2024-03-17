@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "The Doors Tree",
 	id: "37258649213278",
-	author: "ThePrestigeTreeGuy",
+	author: "ThePrestigeTreeGuy/Gaming And Walkthroughs on discord",
 	pointsName: "studs",
 	modFiles: ["layers.js", "tree.js"],
 
@@ -61,9 +61,12 @@ function getPointGen() {
 	if (hasUpgrade('d', 12)) gain = gain.times(upgradeEffect('d', 12))
 	if (hasUpgrade('d', 13)) gain = gain.times(upgradeEffect('d', 13))
 	if (hasUpgrade('d', 14)) gain = gain.times(upgradeEffect('d', 14))
+	if (hasUpgrade('d', 15)) gain = gain.times(upgradeEffect('d', 15))
 	if (hasUpgrade('c', 11)) gain = gain.times(10)
 	if (hasUpgrade('c', 12)) gain = gain.times(upgradeEffect('c', 12))
 	if (hasUpgrade('c', 13)) gain = gain.times(upgradeEffect('c', 13))
+	if (hasUpgrade('c', 22)) gain = gain.times(upgradeEffect('c', 22))
+	if (hasUpgrade('c', 23)) gain = gain.times(upgradeEffect('c', 23))
 	if (hasUpgrade('k', 11)) gain = gain.times(10)
 	if (hasUpgrade('k', 12)) gain = gain.times(upgradeEffect('k', 12))
 	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
@@ -71,6 +74,7 @@ function getPointGen() {
 	if (hasUpgrade('k', 15)) gain = gain.times(upgradeEffect('k', 15))
 	if (hasUpgrade('r', 11)) gain = gain.times(10)
 	if (hasUpgrade('r', 12)) gain = gain.times(upgradeEffect('r', 12))
+	if (hasMilestone('du', 1)) gain = gain.times(100)
 	return gain
 }
 
@@ -84,7 +88,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal(1e30))
+	return player.points.gte(new Decimal("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee100"))
 }
 
 
