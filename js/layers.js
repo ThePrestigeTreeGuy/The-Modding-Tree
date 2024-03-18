@@ -410,24 +410,24 @@ addLayer("du", {
         1: {
             requirementDescription: "Requires: 1 Dupe",
             effectDescription: "x100 studs and you can bulk buy doors",
-            done() { return player.r.points.gte(1) }
+            done() { return player.du.points.gte(1) }
         },
         2: {
             requirementDescription: "Requires: 2 Dupes",
             effectDescription: "Autobuy closets",
-            done() { return player.r.points.gte(2) },
+            done() { return player.du.points.gte(2) },
             unlocked(){return hasMilestone("du",1)},
         },
         3: {
             requirementDescription: "Requires: 3 Dupes",
             effectDescription: "Closets reset nothing!",
-            done() { return player.r.points.gte(3) },
+            done() { return player.du.points.gte(3) },
             unlocked(){return hasMilestone("du",2)},
         },
         4: {
             requirementDescription: "Requires: 5 Dupes",
             effectDescription: "Unlocks Dupe upgrades, gain 100% of knobs per second",
-            done() { return player.r.points.gte(5) },
+            done() { return player.du.points.gte(5) },
             unlocked(){return hasMilestone("du",3)},
         },
     },
