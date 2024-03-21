@@ -13,13 +13,18 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.5111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
-	name: "smallest update ever",
+	num: "0.6",
+	name: "capitalism(realer)",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.5111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</h3><br>
-		- fixed a bug
+	<h3>v0.6</h3><br>
+		- added 2 LAYERS????<br>
+		- More upgrades!!!<br>
+		- automation.<br>
+		- Endgame: e215 studs.<br>
+	<h3>v0.511</h3><br>
+		- fixed a bug<br>
 	<h3>v0.51</h3><br>
 		- an update for sure<br>
 		- More content in dupe layer.<br>
@@ -80,6 +85,7 @@ function getPointGen() {
 	if (hasUpgrade('c', 13)) gain = gain.times(upgradeEffect('c', 13))
 	if (hasUpgrade('c', 22)) gain = gain.times(upgradeEffect('c', 22))
 	if (hasUpgrade('c', 23)) gain = gain.times(upgradeEffect('c', 23))
+	if (hasUpgrade('c', 25)) gain = gain.times(100)
 	if (hasUpgrade('k', 11)) gain = gain.times(10)
 	if (hasUpgrade('k', 12)) gain = gain.times(upgradeEffect('k', 12))
 	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
@@ -87,10 +93,20 @@ function getPointGen() {
 	if (hasUpgrade('k', 15)) gain = gain.times(upgradeEffect('k', 15))
 	if (hasUpgrade('r', 11)) gain = gain.times(10)
 	if (hasUpgrade('r', 12)) gain = gain.times(upgradeEffect('r', 12))
+	if (hasUpgrade('r', 15)) gain = gain.times(upgradeEffect('r', 15))
 	if (hasMilestone('du', 1)) gain = gain.times(100)
 	if (hasUpgrade('du', 12)) gain = gain.times(upgradeEffect('du', 12))
 	if (hasUpgrade('du', 13)) gain = gain.times(upgradeEffect('du', 13))
 	if (hasUpgrade('du', 14)) gain = gain.times(upgradeEffect('du', 14))
+	if (hasUpgrade('du', 15)) gain = gain.times(upgradeEffect('du', 15))
+	if (hasMilestone('f', 1)) gain = gain.times(100)
+	if (hasMilestone('g', 1)) gain = gain.times(100)
+	if (hasUpgrade('g', 12)) gain = gain.pow(1.05)
+	if (hasUpgrade('g', 13)) gain = gain.pow(1.05)
+	if (hasUpgrade('g', 14)) gain = gain.pow(1.05)
+	if (hasUpgrade('g', 15)) gain = gain.pow(upgradeEffect('g', 15))
+	if (hasUpgrade('k', 24)) gain = gain.pow(1.05)
+	if (hasUpgrade('k', 25)) gain = gain.pow(1.05)
 	return gain
 }
 
@@ -104,7 +120,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee100"))
+	return player.points.gte(new Decimal("e215"))
 }
 
 
