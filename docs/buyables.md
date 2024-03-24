@@ -36,7 +36,7 @@ Features:
 - cost(): cost for buying the next buyable. Can have an optional argument "x" to calculate the cost of the x+1th purchase. (x is a `Decimal`).
     Can return an object if there are multiple currencies.
                     
-- effect(): **optional**. A function that calculates and returns the current values of bonuses of this buyable.  Can have an optional argument "x" to calculate the effect of having x of the buyable.. 
+- effect(): **optional**. A function that calculates and returns the current values of bonuses of this buyable.  Can have an optional argument "x" to calculate the effect of having x of the buyable.
     Can return a value or an object containing multiple values.
 
 - display(): A function returning everything that should be displayed on the buyable after the title, likely including the description, amount bought, cost, and current effect. Can use basic HTML.

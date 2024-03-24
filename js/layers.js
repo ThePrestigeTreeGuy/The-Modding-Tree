@@ -12,7 +12,16 @@ addLayer("d", {
     baseResource: "studs", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 1.2, // Prestige currency exponent
+    exponent() { // Calculate the multiplier for main currency from bonuses
+        let exponent = new Decimal(1.2)
+        if (hasUpgrade('r', 35)) exponent = 1.13
+        else if (hasUpgrade('f', 14)) exponent = 1.14
+        else if (hasUpgrade('r', 22)) exponent = 1.15
+        else if (hasUpgrade('f', 11)) exponent = 1.16
+        else if (hasUpgrade('d', 35)) exponent = 1.17
+        else if (hasUpgrade('k', 35)) exponent = 1.18
+        return exponent
+    },
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
         if (hasUpgrade('d', 23)) mult = mult.times(upgradeEffect('d', 23))
@@ -39,7 +48,9 @@ else if (hasMilestone("g",3))
         description: "x (doors+1)^1.5 stud gain",
         cost: new Decimal(1),
         effect() {
-            return player[this.layer].points.add(1).pow(1.5)
+            let exponent = new Decimal(1)
+            if (hasUpgrade('d',32)) exponent = exponent.times(upgradeEffect('d',32))
+            return player[this.layer].points.add(1).pow(1.5).pow(exponent)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -65,7 +76,9 @@ else if (hasMilestone("g",3))
                     else if (hasMilestone('g',3))
                 {return true}},
             effect() {
-                return player["r"].points.add(1).pow(2)
+                let exponent = new Decimal(1)
+                if (hasUpgrade('r',21)) exponent = exponent.times(upgradeEffect('r',21))
+                return player["r"].points.add(1).pow(2).pow(exponent)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -107,11 +120,13 @@ else if (hasMilestone("g",3))
         },
         22: {
             title: "Doors 7",
-            description: "x (doors+1)^0.5 gold",
+            description: "x (doors+1) gold",
             cost: new Decimal(162),
             unlocked(){return hasUpgrade("d",21)},
             effect() {
-                return player[this.layer].points.add(1)
+                let exponent = new Decimal(1)
+                if (hasUpgrade('d',33)) exponent = exponent.times(upgradeEffect('d',33))
+                return player[this.layer].points.add(1).pow(exponent)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -144,6 +159,44 @@ else if (hasMilestone("g",3))
                 return player[this.layer].points.add(1)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        31: {
+            title: "Doors 11",
+            description: "MORE ^1.05 STUDS???",
+            cost: new Decimal(328),
+            unlocked(){return hasMilestone("f",3)},
+        },
+        32: {
+            title: "Doors 12",
+            description: "^log10(doors+1)+1 Doors 1.",
+            cost: new Decimal(344),
+            unlocked(){return hasUpgrade("d",31)},
+            effect() {
+                return player[this.layer].points.add(1).log10().add(1)
+            },
+            effectDisplay() { return "^"+format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
+        },
+        33: {
+            title: "Doors 13",
+            description: "^log10(doors+1)+1 Doors 7.",
+            cost: new Decimal(367),
+            unlocked(){return hasUpgrade("d",32)},
+            effect() {
+                return player[this.layer].points.add(1).log10().add(1)
+            },
+            effectDisplay() { return "^"+format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
+        },
+        34: {
+            title: "Doors 14",
+            description: "A simple x1e5 stud gain.",
+            cost: new Decimal(410),
+            unlocked(){return hasUpgrade("d",33)},
+        },
+        35: {
+            title: "Doors 15",
+            description: "^1.1 knobs and door exponent is 1.17(funny upgrade cost (real (not fake(funny(pg132(ohio(check floors)))))))",
+            cost: new Decimal(420),
+            unlocked(){return hasUpgrade("d",34)},
         },
     },
     branches: ["d","r"]
@@ -207,7 +260,9 @@ addLayer("c", {
             else if (hasMilestone('g',3))
         {return true}},
         effect() {
-            return player[this.layer].points.add(1).pow(3)
+            let exponent = new Decimal(1)
+            if (hasUpgrade('c',33)) exponent = exponent.times(upgradeEffect('c',33))
+            return player[this.layer].points.add(1).pow(3).pow(exponent)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -311,6 +366,44 @@ addLayer("c", {
                     else if (hasMilestone('g',3))
                 {return true}},
         },
+        31: {
+            title: "Closets 11",
+            description: "^1.05 studs (the exponents...)",
+            cost: new Decimal(690),
+            unlocked(){return (hasMilestone("f",4))}
+        },
+        32: {
+            title: "Closets 12",
+            description: "100% of gold gain per second.",
+            cost: new Decimal(732),
+            unlocked(){return (hasUpgrade("c",31))}
+        },
+        33: {
+            title: "Closets 13",
+            description: "^log10(closets+1)+1 Closets 1.",
+            cost: new Decimal(753),
+            unlocked(){return hasUpgrade("c",32)},
+            effect() {
+                return player[this.layer].points.add(1).log10().add(1)
+            },
+            effectDisplay() { return "^"+format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
+        },
+        34: {
+            title: "Closets 14",
+            description: "^(log10(closets+1)+1)^0.05 studs.",
+            cost: new Decimal(841),
+            unlocked(){return hasUpgrade("c",33)},
+            effect() {
+                return player[this.layer].points.add(1).log10().add(1).pow(0.05)
+            },
+            effectDisplay() { return "^"+format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
+        },
+        35: {
+            title: "Closets 15",
+            description: "x100 studs, unlock a floor upgrade (VERY SERIOUS COST)",
+            cost: new Decimal(911),
+            unlocked(){return (hasUpgrade("c",34))}
+        },
     },
     branches: ["c","r"]
 })
@@ -322,6 +415,8 @@ addLayer("k", {
         unlocked: true,
 		points: new Decimal(0),
     }},
+    softcap : new Decimal("e2000"),
+    softcapPower: new Decimal(0.01),
     color: "#FFDDBB",
     requires: new Decimal(1e8), // Can be a function that takes requirement increases into account
     resource: "knobs", // Name of prestige currency
@@ -335,12 +430,18 @@ addLayer("k", {
         if (hasUpgrade('c', 15)) mult = mult.times(upgradeEffect('c', 15))
         if (hasUpgrade('k', 21)) mult = mult.times(upgradeEffect('k', 21))
         if (hasUpgrade('k', 22)) mult = mult.times(upgradeEffect('k', 22))
+        if (hasUpgrade('k', 31)) mult = mult.times(upgradeEffect('k', 31))
+        if (hasUpgrade('k', 32)) mult = mult.times(upgradeEffect('k', 32))
         if (hasUpgrade('d', 15)) mult = mult.times(upgradeEffect('d', 15))
         if (hasUpgrade('du', 14)) mult = mult.times(upgradeEffect('d', 14))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let exponent = new Decimal(1)
+        if (hasUpgrade('k', 32)) exponent = exponent.times(0.5)
+        if (hasUpgrade('d', 35)) exponent = exponent.times(1.1)
+        if (hasUpgrade('r', 24)) exponent = exponent.times(2)
+        return exponent
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
@@ -449,6 +550,48 @@ addLayer("k", {
             cost: new Decimal(1e117),
             unlocked(){return (hasUpgrade("k",24))},
         },
+        31: {
+            title: "Knobs 11",
+            description: "x(log10(knobs+1)+1)^3 knobs gain!",
+            cost: new Decimal(1e125),
+            unlocked(){return (hasUpgrade("k",25))},
+            effect() {
+                return player[this.layer].points.add(1).log10().add(1).pow(3)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        32: {
+            title: "Knobs 12",
+            description: "A double-edged sword. x(rush+1)^5 knobs gain but ^0.5 knobs gain.",
+            cost: new Decimal(1e132),
+            unlocked(){return (hasUpgrade("k",31))},
+            effect() {
+                return player["r"].points.add(1).pow(5)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        33: {
+            title: "Knobs 13",
+            description: "^1.1 rush",
+            cost: new Decimal(1e154),
+            unlocked(){return (hasUpgrade("k",32))},
+        },
+        34: {
+            title: "Knobs 14",
+            description: "(log2(rush+1)+1)^2 studs gain",
+            cost: new Decimal(1e176),
+            unlocked(){return (hasUpgrade("k",33))},
+            effect() {
+                return player["r"].points.add(1).log2().add(1).pow(2)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        35: {
+            title: "Knobs 15",
+            description: "*becomes pg132* Doors exponent is now 1.18 (check floors again)",
+            cost: new Decimal(1e180),
+            unlocked(){return (hasUpgrade("k",34))},
+        },
     },
     branches: ["k","r"],
     layerShown(){return true},
@@ -462,7 +605,11 @@ addLayer("r", {
 		points: new Decimal(0),
     }},
     color: "#333333",
-    requires: new Decimal(22), // Can be a function that takes requirement increases into account
+    requires(){ // Calculate the multiplier for main currency from bonuses
+        let base = new Decimal(22)
+        if (hasUpgrade('r', 34)) base = 15
+        return base
+    },
     resource: "rush", // Name of prestige currency
     baseResource: "closets", // Name of resource prestige is based on
     baseAmount() {return player["c"].points}, // Get the current amount of baseResource
@@ -477,11 +624,15 @@ addLayer("r", {
         if (hasUpgrade('c', 24)) mult = mult.times(upgradeEffect('c', 24))
         if (hasUpgrade('du', 11)) mult = mult.times(upgradeEffect('du', 11))
         if (hasUpgrade('du', 15)) mult = mult.times(upgradeEffect('du', 15))
+        if (hasMilestone('f', 3)) mult = mult.times(tmp['f'].milestones[3].effect)
         mult = mult.times(tmp["g"].effect)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let exponent = new Decimal(1)
+        if (hasUpgrade('k', 33)) exponent = exponent.times(1.1)
+        if (hasUpgrade('f', 12)) exponent = exponent.times(1.1)
+        return exponent
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
@@ -542,7 +693,97 @@ addLayer("r", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
+        21: {
+            title: "Rush 6",
+            description: "^(log10(rush+1)+1)^0.03 Doors 3 upgrade effect",
+            cost: new Decimal(1e78),
+            unlocked(){return hasUpgrade("f",11)},
+            effect() {
+                return player["r"].points.add(1).log10().add(1).pow(0.03)
+            },
+            effectDisplay() { return "^"+format(upgradeEffect(this.layer, this.id)) }, // Add formatting to the effect
         },
+        22: {
+            title: "Rush 7",
+            description: "Door exponent is 1.15, each door boosts stud gain by 1.02x compounding",
+            cost: new Decimal(1e80),
+            unlocked(){return hasUpgrade("r",21)},
+            effect() {
+                let thing = new Decimal(1.02)
+                if (hasUpgrade('r',25)) thing = thing.times(upgradeEffect('r',25))
+                return thing.pow(player["d"].points)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        23: {
+            title: "Rush 8",
+            description: "Each closet boosts stud gain by 1.02x compounding",
+            cost: new Decimal(1e98),
+            unlocked(){return hasUpgrade("r",22)},
+            effect() {
+                let thing = new Decimal(1.02)
+                if (hasUpgrade('r',25)) thing = thing.times(upgradeEffect('r',25))
+                return thing.pow(player["c"].points)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        24: {
+            title: "Rush 9",
+            description: "UNDO KNOBS 12'S NEGATIVE EFFECT BY SQUARING KNOBS GAIN! ALSO GOOGOL RUSH (WARNING: REAL INFLATION)",
+            cost: new Decimal(1e100),
+            unlocked(){return hasUpgrade("r",23)},
+        },
+        25: {
+            title: "Rush 10",
+            description: "^(log10(rush+1)+1)^.05 Rush 7 and Rush 8 effect (Knobs softcap warning) (WARNING: REALER INFLATION)",
+            cost: new Decimal(1e200),
+            unlocked(){return hasUpgrade("r",24)},
+            effect() {
+                return (player[this.layer].points).add(1).log10().add(1).pow(0.05)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        31: {
+            title: "Rush 11",
+            description: "Ok fine no more inflation (hopefully). A simple x1e20 stud gain.",
+            cost: new Decimal(1e227),
+            unlocked(){return hasUpgrade("r",25)},
+        },
+        32: {
+            title: "Rush 12",
+            description: "^1.15 gold (not only studs/knobs/rush) (slight inflation)",
+            cost: new Decimal(1e232),
+            unlocked(){return hasUpgrade("r",31)},
+        },
+        33: {
+            title: "Rush 13",
+            description: "UNLOCK A CHALLENGE (new feature)",
+            cost: new Decimal(1e263),
+            unlocked(){return hasUpgrade("r",32)},
+        },
+        34: {
+            title: "Rush 14",
+            description: "Rush base is now 15",
+            cost: new Decimal(1e266),
+            unlocked(){return hasUpgrade("r",33)},
+        },
+        35: {
+            title: "Rush 15",
+            description: "pg132 upgrade again -> 1.13 door base (real) also new dupe upgrades...",
+            cost: new Decimal(1e269),
+            unlocked(){return hasUpgrade("r",34)},
+        },
+    },
+    challenges: {
+        11: {
+            name: "RUSHED",
+            challengeDescription: "^0.5 stud gain",
+            rewardDescription: "^1.05 stud gain",
+            goalDescription: "1e1650 studs",
+            canComplete: function() {return player.points.gte("1e1650")},
+            unlocked(){return hasUpgrade("r",33)},
+        },
+    }
 })
 addLayer("du", {
     name: "dupes", // This is optional, only used in a few places, If absent it just uses the layer id.
@@ -664,6 +905,40 @@ addLayer("du", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
+        21: {
+            title: "Dupe 6",
+            description: "x(dupe+1)^10 stud gain",
+            cost: new Decimal(241),
+            unlocked(){return hasUpgrade("r",35)},
+            effect() {
+                return player["du"].points.add(1).pow(10)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        22: {
+            title: "Dupe 7",
+            description: "^1.03 stud gain",
+            cost: new Decimal(242),
+            unlocked(){return hasUpgrade("du",21)},
+        },
+        23: {
+            title: "Dupe 8",
+            description: "^1.03 stud gain.",
+            cost: new Decimal(246),
+            unlocked(){return hasUpgrade("du",22)},
+        },
+        24: {
+            title: "Dupe 9",
+            description: "^1.03 stud gain...",
+            cost: new Decimal(250),
+            unlocked(){return hasUpgrade("du",23)},
+        },
+        25: {
+            title: "Dupe 10",
+            description: "Unlock a new layer (wip)",
+            cost: new Decimal(255),
+            unlocked(){return hasUpgrade("du",24)},
+        },
     },
 })
 addLayer("f", {
@@ -714,9 +989,62 @@ addLayer("f", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
+        3: {
+            requirementDescription: "Requires: 3 Floors",
+            effectDescription: "x(floors+1)^^2 rush gain (TETRATION 2) more door upgrades",
+            done() { return player.f.points.gte(3) },
+            unlocked(){return hasUpgrade("k",35)},
+            effect() {
+                return player[this.layer].points.add(1).tetrate(2)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        4: {
+            requirementDescription: "Requires: 4 Floors",
+            effectDescription: "x(floors+1)^^2 stud gain (TETRATION 3) more closet upgrades",
+            done() { return player.f.points.gte(4) },
+            unlocked(){return hasUpgrade("d",35)},
+            effect() {
+                return player[this.layer].points.add(1).tetrate(2)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
     },
     upgrades: {
-
+        11: {
+            title: "Floors 1",
+            description: "^1.05 studs, door exponent is 1.16 <- PG132 AGAIN, new rush upgrades",
+            cost: new Decimal(5),
+            unlocked(){return hasUpgrade("c",35)},
+        },
+        12: {
+            title: "Floors 2",
+            description: "^1.1 rush",
+            cost: new Decimal(6),
+            unlocked(){return hasUpgrade("f",11)},
+        },
+        13: {
+            title: "Floors 3",
+            description: "^1.05 studs (yay filler exponent upgrade)",
+            cost: new Decimal(8),
+            unlocked(){return hasUpgrade("f",12)},
+        },
+        14: {
+            title: "Floors 4",
+            description: "Doors exponent is now 1.14...",
+            cost: new Decimal(13),
+            unlocked(){return hasUpgrade("f",13)},
+        },
+        15: {
+            title: "Floors 5",
+            description: "x10^x stud gain",
+            cost: new Decimal(15),
+            unlocked(){return hasUpgrade("f",14)},
+            effect(){
+                let thing = new Decimal(10)
+                return thing.pow(player[this.layer].points)},
+            effectDisplay() {return format (upgradeEffect(this.layer, this.id))+"x"}, // Add formatting to the effect
+        },
     },
     branches: ["d","f"]
 })
@@ -745,12 +1073,15 @@ addLayer("g", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let exponent = new Decimal(1)
+        if (hasUpgrade('r', 32)) exponent = exponent.times(1.15)
+        return exponent
     },
     effect() {
         return player[this.layer].points.add(1)
     },
     effectDescription() { return 'multiplying rush gain by ' + format(tmp['g'].effect)},
+    passiveGeneration() {if (hasUpgrade('c',32)) return 1},
     row: 2, // Row the layer is in on the tree (0 is the first row)
     displayRow: 0, //changes which row the layer appears on
     hotkeys: [
