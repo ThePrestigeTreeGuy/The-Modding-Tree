@@ -13,11 +13,20 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.6.1",
-	name: "capitalism(realer)",
+	num: "0.7",
+	name: "Rebounding",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.7</h3><br>
+		- Added a new layer!<br>
+		- Added 32 upgrades!<br>
+		- Added 16 milestones!<br>
+		- Added 12 buyables!<br>
+		- Added a challenge!<br>
+		- Added achievements! (note: only unlocked when new layer is unlocked)<br>
+		- CSS changes!<br>
+		- Endgame: e4.2e6 points<br>
 	<h3>v0.6.1</h3><br>
 		- added 35 upgrades<br>
 		- added a challenge<br>
@@ -86,6 +95,7 @@ function getPointGen() {
 	if (hasUpgrade('d', 14)) gain = gain.times(upgradeEffect('d', 14))
 	if (hasUpgrade('d', 15)) gain = gain.times(upgradeEffect('d', 15))
 	if (hasUpgrade('d', 34)) gain = gain.times(1e5)
+	if (hasUpgrade('d', 43)) gain = gain.times(upgradeEffect('d', 43))
 	if (hasUpgrade('c', 11)) gain = gain.times(10)
 	if (hasUpgrade('c', 12)) gain = gain.times(upgradeEffect('c', 12))
 	if (hasUpgrade('c', 13)) gain = gain.times(upgradeEffect('c', 13))
@@ -114,11 +124,19 @@ function getPointGen() {
 	if (hasMilestone('f', 1)) gain = gain.times(100)
 	if (hasMilestone('f', 4)) gain = gain.times(tmp['f'].milestones[4].effect)
 	if (hasUpgrade('f', 15)) gain = gain.times(upgradeEffect('f', 15))
+	if (hasUpgrade('g', 21)) gain = gain.times(upgradeEffect('g', 21))
+	if (hasUpgrade('g', 23)) gain = gain.times(upgradeEffect('g', 23))
+	if (hasUpgrade('g', 24)) gain = gain.times(upgradeEffect('g', 24))
+	if (hasUpgrade('g', 31)) gain = gain.times(upgradeEffect('g', 31))
 	if (hasMilestone('g', 1)) gain = gain.times(100)
+	if (hasMilestone('amb', 2)) gain = gain.times(tmp['amb'].milestones[2].effect)
+	if (hasMilestone('r', 4)) gain = gain.times(tmp['r'].milestones[4].effect)
 	if (hasUpgrade('g', 12)) gain = gain.pow(1.05)
 	if (hasUpgrade('g', 13)) gain = gain.pow(1.05)
 	if (hasUpgrade('g', 14)) gain = gain.pow(1.05)
+	if (hasUpgrade('g', 32)) gain = gain.pow(1.02)
 	if (hasUpgrade('g', 15)) gain = gain.pow(upgradeEffect('g', 15))
+	if (hasUpgrade('g', 34)) gain = gain.pow(upgradeEffect('g', 34))
 	if (hasUpgrade('k', 24)) gain = gain.pow(1.05)
 	if (hasUpgrade('k', 25)) gain = gain.pow(1.05)
 	if (hasUpgrade('d', 31)) gain = gain.pow(1.05)
@@ -128,9 +146,26 @@ function getPointGen() {
 	if (hasUpgrade('c', 34)) gain = gain.pow(upgradeEffect('c', 34))
 	if (inChallenge('r',11)) gain = gain.pow(0.5)
 	if (hasChallenge('r',11)) gain = gain.pow(1.05)
+	if (inChallenge('amb',11)) gain = gain.pow(0.1)
+	if (hasChallenge('amb',11)) gain = gain.pow(1.02)
 	if (hasUpgrade('du',22)) gain = gain.pow(1.03)
 	if (hasUpgrade('du',23)) gain = gain.pow(1.03)
 	if (hasUpgrade('du',24)) gain = gain.pow(1.03)
+	if (hasUpgrade('amb',11)) gain = gain.pow(1.02)
+	if (hasUpgrade('amb',12)) gain = gain.pow(1.02)
+	if (hasUpgrade('amb',13)) gain = gain.pow(1.02)
+	if (hasUpgrade('amb',14)) gain = gain.pow(1.04)
+	if (hasUpgrade('amb',15)) gain = gain.pow(1.01)
+	if (hasUpgrade('d',41)) gain = gain.pow(0.9)
+	if (hasUpgrade('d',45)) gain = gain.pow(0.9)
+	if (hasUpgrade('d',53)) gain = gain.pow(0.97)
+	if (hasUpgrade('d',54)) gain = gain.pow(0.97)
+	if (hasUpgrade('d',55)) gain = gain.pow(0.97)
+	if (hasUpgrade('c',42)) gain = gain.pow(1.005)
+	if (hasMilestone('c',3)) gain = gain.pow(0.93)
+	if (hasMilestone('d',2)) gain = gain.pow(0.95)
+	gain = gain.pow(buyableEffect('c', 12))
+	gain = gain.pow(buyableEffect('r', 12))
 	return gain
 }
 
@@ -144,7 +179,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e13600"))
+	return player.points.gte(new Decimal("e4200000"))
 }
 
 
