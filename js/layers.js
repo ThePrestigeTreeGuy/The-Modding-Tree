@@ -44,4 +44,20 @@ addLayer("H", {
         return player[this.layer].points.add(1)
     },
     effectDescription() { return 'multiplying atomic particle gain by ' + format(tmp['H'].effect)},
+    upgrades: {
+        11: {
+        title: "Basic Boost",
+        description: "x2 atomic particle gain",
+        cost: new Decimal(100),
+        },
+        12: {
+        title: "Intermediate Boost",
+        description: "x2 atomic particle gain for every upgrade bought",
+        cost: new Decimal(250),
+        effect() {
+            return new Decimal(2).pow(player.H.upgrades.length)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+    },
 })
