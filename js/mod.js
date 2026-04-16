@@ -1,7 +1,7 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
-	pointsName: "points",
+	name: "The Atomic Tree",
+	author: "ThePrestigeTreeGuy/GamingAndWalkthoughs on discord",
+	pointsName: "atomic particles",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -42,6 +42,7 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	gain = gain.times(tmp['H'].effect)
 	return gain
 }
 
@@ -55,7 +56,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("e28000000000000000000000000000000000000"))
 }
 
 
