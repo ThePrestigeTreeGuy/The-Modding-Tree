@@ -92,14 +92,14 @@ addLayer("H", {
         },
         15: {
         title: "New Path Forward",
-        description: "Unlock a buyable.",
+        description: "Unlock a buyable and a new layer.",
         cost: new Decimal(50000),
         unlocked() {return hasUpgrade('H',14)},
         },
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(100000).mul(new Decimal(10).pow(x)).mul(new Decimal(1.05).pow(x.pow(2))) },
+            cost(x) { return new Decimal(150000).mul(new Decimal(1.75).pow(x)).mul(new Decimal(1.05).pow(x.pow(2))) },
             title: "The Buyable",
             display() { return `x1.5 atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -114,5 +114,46 @@ addLayer("H", {
             },
             unlocked(){return true},
         },
+    },
+})
+addLayer("He", {
+    name: "helium", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "He", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#D72800",
+    requires: new Decimal(1000000), // Can be a function that takes requirement increases into account
+    resource: "helium", // Name of prestige currency
+    baseResource: "hydrogen", // Name of resource prestige is based on
+    baseAmount() {return player.H.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.2, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 1, // Row the layer is in on the tree (0 is the first row)
+    layerShown(){return true},
+    effect() {
+        return player[this.layer].points.add(1)
+    },
+    effectDescription() { return 'multiplying atomic particle and hydrogen gain by ' + format(tmp['He'].effect)},
+    tabFormat: {
+        "Upgrades": {
+            content: ['main-display','prestige-button','upgrades'],
+        },
+        "Buyables": {
+            content: ['main-display','prestige-button','buyables'],
+        },
+    },
+    upgrades: {
+    },
+    buyables: {
     },
 })
