@@ -97,4 +97,22 @@ addLayer("H", {
         unlocked() {return hasUpgrade('H',14)},
         },
     },
+    buyables: {
+        11: {
+            cost(x) { return new Decimal(100000).mul(new Decimal(10).pow(x)).mul(new Decimal(1.05).pow(x.pow(2))) },
+            title: "The Buyable",
+            display() { return `x1.5 atomic particle gain.
+            <b>Cost:</b>` + format(this.cost()) + `
+            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect:</b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(1.5).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return true},
+        },
+    },
 })
