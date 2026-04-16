@@ -33,6 +33,7 @@ addLayer("H", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade('H',14)) mult = mult.times(upgradeEffect('H', 14))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -46,7 +47,7 @@ addLayer("H", {
     effectDescription() { return 'multiplying atomic particle gain by ' + format(tmp['H'].effect)},
     upgrades: {
         11: {
-        title: "Basic Boost",
+        title: "Beginner Boost",
         description: "x2 atomic particle gain",
         cost: new Decimal(100),
         },
@@ -54,10 +55,37 @@ addLayer("H", {
         title: "Intermediate Boost",
         description: "x2 atomic particle gain for every upgrade bought",
         cost: new Decimal(250),
+        unlocked() {return hasUpgrade('H',11)},
         effect() {
             return new Decimal(2).pow(player.H.upgrades.length)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        13: {
+        title: "Advanced Boost",
+        description: "Atomic particles boost themselves.",
+        cost: new Decimal(1000),
+        unlocked() {return hasUpgrade('H',12)},
+        effect() {
+            return player.points.add(1).log10().add(1).pow(0.5)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        14: {
+        title: "Psychologically Unsafe Boost",
+        description: "Hydrogen boosts itself.",
+        cost: new Decimal(5000),
+        unlocked() {return hasUpgrade('H',13)},
+        effect() {
+            return player.H.points.add(1).log10().add(1).pow(0.5)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        15: {
+        title: "New Path Forward",
+        description: "Unlock a buyable.",
+        cost: new Decimal(50000),
+        unlocked() {return hasUpgrade('H',14)},
         },
     },
 })
