@@ -11,13 +11,10 @@ addLayer("a", {
         11: {
             name: "Start.",
             tooltip: "Get 1 hydrogen",
-            done() {return hasMilestone('amb',1)}
+            done() {return player.H.points.gte(1)}
         },
     },
-        layerShown(){if (hasUpgrade ('du',25))
-                {return true}
-                else if (hasAchievement ('a',11))
-    {return true}},
+        layerShown(){return true}
 })
 addLayer("H", {
     name: "hydrogen", // This is optional, only used in a few places, If absent it just uses the layer id.
