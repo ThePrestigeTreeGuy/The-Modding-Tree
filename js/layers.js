@@ -45,6 +45,15 @@ addLayer("H", {
         return player[this.layer].points.add(1)
     },
     effectDescription() { return 'multiplying atomic particle gain by ' + format(tmp['H'].effect)},
+    tabFormat: {
+        "Upgrades": {
+            content: ['main-display','prestige-button','upgrades'],
+        },
+        "Buyables": {
+            content: ['main-display','prestige-button','buyables'],
+            unlocked(){return (hasUpgrade("H",15))}
+        },
+    },
     upgrades: {
         11: {
         title: "Beginner Boost",
