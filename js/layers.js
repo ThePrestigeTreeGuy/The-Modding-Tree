@@ -34,6 +34,7 @@ addLayer("H", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('H',14)) mult = mult.times(upgradeEffect('H', 14))
+        mult = mult.times(tmp['He'].effect)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -100,7 +101,7 @@ addLayer("H", {
     buyables: {
         11: {
             cost(x) { return new Decimal(150000).mul(new Decimal(1.75).pow(x)).mul(new Decimal(1.05).pow(x.pow(2))) },
-            title: "The Buyable",
+            title: "Proton (H+)",
             display() { return `x1.5 atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
             <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
@@ -120,6 +121,7 @@ addLayer("He", {
     name: "helium", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "He", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    branches: ['H'],
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
@@ -139,7 +141,8 @@ addLayer("He", {
         return new Decimal(1)
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return true},
+    layerShown(){if (hasUpgrade('H',15)) return true 
+        else if (player[this.layer].points.gte(1)) return true},
     effect() {
         return player[this.layer].points.add(1)
     },
