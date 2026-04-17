@@ -154,9 +154,19 @@ addLayer("He", {
         "Buyables": {
             content: ['main-display','prestige-button','buyables'],
         },
+        "Milestones": {
+            content: ['main-display','prestige-button','milestones'],
+        },
     },
     upgrades: {
     },
     buyables: {
     },
+    milestones: {
+        1: {
+            requirementDescription: "Requires: 1 helium",
+            effectDescription: "x2 atomic particles",
+            done() { return player.g.points.gte(1) }
+        },
+    }
 })
