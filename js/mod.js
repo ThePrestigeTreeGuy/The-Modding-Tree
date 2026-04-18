@@ -12,12 +12,12 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.1",
+	name: "The beginning of a long journey",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
+	<h3>v0.1</h3><br>
 		- Added the first 2 layers, hydrogen and helium.<br>
 		- Added 25 upgrades, 5 milestones, 4 buyables, and 2 challenges.<br>
 		- Endgame: 1e70 atomic particles.`
