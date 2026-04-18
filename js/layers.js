@@ -195,7 +195,7 @@ addLayer("H", {
         },
         51: {
         title: "Hydrogen 21",
-        description: "Atomic energy boosts helium gain.",
+        description: "Atomic particles boost helium gain.",
         cost: new Decimal(1e17),
         unlocked() {return hasUpgrade('H',45)},
         effect() {
@@ -218,6 +218,18 @@ addLayer("H", {
         description: "Unlock a hydrogen challenge.",
         cost: new Decimal(6.7e19),
         unlocked() {return hasUpgrade('H',52)},
+        },
+        54: {
+        title: "Another one!",
+        description: "Unlock a hydrogen buyable.",
+        cost: new Decimal(6.7e21),
+        unlocked() {return hasUpgrade('H',53)},
+        },
+        55: {
+        title: "Last hydrogen upgrade",
+        description: "Unlock a hydrogen challenge.",
+        cost: new Decimal(6.7e22),
+        unlocked() {return hasUpgrade('H',54)},
         },
     },
     buyables: {
@@ -268,7 +280,7 @@ addLayer("H", {
         },
         13: {
             cost(x) { return new Decimal(1e10).mul(new Decimal(1.15).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
-            title: "Trihydrogen cation (H3+)",
+            title: "Dihydrogen cation (H2+)",
             display() { return `x1.5 atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
             <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
@@ -282,8 +294,49 @@ addLayer("H", {
             },
             unlocked(){return hasUpgrade('H',42)},
         },
+        21: {
+            cost(x) { return new Decimal(6.7e21).mul(new Decimal(1.2).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
+            title: "Trihydrogen cation (H3+)",
+            display() { return `x1.75 atomic particle gain.
+            <b>Cost:</b>` + format(this.cost()) + `
+            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect:</b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(1.75).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return hasUpgrade('H',54)},
+        },
     },
     challenges: {
+        11: {
+            name: "Triatomic Hydrogen",
+            challengeDescription: "^0.5 atomic particle gain",
+            rewardDescription: "x2 atomic particle gain",
+            goalDescription: function() {return format(new Decimal(1e27).mul(new Decimal(2).pow(new Decimal(player[this.layer].challenges[this.id]).pow(2)))) + " atomic particles"},
+            canComplete: function() {return player.points.gte(new Decimal(1e27).mul(new Decimal(2).pow(new Decimal(player[this.layer].challenges[this.id]).pow(2))))},
+            completionLimit: 10,
+            rewardEffect() {
+                return new Decimal(2).pow(player[this.layer].challenges[this.id])
+            },
+            rewardDisplay() { return format(tmp[this.layer].challenges[this.id].rewardEffect)+"x" }, // Add formatting to the effect
+        },
+        12: {
+            name: "Hydrogen-4",
+            challengeDescription: "^0.01 atomic particle gain",
+            rewardDescription: "x3 atomic particle gain",
+            goalDescription: function() {return format(new Decimal(250).mul(new Decimal(1.5).pow(new Decimal(player[this.layer].challenges[this.id]).pow(2)))) + " atomic particles"},
+            canComplete: function() {return player.points.gte(new Decimal(250).mul(new Decimal(1.5).pow(new Decimal(player[this.layer].challenges[this.id]).pow(2))))},
+            completionLimit: 10,
+            unlocked(){return hasUpgrade('H',55)},
+            rewardEffect() {
+                return new Decimal(3).pow(player[this.layer].challenges[this.id])
+            },
+            rewardDisplay() { return format(tmp[this.layer].challenges[this.id].rewardEffect)+"x" }, // Add formatting to the effect
+        },
     }
 })
 addLayer("He", {
@@ -322,9 +375,6 @@ addLayer("He", {
     tabFormat: {
         "Upgrades": {
             content: ['main-display','prestige-button','upgrades'],
-        },
-        "Buyables": {
-            content: ['main-display','prestige-button','buyables'],
         },
         "Milestones": {
             content: ['main-display','prestige-button','milestones'],

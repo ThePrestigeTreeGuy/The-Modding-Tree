@@ -18,8 +18,9 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+		- Added the first 2 layers, hydrogen and helium.<br>
+		- Added 25 upgrades, 5 milestones, 4 buyables, and 2 challenges.<br>
+		- Endgame: 1e70 atomic particles.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -42,6 +43,8 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	gain = gain.times(tmp['H'].challenges[11].rewardEffect)
+	gain = gain.times(tmp['H'].challenges[12].rewardEffect)
 	gain = gain.times(tmp['H'].effect)
 	gain = gain.times(tmp['He'].effect)
 	if (hasUpgrade('H',11)) gain = gain.times(2)
@@ -55,6 +58,9 @@ function getPointGen() {
 	if (hasUpgrade('H',32)) gain = gain.times(2.002)
 	if (hasUpgrade('H',33)) gain = gain.times(2.003)
 	gain = gain.times(buyableEffect('H', 13))
+	gain = gain.times(buyableEffect('H', 21))
+	if (inChallenge('H',11)) gain = gain.pow(0.5)
+	if (inChallenge('H',12)) gain = gain.pow(0.01)
 	return gain
 }
 
@@ -68,7 +74,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e28000000000000000000000000000000000000"))
+	return player.points.gte(new Decimal("e70"))
 }
 
 
