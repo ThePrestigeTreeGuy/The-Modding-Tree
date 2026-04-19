@@ -59,6 +59,8 @@ function getPointGen() {
 	if (hasUpgrade('H',33)) gain = gain.times(2.003)
 	gain = gain.times(buyableEffect('H', 13))
 	gain = gain.times(buyableEffect('H', 21))
+	gain = gain.times(buyableEffect('am', 11))
+	if (hasMilestone('am',1)) gain = gain.pow(1.01)
 	if (inChallenge('H',11)) gain = gain.pow(0.5)
 	if (inChallenge('H',12)) gain = gain.pow(0.01)
 	return gain
