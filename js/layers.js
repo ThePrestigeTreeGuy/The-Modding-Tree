@@ -96,8 +96,10 @@ addLayer("am", {
             requirementDescription: "Requires: 5 total antimatter",
             effectDescription: "Total antimatter now boosts hydrogen gain.",
             done() { return player[this.layer].total.gte(5) },
-            effect() {return new Decimal(1.3).pow(player[this.layer].total)},
-            effectDisplay() { return format(tmp[this.layer].milestones[this.id].effect)+"x" }, // Add formatting to the effect
+            effect() {
+                return new Decimal(1.3).pow(player[this.layer].total)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
     }
 })
