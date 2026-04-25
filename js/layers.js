@@ -13,8 +13,9 @@ addLayer("am", {
     baseResource: "atomic particles", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    canBuyMax() {return hasMilestone('am',5)},
     base: 1e75,
-    exponent: 0.5, // Prestige currency exponent
+    exponent: 2, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
@@ -36,7 +37,7 @@ addLayer("am", {
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(1).add(new Decimal(x).pow(1.5).floor()) },
+            cost(x) { return new Decimal(1).add(new Decimal(x)) },
             title: "Anti-atomic-particles",
             display() { return `x1,000 atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -51,7 +52,7 @@ addLayer("am", {
             },
         },
         12: {
-            cost(x) { return new Decimal(1).add(new Decimal(x).pow(1.5).floor()) },
+            cost(x) { return new Decimal(1).add(new Decimal(x)) },
             title: "Anti-hydrogen",
             display() { return `x10 hydrogen gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -66,7 +67,7 @@ addLayer("am", {
             },
         },
         13: {
-            cost(x) { return new Decimal(1).add(new Decimal(x).pow(1.5).floor()) },
+            cost(x) { return new Decimal(1).add(new Decimal(x)) },
             title: "Anti-helium",
             display() { return `x2 helium gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -89,17 +90,27 @@ addLayer("am", {
         },
         2: {
             requirementDescription: "Requires: 4 total antimatter",
-            effectDescription: "Unlock a new hydrogen buyable.",
+            effectDescription: "Unlock a new hydrogen buyable, keep the first 5 helium milestones.",
             done() { return player[this.layer].total.gte(4) }
         },
         3: {
             requirementDescription: "Requires: 5 total antimatter",
-            effectDescription: "Total antimatter now boosts hydrogen gain.",
+            effectDescription: "1.3 ^ total antimatter now boosts hydrogen gain.",
             done() { return player[this.layer].total.gte(5) },
             effect() {
                 return new Decimal(1.3).pow(player[this.layer].total)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        4: {
+            requirementDescription: "Requires: 11 total antimatter",
+            effectDescription: "Remove the single exponent from Dihydrogen cation (H2+), and buy max the buyable/the buyable costs nothing. Also, keep hydrogen challenge completions, and autobuy the first 6 hydrogen buyables.",
+            done() { return player[this.layer].total.gte(11) }
+        },
+        5: {
+            requirementDescription: "Requires: 12 total antimatter",
+            effectDescription: "Buy max antimatter.",
+            done() { return player[this.layer].total.gte(12) }
         },
     }
 })
@@ -126,7 +137,11 @@ addLayer("H", {
         if (hasUpgrade('H',23)) mult = mult.times(upgradeEffect('H',23))
         if (hasUpgrade('H',34)) mult = mult.times(1.404)
 	    mult = mult.times(buyableEffect('am', 12))
+	    if (hasMilestone('am',3)) mult = mult.times(tmp['am'].milestones[3].effect)
 	    if (hasMilestone('am',1)) mult = mult.pow(1.01)
+	    mult = mult.times(buyableEffect('H', 33))
+        mult = mult.pow(tmp['H'].challenges[22].rewardEffect)
+        mult = mult.pow(player[this.layer].points.add(1).log10().div(100).pow(-1).min(1))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -143,6 +158,30 @@ addLayer("H", {
         else if (hasMilestone('He',2)) return 0.5
     },
     autoUpgrade() {return hasMilestone('am',1) && player[this.layer].points.gte(0)},
+    automate() {
+        if (hasMilestone("am", 4)) {
+            buyBuyable("H", 11);
+            buyBuyable("H", 12);
+            buyBuyable("H", 13);
+            buyBuyable("H", 21);
+            buyBuyable("H", 22);
+            buyBuyable("H", 23);
+        }
+    },
+    doReset(resettingLayer) {
+        // Stage 1, almost always needed, makes resetting this layer not delete your progress
+        if (layers[resettingLayer].row <= this.row) return;
+
+        // Stage 2, track which specific subfeatures you want to keep, e.g. Upgrade 11, Challenge 32, Buyable 12
+        let keptChallenges = {}
+        if (hasMilestone("He", 6)) {
+            [11, 12, 21, 22].forEach(id => keptChallenges[id] = challengeCompletions(this.layer, id));
+        }
+
+        layerDataReset(this.layer);
+
+        Object.assign(player[this.layer].challenges, keptChallenges);
+    },
     tabFormat: {
         "Upgrades": {
             content: ['main-display','prestige-button','upgrades'],
@@ -158,12 +197,12 @@ addLayer("H", {
     },
     upgrades: {
         11: {
-        title: "Beginner Boost",
+        title: "1",
         description: "x2 atomic particle gain",
         cost: new Decimal(50),
         },
         12: {
-        title: "Intermediate Boost",
+        title: "2",
         description: "x1.5 atomic particle gain for every upgrade bought",
         cost: new Decimal(100),
         unlocked() {return hasUpgrade('H',11)},
@@ -173,7 +212,7 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         13: {
-        title: "Advanced Boost",
+        title: "3",
         description: "Atomic particles boost themselves.",
         cost: new Decimal(150),
         unlocked() {return hasUpgrade('H',12)},
@@ -185,7 +224,7 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         14: {
-        title: "Psychologically Unsafe Boost",
+        title: "4",
         description: "Hydrogen boosts itself.",
         cost: new Decimal(200),
         unlocked() {return hasUpgrade('H',13)},
@@ -197,19 +236,19 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         15: {
-        title: "New Path Forward",
+        title: "5",
         description: "Unlock a buyable and a new layer.",
         cost: new Decimal(250),
         unlocked() {return hasUpgrade('H',14)},
         },
         21: {
-        title: "generic boost lol",
+        title: "6",
         description: "x2 atomic particle gain.",
         cost: new Decimal(10000),
         unlocked() {return hasUpgrade('H',15)},
         },
         22: {
-        title: "ungeneric boost lol",
+        title: "7",
         description: "Hydrogen boosts atomic particle gain.",
         cost: new Decimal(20000),
         unlocked() {return hasUpgrade('H',21)},
@@ -219,7 +258,7 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         23: {
-        title: "yay more hydrogen",
+        title: "8",
         description: "Atomic particles boost hydrogen gain.",
         cost: new Decimal(30000),
         unlocked() {return hasUpgrade('H',22)},
@@ -231,79 +270,79 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         24: {
-        title: "yay even more hydrogen",
+        title: "9",
         description: "^2 the effect of hydrogen upgrade 8.",
         cost: new Decimal(100000),
         unlocked() {return hasUpgrade('H',23)},
         },
         25: {
-        title: "New Buyable",
+        title: "10",
         description: "Unlock a new buyable.",
         cost: new Decimal(200000),
         unlocked() {return hasUpgrade('H',24)},
         },
         31: {
-        title: "this",
+        title: "11",
         description: "x2.001 atomic particles.",
         cost: new Decimal(1500000),
         unlocked() {return hasUpgrade('H',25)},
         },
         32: {
-        title: "is",
+        title: "12",
         description: "x2.002 atomic particles.",
         cost: new Decimal(3000000),
         unlocked() {return hasUpgrade('H',31)},
         },
         33: {
-        title: "the",
+        title: "13",
         description: "x2.003 atomic particles.",
         cost: new Decimal(6700000),
         unlocked() {return hasUpgrade('H',32)},
         },
         34: {
-        title: "atomic",
+        title: "14",
         description: "x1.404 hydrogen.",
         cost: new Decimal(67000000),
         unlocked() {return hasUpgrade('H',33)},
         },
         35: {
-        title: "tree",
+        title: "15",
         description: "x1.305 helium.",
         cost: new Decimal(125000000),
         unlocked() {return hasUpgrade('H',34)},
         },
         41: {
-        title: "pg132 time :)",
+        title: "16",
         description: "^1.15 the effect of the first buyable.",
         cost: new Decimal(670000000),
         unlocked() {return hasUpgrade('H',35)},
         },
         42: {
-        title: "idk how to name these tbh but here is a new buyable have fun",
+        title: "17",
         description: "Unlock a new buyable.",
         cost: new Decimal(3000000000),
         unlocked() {return hasUpgrade('H',41)},
         },
         43: {
-        title: "Hydrogen 18",
+        title: "18",
         description: "^1.15 the effect of the first buyable again.",
         cost: new Decimal(10000000000),
         unlocked() {return hasUpgrade('H',42)},
         },
         44: {
-        title: "Hydrogen 19",
+        title: "19",
         description: "^1.5 the effect of hydrogen upgrade 4.",
         cost: new Decimal(1e12),
         unlocked() {return hasUpgrade('H',43)},
         },
         45: {
-        title: "Hydrogen 20",
+        title: "20",
         description: "^1.75 the effect of hydrogen upgrade 3.",
         cost: new Decimal(1e16),
         unlocked() {return hasUpgrade('H',44)},
         },
         51: {
-        title: "Hydrogen 21",
+        title: "21",
         description: "Atomic particles boost helium gain.",
         cost: new Decimal(1e17),
         unlocked() {return hasUpgrade('H',45)},
@@ -313,7 +352,7 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         52: {
-        title: "Hydrogen 22",
+        title: "22",
         description: "Helium boosts its own gain.",
         cost: new Decimal(1e18),
         unlocked() {return hasUpgrade('H',51)},
@@ -323,19 +362,19 @@ addLayer("H", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         53: {
-        title: "The First of Many",
+        title: "23",
         description: "Unlock a hydrogen challenge.",
         cost: new Decimal(6.7e19),
         unlocked() {return hasUpgrade('H',52)},
         },
         54: {
-        title: "Another one!",
+        title: "24",
         description: "Unlock a hydrogen buyable.",
         cost: new Decimal(6.7e21),
         unlocked() {return hasUpgrade('H',53)},
         },
         55: {
-        title: "Last hydrogen upgrade",
+        title: "25",
         description: "Unlock a hydrogen challenge and a new layer.",
         cost: new Decimal(6.7e22),
         unlocked() {return hasUpgrade('H',54)},
@@ -343,7 +382,8 @@ addLayer("H", {
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(500).mul(new Decimal(1.1).pow(x)) },
+            cost(x) { if (hasMilestone('He',7)) return new Decimal(1.1).pow(x)
+                else return new Decimal(500).mul(new Decimal(1.1).pow(x)) },
             title: "Proton (H+)",
             display() { return `+100% atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -363,33 +403,39 @@ addLayer("H", {
             },
             buyMax() {
                 let bulk = player[this.layer].points.div(500).log(1.1).floor()
+                if (hasMilestone('He',7)) bulk = player[this.layer].points.log(1.1).floor()
                 setBuyableAmount(this.layer, this.id, bulk)
             },
             unlocked(){return true},
         },
         12: {
-            cost(x) { return new Decimal(250000).mul(new Decimal(1.1).pow(x)) },
+            cost(x) { if (hasMilestone('He',7)) return new Decimal(1.1).pow(x)
+                else return new Decimal(250000).mul(new Decimal(1.1).pow(x)) },
             title: "Dihydrogen (H2)",
             display() { return `+100% atomic particle gain, x2 atomic particles every 25 levels.
             <b>Cost:</b>` + format(this.cost()) + `
-            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) + "/1,500" +`
             <b>Effect:</b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
                 return getBuyableAmount(this.layer,this.id).mul(new Decimal(2).add(buyableEffect(this.layer, 22)).pow(getBuyableAmount(this.layer,this.id).mul(0.04).floor())).add(1)},
             buy() {
                 if (hasMilestone("He",5)) {this.buyMax()} 
-                else  player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
-                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                else player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1).min(1500))
             },
             buyMax() {
                 let bulk = player[this.layer].points.div(250000).log(1.1).floor()
+                if (hasMilestone('He',7)) bulk = player[this.layer].points.log(1.1).floor()
                 setBuyableAmount(this.layer, this.id, bulk)
             },
             unlocked(){return hasUpgrade('H',25)},
+            purchaseLimit: 1500
         },
         13: {
-            cost(x) { return new Decimal(1e10).mul(new Decimal(1.15).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
+            cost(x) { if (hasMilestone('He',7)) return new Decimal(1.01).pow((x).pow(2))
+                else if (hasMilestone('am',4)) return new Decimal(1e10).mul(new Decimal(1.01).pow((x).pow(2)))
+                else return new Decimal(1e10).mul(new Decimal(1.15).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
             title: "Dihydrogen cation (H2+)",
             display() { return `x1.5 atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -399,13 +445,21 @@ addLayer("H", {
             effect(){
                 return new Decimal(1.5).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
-                player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
+                if (hasMilestone("am",4)) {this.buyMax()}
+                else player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            buyMax() {
+                let bulk = player[this.layer].points.div(1e10).log(1.01).pow(0.5).floor()
+                if (hasMilestone('He',7)) bulk = player[this.layer].points.log(1.01).pow(0.5).floor()
+                setBuyableAmount(this.layer, this.id, bulk)
             },
             unlocked(){return hasUpgrade('H',42)},
         },
         21: {
-            cost(x) { return new Decimal(6.7e21).mul(new Decimal(1.2).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
+            cost(x) { if (hasMilestone('He',8)) return new Decimal(1.01).pow((x).pow(2))
+                else if (hasMilestone('He',6)) return new Decimal(6.7e21).mul(new Decimal(1.01).pow((x).pow(2)))
+                else return new Decimal(6.7e21).mul(new Decimal(1.2).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
             title: "Trihydrogen cation (H3+)",
             display() { return `x1.75 atomic particle gain.
             <b>Cost:</b>` + format(this.cost()) + `
@@ -415,8 +469,14 @@ addLayer("H", {
             effect(){
                 return new Decimal(1.75).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
-                player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
+                if (hasMilestone("He",6)) {this.buyMax()}
+                else player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            buyMax() {
+                let bulk = player[this.layer].points.div(6.7e21).log(1.01).pow(0.5).floor()
+                if (hasMilestone('He',8)) bulk = player[this.layer].points.log(1.01).pow(0.5).floor()
+                setBuyableAmount(this.layer, this.id, bulk)
             },
             unlocked(){return hasUpgrade('H',54)},
         },
@@ -437,7 +497,8 @@ addLayer("H", {
             unlocked(){return hasMilestone('am',2)},
         },
         23: {
-            cost(x) { return new Decimal(1e45).mul(new Decimal(1.25).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
+            cost(x) { if (hasMilestone('He',9)) return new Decimal(1.01).pow((x).pow(2))
+                return new Decimal(1e45).mul(new Decimal(1.25).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
             title: "Tritium (3H)",
             display() { return `+^0.05 the effect of Proton (H+).
             <b>Cost:</b>` + format(this.cost()) + `
@@ -447,10 +508,63 @@ addLayer("H", {
             effect(){
                 return new Decimal(0.05).mul(getBuyableAmount(this.layer,this.id)).add(1)},
             buy() {
+                if (hasMilestone("He",9)) {this.buyMax()}
+                else player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            buyMax() {
+                let bulk = player[this.layer].points.log(1.01).pow(0.5).floor()
+                setBuyableAmount(this.layer, this.id, bulk)
+            },
+            unlocked(){return hasUpgrade('He',11)},
+        },
+        31: {
+            cost(x) { return new Decimal(1e87).mul(new Decimal(1.35).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
+            title: "Deuteron (2H+)",
+            display() { return `xlog(Atomic Particles)^0.125 atomic particle gain.
+            <b>Cost:</b>` + format(this.cost()) + `
+            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect:</b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return player.points.add(10).log10().pow(0.125).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
-            unlocked(){return hasUpgrade('He',11)},
+            unlocked(){return hasUpgrade('He',12)},
+        },
+        32: {
+            cost(x) { return new Decimal(1e113).mul(new Decimal(1.5).pow(x)).mul(new Decimal(1.01).pow((x).pow(2))) },
+            title: "Triton (3H+)",
+            display() { return `xlog(Hydrogen)^0.3 atomic particle gain.
+            <b>Cost:</b>` + format(this.cost()) + `
+            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect:</b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return player.H.points.add(10).log10().pow(0.3).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return hasUpgrade('He',13)},
+        },
+        33: {
+            cost(x) { return new Decimal(1e157).mul(new Decimal(5).pow(x)).mul(new Decimal(1.05).pow((x).pow(2))) },
+            title: "Triatomic Hydrogen (H3)",
+            display() { return `x(Antimatter) atomic particle and hydrogen gain.
+            <b>Cost:</b>` + format(this.cost()) + `
+            <b>Amount:</b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect:</b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return player.am.points.add(1).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).abs()
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return hasUpgrade('He',14)},
         },
     },
     challenges: {
@@ -481,7 +595,7 @@ addLayer("H", {
         },
         21: {
             name: "Hydrogen-6",
-            challengeDescription: "Hydrogen effect is disabled.",
+            challengeDescription: "Hydrogen effect is disabled",
             rewardDescription: "x2 hydrogen gain",
             goalDescription: function() {return format(new Decimal(1e88).mul(new Decimal(10).pow(new Decimal(player[this.layer].challenges[this.id]).pow(2)))) + " atomic particles"},
             canComplete: function() {return player.points.gte(new Decimal(1e88).mul(new Decimal(10).pow(new Decimal(player[this.layer].challenges[this.id]).pow(2))))},
@@ -491,6 +605,20 @@ addLayer("H", {
                 return new Decimal(2).pow(player[this.layer].challenges[this.id])
             },
             rewardDisplay() { return format(tmp[this.layer].challenges[this.id].rewardEffect)+"x" }, // Add formatting to the effect
+        },
+        22: {
+            name: "Hydrogen-7",
+            challengeDescription: "Challenges 1 and 3 at the same time",
+            rewardDescription: "^1.01 atomic particle and hydrogen gain",
+            countsAs: [11,21],
+            goalDescription: function() {return format(new Decimal(1e77).pow(new Decimal(1.03).pow(new Decimal(player[this.layer].challenges[this.id])))) + " atomic particles"},
+            canComplete: function() {return player.points.gte(new Decimal(1e77).pow(new Decimal(1.03).pow(new Decimal(player[this.layer].challenges[this.id]))))},
+            completionLimit: 5,
+            unlocked(){return hasUpgrade('He',12)},
+            rewardEffect() {
+                return new Decimal(1.01).pow(player[this.layer].challenges[this.id])
+            },
+            rewardDisplay() { return "^"+format(tmp[this.layer].challenges[this.id].rewardEffect) }, // Add formatting to the effect
         },
     }
 })
@@ -503,7 +631,7 @@ addLayer("He", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#D72800",
+    color: "#eb5d00",
     requires: new Decimal(1000), // Can be a function that takes requirement increases into account
     resource: "helium", // Name of prestige currency
     baseResource: "hydrogen", // Name of resource prestige is based on
@@ -528,6 +656,23 @@ addLayer("He", {
         return player[this.layer].points.add(1)
     },
     effectDescription() { return 'multiplying atomic particle and hydrogen gain by ' + format(tmp['He'].effect)},
+    doReset(resettingLayer) {
+        // Stage 1, almost always needed, makes resetting this layer not delete your progress
+        if (layers[resettingLayer].row <= this.row) return;
+
+        // Stage 2, track which specific subfeatures you want to keep, e.g. Upgrade 11, Challenge 32, Buyable 12
+        let keptMilestones = []
+        if (hasMilestone("am", 2)) keptMilestones.push(1,2,3,4,5)
+
+        // Stage 3, track which main features you want to keep - all upgrades, total points, specific toggles, etc.
+        let keep = [];
+
+        // Stage 4, do the actual data reset
+        layerDataReset(this.layer, keep);
+
+        // Stage 5, add back in the specific subfeatures you saved earlier
+        player[this.layer].milestones.push(...keptMilestones)
+    },
     tabFormat: {
         "Upgrades": {
             content: ['main-display','prestige-button','upgrades'],
@@ -539,10 +684,38 @@ addLayer("He", {
     },
     upgrades: {
         11: {
-        title: "A New Beginning",
+        title: "26",
         description: "Unlock a hydrogen buyable and a hydrogen challenge.",
         cost: new Decimal(2e9),
         unlocked() {return hasUpgrade('H',55)}, 
+        },
+        12: {
+        title: "27",
+        description: "Unlock a hydrogen buyable and a hydrogen challenge. Also, unlock a few more helium milestones.",
+        cost: new Decimal(6.7e17),
+        unlocked() {return hasUpgrade('He',11)}, 
+        },
+        13: {
+        title: "28",
+        description: "Unlock a hydrogen buyable.",
+        cost: new Decimal(1e23),
+        unlocked() {return hasUpgrade('He',12)}, 
+        },
+        14: {
+        title: "29",
+        description: "Unlock a hydrogen buyable.",
+        cost: new Decimal(2e32),
+        unlocked() {return hasUpgrade('He',13)}, 
+        },
+        15: {
+        title: "30",
+        description: "Unlock a new layer (coming soon), and every helium upgade multiplies atomic particle gain by 10.",
+        cost: new Decimal(1e36),
+        unlocked() {return hasUpgrade('He',14)}, 
+        effect() {
+            return new Decimal(10).pow(player[this.layer].upgrades.length)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
     },
     buyables: {
@@ -572,6 +745,30 @@ addLayer("He", {
             requirementDescription: "Requires: 1,000 helium",
             effectDescription: "Buy max the Dihydrogen (H2) buyable, and it costs nothing.",
             done() { return player[this.layer].points.gte(1000) }
+        },
+        6: {
+            requirementDescription: "Requires: 1e22 helium",
+            effectDescription: "Remove the single exponent from the Trihydrogen cation (H3+) cost formula, buy max the buyable, and it costs nothing.",
+            done() { return player[this.layer].points.gte(1e22) },
+            unlocked() {return (hasUpgrade('He',12))}
+        },
+        7: {
+            requirementDescription: "Requires: 1e23 helium",
+            effectDescription: "Remove the cost base from the cost formulas of the first 3 buyables.",
+            done() { return player[this.layer].points.gte(1e23) },
+            unlocked() {return (hasUpgrade('He',12))}
+        },
+        8: {
+            requirementDescription: "Requires: 1e24 helium",
+            effectDescription: "Remove the cost base from the cost formula of Trihydrogen Cation (H3+).",
+            done() { return player[this.layer].points.gte(1e24) },
+            unlocked() {return (hasUpgrade('He',12))}
+        },
+        9: {
+            requirementDescription: "Requires: 1e30 helium",
+            effectDescription: "Remove the cost base from the cost formula of Tritium (3H), and buy max the buyable/it costs nothing.",
+            done() { return player[this.layer].points.gte(1e30) },
+            unlocked() {return (hasUpgrade('He',12))}
         },
     }
 })

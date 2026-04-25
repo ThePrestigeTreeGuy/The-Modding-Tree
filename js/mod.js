@@ -12,11 +12,17 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "The beginning of a long journey",
+	num: "0.2",
+	name: "Antimatter non-Dimensions",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.2</h3><br>
+		- Added a new layer, antimatter.<br>
+		- Added 5 upgrades, 9 milestones, 8 buyables, and 2 challenges.<br>
+		- New total: 30 upgrades, 14 milestones, 12 buyables, and 4 challenges.<br>
+		- Changed the upgrade names.<br>
+		- Endgame: 1e610 atomic particles.
 	<h3>v0.1</h3><br>
 		- Added the first 2 layers, hydrogen and helium.<br>
 		- Added 25 upgrades, 5 milestones, 4 buyables, and 2 challenges.<br>
@@ -60,7 +66,11 @@ function getPointGen() {
 	gain = gain.times(buyableEffect('H', 13))
 	gain = gain.times(buyableEffect('H', 21))
 	gain = gain.times(buyableEffect('am', 11))
+	gain = gain.times(buyableEffect('H', 31))
+	gain = gain.times(buyableEffect('H', 32))
+	if (hasUpgrade('He',15)) gain = gain.times(upgradeEffect('He', 15))
 	if (hasMilestone('am',1)) gain = gain.pow(1.01)
+	gain = gain.pow(tmp['H'].challenges[22].rewardEffect)
 	if (inChallenge('H',11)) gain = gain.pow(0.5)
 	if (inChallenge('H',12)) gain = gain.pow(0.01)
 	return gain
@@ -76,7 +86,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e70"))
+	return player.points.gte(new Decimal("e610"))
 }
 
 
