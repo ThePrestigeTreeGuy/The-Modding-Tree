@@ -1,32 +1,26 @@
 let modInfo = {
-	name: "The Atomic Tree",
+	name: "Universe Expander",
 	author: "ThePrestigeTreeGuy/GamingAndWalkthoughs on discord",
-	pointsName: "atomic particles",
+	pointsName: "m^3",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (4.22e-105), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2",
-	name: "Antimatter non-Dimensions",
+	num: "0.1",
+	name: "Travelling through the void",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.2</h3><br>
-		- Added a new layer, antimatter.<br>
-		- Added 5 upgrades, 9 milestones, 8 buyables, and 2 challenges.<br>
-		- New total: 30 upgrades, 14 milestones, 12 buyables, and 4 challenges.<br>
-		- Changed the upgrade names.<br>
-		- Endgame: 1e610 atomic particles.<br>
 	<h3>v0.1</h3><br>
-		- Added the first 2 layers, hydrogen and helium.<br>
-		- Added 25 upgrades, 5 milestones, 4 buyables, and 2 challenges.<br>
-		- Endgame: 1e70 atomic particles.`
+		- Added 3 types of matter.<br>
+		- Added upgrades.<br>
+		- Endgame: 1e-90 m^3 (1 quectometre wide).`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -48,36 +42,12 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
-	gain = gain.times(tmp['H'].challenges[11].rewardEffect)
-	gain = gain.times(tmp['H'].challenges[12].rewardEffect)
-	gain = gain.times(tmp['H'].effect)
-	gain = gain.times(tmp['He'].effect)
-	gain = gain.times(tmp['Li'].effect)
-	if (hasUpgrade('H',11)) gain = gain.times(2)
-	if (hasUpgrade('H',12)) gain = gain.times(upgradeEffect('H', 12))
-	if (hasUpgrade('H',13)) gain = gain.times(upgradeEffect('H', 13))
-	gain = gain.times(buyableEffect('H', 11))
-	if (hasUpgrade('H',21)) gain = gain.times(2)
-	if (hasMilestone('He',1)) gain = gain.times(2)
-	if (hasUpgrade('H',22)) gain = gain.times(upgradeEffect('H', 22))
-	gain = gain.times(buyableEffect('H', 12))
-	if (hasUpgrade('H',31)) gain = gain.times(2.001)
-	if (hasUpgrade('H',32)) gain = gain.times(2.002)
-	if (hasUpgrade('H',33)) gain = gain.times(2.003)
-	gain = gain.times(buyableEffect('H', 13))
-	gain = gain.times(buyableEffect('H', 21))
-	gain = gain.times(buyableEffect('am', 11))
-	gain = gain.times(buyableEffect('H', 31))
-	gain = gain.times(buyableEffect('H', 32))
-	if (hasUpgrade('He',15)) gain = gain.times(upgradeEffect('He', 15))
-	gain = gain.times(buyableEffect('He', 11))
-	if (hasMilestone('He',18)) gain = gain.times(1e5)
-	gain = gain.pow(tmp['Li'].milestones[1].effect)
-	if (hasMilestone('am',1)) gain = gain.pow(1.01)
-	gain = gain.pow(tmp['H'].challenges[22].rewardEffect)
-	if (inChallenge('H',11)) gain = gain.pow(0.5)
-	if (inChallenge('H',12)) gain = gain.pow(0.01)
+	let gain = new Decimal(0)
+	gain = gain.add(buyableEffect('M',11))
+	gain = gain.add(buyableEffect('M',12))
+	gain = gain.add(buyableEffect('M',13))
+	gain = gain.times(new Decimal(1.05).pow(new Decimal(player.points).mul(1e100).log(2).floor().add(1).max(0)).mul(new Decimal(player.points).mul(1e100).log(2).floor().add(2).max(1)).floor())
+	if (hasUpgrade('M',134)) gain = gain.times(2)
 	return gain
 }
 
@@ -87,11 +57,12 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
+	function () { return `You are ` + formatSmall(player.points.cbrt().mul(1e30)) + ` quectometres wide`}
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e610"))
+	return player.points.gte(new Decimal("e-90"))
 }
 
 
