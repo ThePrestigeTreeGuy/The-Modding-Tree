@@ -13,13 +13,17 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.1",
-	name: "Travelling through the void",
+	name: "Travelling through the void (but bigger)",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.2</h3><br>
+		- Added 2 types of matter.<br>
+		- Added upgrades.<br>
+		- Endgame: 1e-72 m^3 (1 yoctometre wide).<br>
 	<h3>v0.1</h3><br>
 		- Added 3 types of matter.<br>
-		- Added upgrades.<br>
+		- Added upgrades and the Volume Level.<br>
 		- Endgame: 1e-90 m^3 (1 quectometre wide).`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
