@@ -203,8 +203,48 @@ addLayer("M", {
         45: {
             title: "Oh well",
             description: "Triple Planck Volume effect.",
-            cost: new Decimal(2.5e-88),
+            cost: new Decimal(1e-88),
             unlocked() {return hasUpgrade('M',44)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        51: {
+            title: "One Boost",
+            description: "x1000 Planck Volume effect.",
+            cost: new Decimal(5e-85),
+            unlocked() {return hasUpgrade('M',45)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        52: {
+            title: "One Boost Again",
+            description: "x50000 Planck Volume effect.",
+            cost: new Decimal(1e-78),
+            unlocked() {return hasUpgrade('M',51)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        53: {
+            title: "One Boost Yet Again",
+            description: "x100 Planck Volume effect.",
+            cost: new Decimal(7.5e-75),
+            unlocked() {return hasUpgrade('M',52)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        54: {
+            title: "Weak One Boost",
+            description: "Quadruple Planck Volume effect.",
+            cost: new Decimal(3e-74),
+            unlocked() {return hasUpgrade('M',53)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        55: {
+            title: "Weaker One Boost",
+            description: "Double Planck Volume effect.",
+            cost: new Decimal(7.5e-74),
+            unlocked() {return hasUpgrade('M',53)},
             currencyDisplayName: "m^3",
             currencyInternalName: "points"
         },
@@ -316,7 +356,55 @@ addLayer("M", {
             title: "Quectometre Boost",
             description: "x2 volume gain.",
             cost: new Decimal(1e-90),
-            unlocked() {return hasUpgrade('M',132)},
+            unlocked() {return hasUpgrade('M',133)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        135: {
+            title: "OP boost",
+            description: "Decuple Million Planck Volume effect.",
+            cost: new Decimal(5e-89),
+            unlocked() {return hasUpgrade('M',134)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        141: {
+            title: "Million Boost",
+            description: "x500 Million Planck Volume effect.",
+            cost: new Decimal(5e-85),
+            unlocked() {return hasUpgrade('M',135)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        142: {
+            title: "Million Boost Again",
+            description: "x25000 Million Planck Volume effect.",
+            cost: new Decimal(1e-78),
+            unlocked() {return hasUpgrade('M',141)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        143: {
+            title: "Million Boost Yet Again",
+            description: "x100 Million Planck Volume effect.",
+            cost: new Decimal(1.5e-74),
+            unlocked() {return hasUpgrade('M',142)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        144: {
+            title: "Approaching The Yoctometre I",
+            description: "Octuple Million Planck Volume effect.",
+            cost: new Decimal(2e-73),
+            unlocked() {return hasUpgrade('M',143)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        145: {
+            title: "Approaching The Yoctometre II",
+            description: "Double Million Planck Volume effect.",
+            cost: new Decimal(5e-73),
+            unlocked() {return hasUpgrade('M',144)},
             currencyDisplayName: "m^3",
             currencyInternalName: "points"
         },
@@ -360,6 +448,206 @@ addLayer("M", {
             currencyDisplayName: "m^3",
             currencyInternalName: "points"
         },
+        221: {
+            title: "Self-Synergy",
+            description: "Million Planck Volumes and Trillion Planck Volumes boost themselves by +1% for each buyable level.",
+            cost: new Decimal(2.5e-88),
+            unlocked() {return hasUpgrade('M',215)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        222: {
+            title: "Upgrade Booster",
+            description: "Each upgrade gives a +1% boost to volume production.",
+            cost: new Decimal(5e-88),
+            unlocked() {return hasUpgrade('M',221)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+            effect() {
+                return new Decimal(player[this.layer].upgrades.length).mul(0.01).add(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        223: {
+            title: "Different Synergy",
+            description: "Million Planck Volumes and Trillion Planck Volumes boost each other by +1% for each buyable level.",
+            cost: new Decimal(7e-88),
+            unlocked() {return hasUpgrade('M',222)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        224: {
+            title: "New Matter???",
+            description: "Unlock new matter, and double Trillion Planck Volume effect.",
+            cost: new Decimal(1.25e-87),
+            unlocked() {return hasUpgrade('M',223)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        225: {
+            title: "Trillion Is A Small Number",
+            description: "Double Trillion Planck Volume effect.",
+            cost: new Decimal(2e-87),
+            unlocked() {return hasUpgrade('M',224)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        231: {
+            title: "Trillion Boost",
+            description: "x100 Trillion Planck Volume effect.",
+            cost: new Decimal(5e-85),
+            unlocked() {return hasUpgrade('M',225)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        232: {
+            title: "Another Synergy",
+            description: "Every Quintillion Planck Volume boosts Trillion Planck Volume by +20%.",
+            cost: new Decimal(5e-85),
+            unlocked() {return hasUpgrade('M',231)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        233: {
+            title: "Trillion Boost Again",
+            description: "x1000 Trillion Planck Volume effect.",
+            cost: new Decimal(1e-78),
+            unlocked() {return hasUpgrade('M',232)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        311: {
+            title: "Approaching The Rontometre I",
+            description: "Triple Quintillion Planck Lengths effect.",
+            cost: new Decimal(3e-84),
+            unlocked() {return hasUpgrade('M',225)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        312: {
+            title: "Approaching The Rontometre II",
+            description: "Double Quintillion Planck Lengths effect.",
+            cost: new Decimal(7.5e-84),
+            unlocked() {return hasUpgrade('M',311)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        313: {
+            title: "Approaching The Rontometre III",
+            description: "Every Trillion Planck Volume boosts Quintillion Planck Volume by +0.5%.",
+            cost: new Decimal(4e-83),
+            unlocked() {return hasUpgrade('M',312)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        314: {
+            title: "Approaching The Rontometre IV",
+            description: "Double Quintillion Planck Lengths effect.",
+            cost: new Decimal(7.5e-83),
+            unlocked() {return hasUpgrade('M',313)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        315: {
+            title: "Approaching The Rontometre V",
+            description: "Double Quintillion Planck Lengths effect.",
+            cost: new Decimal(1.25e-82),
+            unlocked() {return hasUpgrade('M',314)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        321: {
+            title: "Approaching The Rontometre VI",
+            description: "Double Quintillion Planck Lengths effect.",
+            cost: new Decimal(2e-82),
+            unlocked() {return hasUpgrade('M',315)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        322: {
+            title: "Approaching The Rontometre VII",
+            description: "Triple Quintillion Planck Lengths effect.",
+            cost: new Decimal(4e-82),
+            unlocked() {return hasUpgrade('M',321)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        323: {
+            title: "Rontometre Boost",
+            description: "Quadruple Volume gain, and unlock new matter.",
+            cost: new Decimal(1e-81),
+            unlocked() {return hasUpgrade('M',322)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        324: {
+            title: "Quintillion Boost",
+            description: "x50 Quintillion Planck Lengths effect.",
+            cost: new Decimal(1e-78),
+            unlocked() {return hasUpgrade('M',323)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        411: {
+            title: "Septillion!",
+            description: "Quadruple Septillion Planck Lengths effect.",
+            cost: new Decimal(1e-77),
+            unlocked() {return hasUpgrade('M',323)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        412: {
+            title: "But Still Small.",
+            description: "Double Septillion Planck Lengths effect.",
+            cost: new Decimal(2e-77),
+            unlocked() {return hasUpgrade('M',411)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        413: {
+            title: "A Speck?",
+            description: "Double Septillion Planck Lengths effect.",
+            cost: new Decimal(3e-77),
+            unlocked() {return hasUpgrade('M',412)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        414: {
+            title: "Light At The End Of The Tunnel?",
+            description: "Double Septillion Planck Lengths effect.",
+            cost: new Decimal(6e-77),
+            unlocked() {return hasUpgrade('M',413)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        415: {
+            title: "Light At The End Of The Tunnel!",
+            description: "Double Septillion Planck Lengths effect.",
+            cost: new Decimal(1e-76),
+            unlocked() {return hasUpgrade('M',414)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        421: {
+            title: "Thank Me Later",
+            description: "Volume boosts itself.",
+            cost: new Decimal(3e-76),
+            unlocked() {return hasUpgrade('M',415)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+            effect() {
+                return player.points.mul(1e80).pow(0.2)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        422: {
+            title: "Yoctometre Boost (New Matter!)",
+            description: "Double Volume gain, and unlock new matter [coming soon].",
+            cost: new Decimal(1e-72),
+            unlocked() {return hasUpgrade('M',421)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
     },
     buyables: {
         11: {
@@ -392,6 +680,11 @@ addLayer("M", {
                 if (hasUpgrade('M',43)) mult = mult.times(3)
                 if (hasUpgrade('M',44)) mult = mult.times(3)
                 if (hasUpgrade('M',45)) mult = mult.times(3)
+                if (hasUpgrade('M',51)) mult = mult.times(1000)
+                if (hasUpgrade('M',52)) mult = mult.times(50000)
+                if (hasUpgrade('M',53)) mult = mult.times(100)
+                if (hasUpgrade('M',54)) mult = mult.times(4)
+                if (hasUpgrade('M',54)) mult = mult.times(2)
                 return getBuyableAmount(this.layer,this.id).mul(4.22e-105).mul(mult)},
             buy() {
                 player.points = player.points.sub(this.cost())
@@ -422,6 +715,14 @@ addLayer("M", {
                 if (hasUpgrade('M',131)) mult = mult.times(3)
                 if (hasUpgrade('M',132)) mult = mult.times(3)
                 if (hasUpgrade('M',133)) mult = mult.times(3)
+                if (hasUpgrade('M',135)) mult = mult.times(10)
+                if (hasUpgrade('M',221)) mult = mult.times(getBuyableAmount(this.layer,this.id).mul(0.01).add(1))
+                if (hasUpgrade('M',223)) mult = mult.times(getBuyableAmount(this.layer,13).mul(0.01).add(1))
+                if (hasUpgrade('M',141)) mult = mult.times(500)
+                if (hasUpgrade('M',142)) mult = mult.times(25000)
+                if (hasUpgrade('M',143)) mult = mult.times(100)
+                if (hasUpgrade('M',144)) mult = mult.times(8)
+                if (hasUpgrade('M',145)) mult = mult.times(2)
                 return getBuyableAmount(this.layer,this.id).mul(4.22e-102).mul(mult)},
             buy() {
                 player.points = player.points.sub(this.cost())
@@ -444,12 +745,66 @@ addLayer("M", {
                 if (hasUpgrade('M',213)) mult = mult.times(2)
                 if (hasUpgrade('M',214)) mult = mult.times(2)
                 if (hasUpgrade('M',215)) mult = mult.times(2)
+                if (hasUpgrade('M',221)) mult = mult.times(getBuyableAmount(this.layer,this.id).mul(0.01).add(1))
+                if (hasUpgrade('M',223)) mult = mult.times(getBuyableAmount(this.layer,12).mul(0.01).add(1))
+                if (hasUpgrade('M',224)) mult = mult.times(2)
+                if (hasUpgrade('M',225)) mult = mult.times(2)
+                if (hasUpgrade('M',231)) mult = mult.times(100)
+                if (hasUpgrade('M',232)) mult = mult.times(getBuyableAmount(this.layer,21).mul(0.2).add(1))
+                if (hasUpgrade('M',233)) mult = mult.times(1000)
                 return getBuyableAmount(this.layer,this.id).mul(2e-97).mul(mult)},
             buy() {
                 player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             unlocked(){return (hasUpgrade('M',123))},
+        },
+        21: {
+            cost(x) { return new Decimal(4.22e-87).mul(new Decimal(1.1).pow(x)) },
+            title: "Quintillion Planck Volumes",
+            display() { return `+1.5e-91 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                if (hasUpgrade('M',311)) mult = mult.times(3)
+                if (hasUpgrade('M',312)) mult = mult.times(2)
+                if (hasUpgrade('M',313)) mult = mult.times(getBuyableAmount(this.layer,13).mul(0.005).add(1))
+                if (hasUpgrade('M',314)) mult = mult.times(2)
+                if (hasUpgrade('M',315)) mult = mult.times(2)
+                if (hasUpgrade('M',321)) mult = mult.times(2)
+                if (hasUpgrade('M',322)) mult = mult.times(3)
+                if (hasUpgrade('M',324)) mult = mult.times(50)
+                return getBuyableAmount(this.layer,this.id).mul(1.5e-91).mul(mult)},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (hasUpgrade('M',224))},
+        },
+        22: {
+            cost(x) { return new Decimal(4.22e-81).mul(new Decimal(1.1).pow(x)) },
+            title: "Septillion Planck Volumes",
+            display() { return `+1e-86 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                if (hasUpgrade('M',411)) mult = mult.times(4)
+                if (hasUpgrade('M',412)) mult = mult.times(2)
+                if (hasUpgrade('M',413)) mult = mult.times(2)
+                if (hasUpgrade('M',414)) mult = mult.times(2)
+                if (hasUpgrade('M',415)) mult = mult.times(2)
+                return getBuyableAmount(this.layer,this.id).mul(1e-86).mul(mult)},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (hasUpgrade('M',224))},
         },
     },
     bars: {

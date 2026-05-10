@@ -6,7 +6,7 @@ let modInfo = {
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (4.2201e-105), // Used for hard resets and new players
+	initialStartPoints: new Decimal (4.23e-105), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -46,8 +46,14 @@ function getPointGen() {
 	gain = gain.add(buyableEffect('M',11))
 	gain = gain.add(buyableEffect('M',12))
 	gain = gain.add(buyableEffect('M',13))
+	gain = gain.add(buyableEffect('M',21))
+	gain = gain.add(buyableEffect('M',22))
 	gain = gain.times(new Decimal(1.05).pow(new Decimal(player.points).mul(1e100).log(2).floor().add(1).max(0)).mul(new Decimal(player.points).mul(1e100).log(2).floor().add(2).max(1)).floor())
 	if (hasUpgrade('M',134)) gain = gain.times(2)
+	if (hasUpgrade('M',222)) gain = gain.times(upgradeEffect('M',222))
+	if (hasUpgrade('M',323)) gain = gain.times(4)
+	if (hasUpgrade('M',421)) gain = gain.times(upgradeEffect('M',421))
+	if (hasUpgrade('M',422)) gain = gain.times(2)
 	return gain
 }
 
@@ -57,12 +63,34 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	function () { return `You are ` + formatSmall(player.points.cbrt().mul(1e30)) + ` quectometres wide`}
+	function () { 
+		if (new Decimal(player.points).gte(1e90)) return `You are ` + formatSmall(player.points.cbrt().div(1e30)) + ` quettametres wide`
+		else if (new Decimal(player.points).lte(1e-81)) return `You are ` + formatSmall(player.points.cbrt().mul(1e30)) + ` quectometres wide`
+		else if (new Decimal(player.points).lte(1e-72)) return `You are ` + formatSmall(player.points.cbrt().mul(1e27)) + ` rontometres wide`
+		else if (new Decimal(player.points).lte(1e-63)) return `You are ` + formatSmall(player.points.cbrt().mul(1e24)) + ` yoctometres wide`
+		else if (new Decimal(player.points).lte(1e-54)) return `You are ` + formatSmall(player.points.cbrt().mul(1e21)) + ` zeptometres wide`
+		else if (new Decimal(player.points).lte(1e-45)) return `You are ` + formatSmall(player.points.cbrt().mul(1e18)) + ` attometres wide`
+		else if (new Decimal(player.points).lte(1e-36)) return `You are ` + formatSmall(player.points.cbrt().mul(1e15)) + ` femtometres wide`
+		else if (new Decimal(player.points).lte(1e-27)) return `You are ` + formatSmall(player.points.cbrt().mul(1e12)) + ` picometres wide`
+		else if (new Decimal(player.points).lte(1e-18)) return `You are ` + formatSmall(player.points.cbrt().mul(1e9)) + ` nanometres wide`
+		else if (new Decimal(player.points).lte(1e-9)) return `You are ` + formatSmall(player.points.cbrt().mul(1e6)) + ` micrometres wide`
+		else if (new Decimal(player.points).lte(1)) return `You are ` + formatSmall(player.points.cbrt().mul(1e3)) + ` millimetres wide`
+		else if (new Decimal(player.points).lte(1e9)) return `You are ` + formatSmall(player.points.cbrt()) + ` metres wide`
+		else if (new Decimal(player.points).lte(1e18)) return `You are ` + formatSmall(player.points.cbrt().div(1e3)) + ` kilometres wide`
+		else if (new Decimal(player.points).lte(1e27)) return `You are ` + formatSmall(player.points.cbrt().div(1e6)) + ` megametres wide`
+		else if (new Decimal(player.points).lte(1e36)) return `You are ` + formatSmall(player.points.cbrt().div(1e9)) + ` gigametres wide`
+		else if (new Decimal(player.points).lte(1e45)) return `You are ` + formatSmall(player.points.cbrt().div(1e12)) + ` terametres wide`
+		else if (new Decimal(player.points).lte(1e54)) return `You are ` + formatSmall(player.points.cbrt().div(1e15)) + ` petametres wide`
+		else if (new Decimal(player.points).lte(1e63)) return `You are ` + formatSmall(player.points.cbrt().div(1e18)) + ` exametres wide`
+		else if (new Decimal(player.points).lte(1e72)) return `You are ` + formatSmall(player.points.cbrt().div(1e21)) + ` zettametres wide`
+		else if (new Decimal(player.points).lte(1e81)) return `You are ` + formatSmall(player.points.cbrt().div(1e24)) + ` yottametres wide`
+		else if (new Decimal(player.points).lte(1e90)) return `You are ` + formatSmall(player.points.cbrt().div(1e27)) + ` ronnametres wide`
+	}
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e-90"))
+	return player.points.gte(new Decimal("e-72"))
 }
 
 
