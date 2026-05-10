@@ -804,7 +804,7 @@ addLayer("M", {
                 player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
-            unlocked(){return (hasUpgrade('M',224))},
+            unlocked(){return (hasUpgrade('M',324))},
         },
     },
     bars: {
