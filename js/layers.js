@@ -4,7 +4,36 @@ addLayer("M", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
+        colour_tokens: new Decimal(0),
+        red: new Decimal(0),
+        orange: new Decimal(0),
+        yellow: new Decimal(0),
+        green: new Decimal(0),
+        blue: new Decimal(0),
+        indigo: new Decimal(0),
+        violet: new Decimal(0),
     }},
+    update(diff) {
+    if (hasUpgrade('M', 422)) {
+        let colourTokenGain = Decimal.dOne;
+        if (hasUpgrade('M', 511)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 512)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 513)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 514)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 515)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 521)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 522)) colourTokenGain = colourTokenGain.times(2);
+        if (hasUpgrade('M', 523)) colourTokenGain = colourTokenGain.times(1.41421356237);
+        if (hasUpgrade('M', 524)) colourTokenGain = colourTokenGain.times(1.3);
+        if (hasUpgrade('M', 525)) colourTokenGain = colourTokenGain.times(1.5);
+        if (hasUpgrade('M', 531)) colourTokenGain = colourTokenGain.times(1.5);
+        if (hasUpgrade('M', 532)) colourTokenGain = colourTokenGain.times(1.7);
+        if (hasUpgrade('M', 533)) colourTokenGain = colourTokenGain.times(1.8);
+        if (hasUpgrade('M', 534)) colourTokenGain = colourTokenGain.times(1.9);
+        if (hasUpgrade('M', 535)) colourTokenGain = colourTokenGain.times(2);
+        player[this.layer].colour_tokens = player[this.layer].colour_tokens.plus(colourTokenGain.times(diff));
+    }
+    },
     color: "#ff4040",
     requires: new Decimal(2.6944002e25), // Can be a function that takes requirement increases into account
     resource: "", // Name of prestige currency
@@ -24,26 +53,59 @@ addLayer("M", {
     layerShown(){return true},
     tabFormat: {
         "Matter": {
-            content: ['main-display','prestige-button','buyables'],
+            content: [
+                'main-display',
+                'prestige-button',
+                ['buyables', [1, 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]]
+            ],
         },
         "Upgrades": {
-            content: ['main-display','prestige-button','upgrades'],
+            content: ['main-display','prestige-button',
+                ['upgrades', [1,2,3,4,5,11,12,13,14,15,21,22,23,24,25,31,32,33,34,35,41,42,43,44,45]]
+            ],
         },
         "Levels": {
             content: [
-                ['bar','bigBar']
+                ['bar','bigBar'],
+                ['bar','redBar'],
+                ['bar','orangeBar'],
+                ['bar','yellowBar'],
+                ['bar','greenBar'],
+                ['bar','blueBar'],
+                ['bar','indigoBar'],
+                ['bar','violetBar'],
             ],
+        },
+        "Colours": {
+            content: [["display-text", function() {return `You have ` + format(player[this.layer].colour_tokens) + ` colour tokens`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].red) + ` red`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].orange) + ` orange`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].yellow) + ` yellow`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].green) + ` green`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].blue) + ` blue`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].indigo) + ` indigo`}],
+            ["display-text", function() {return `You have ` + format(player[this.layer].violet) + ` violet`}], 
+            'clickables',
+            ['upgrades', [51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70]],
+            ['buyables', [1001,1002,1003]]
+        ],
         },
         "Info": {
             content: [
-                ['infobox','lore']
+                ['infobox','lore'],
+                ['infobox','lore2'],
             ]
         }
     },
     infoboxes: {
         lore: {
-            title: "ACT 0: ENDLESS VOID",
-            body() { return "You start with an unimaginably tiny amount of volume. You can buy the Planck Length, but since everything around you is so much bigger, you'll need to progress through the emptiness of the void for now. The first upgrade will be unlocked once you buy 50 Planck Volumes." },
+            title: "Info",
+            body() { return "The first upgrade will be unlocked once you buy 50 Planck Volumes." },
+        },
+        lore2: {
+            title: "Colours",
+            body() { return "When you click on the colour clickables, you will get a random amount of that colour. That amount never decreases (unless you reset)." },
+            unlocked () {return hasUpgrade('M',422)}
         }
     },
     upgrades: {
@@ -629,23 +691,147 @@ addLayer("M", {
         },
         421: {
             title: "Thank Me Later",
-            description: "Volume boosts itself.",
+            description: "Volume boosts itself. [Hardcapped at 66,666x]",
             cost: new Decimal(3e-76),
             unlocked() {return hasUpgrade('M',415)},
             currencyDisplayName: "m^3",
             currencyInternalName: "points",
             effect() {
-                return player.points.mul(1e80).pow(0.2)
+                return player.points.mul(1e80).pow(0.2).min(66666)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         422: {
-            title: "Yoctometre Boost (New Matter!)",
-            description: "Double Volume gain, and unlock new matter [coming soon].",
+            title: "The End of The Void",
+            description: "Double Volume gain, unlock new matter, and unlock a new feature.",
             cost: new Decimal(1e-72),
             unlocked() {return hasUpgrade('M',421)},
             currencyDisplayName: "m^3",
             currencyInternalName: "points"
+        },
+        511: {
+            title: "Colour Era",
+            description: "Double colour token gain.",
+            cost: new Decimal(1e-71),
+            unlocked() {return hasUpgrade('M',422)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        512: {
+            title: "More tokens",
+            description: "Double colour token gain.",
+            cost: new Decimal(1e-70),
+            unlocked() {return hasUpgrade('M',511)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        513: {
+            title: "Even more tokens",
+            description: "Double colour token gain.",
+            cost: new Decimal(1e-69),
+            unlocked() {return hasUpgrade('M',512)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        514: {
+            title: "Flooding with tokens",
+            description: "Double colour token gain, and double Neutrino effect.",
+            cost: new Decimal(1e-68),
+            unlocked() {return hasUpgrade('M',513)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points"
+        },
+        515: {
+            title: "Powerful Tokens",
+            description: "Double colour token gain, colour tokens now boost volume gain, and unlock new matter.",
+            cost: new Decimal(1e-67),
+            unlocked() {return hasUpgrade('M',514)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+            effect() {
+                return player[this.layer].colour_tokens.pow(0.142857142857)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        521: {
+            title: "Approaching The Zeptometre I",
+            description: "Double colour token gain and top quark effect.",
+            cost: new Decimal(2.5e-66),
+            unlocked() {return hasUpgrade('M',515)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        522: {
+            title: "Approaching The Zeptometre II",
+            description: "Double colour token gain and top quark effect.",
+            cost: new Decimal(2e-65),
+            unlocked() {return hasUpgrade('M',521)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        523: {
+            title: "Approaching The Zeptometre III",
+            description: "x1.41421356237 colour token gain and top quark effect.",
+            cost: new Decimal(4e-64),
+            unlocked() {return hasUpgrade('M',522)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        524: {
+            title: "Zeptometre Boost",
+            description: "x1.3 colour token gain, x2 volume gain, and unlock new matter.",
+            cost: new Decimal(1e-63),
+            unlocked() {return hasUpgrade('M',523)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        525: {
+            title: "Another Quark?",
+            description: "x1.5 colour token gain, and double Bottom Quark effect.",
+            cost: new Decimal(5e-59),
+            unlocked() {return hasUpgrade('M',524)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        531: {
+            title: "Yet Another Quark?",
+            description: "x1.5 colour token gain, and double Charm Quark effect.",
+            cost: new Decimal(1e-56),
+            unlocked() {return hasUpgrade('M',525)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        532: {
+            title: "Approaching The Attometre I",
+            description: "x1.7 colour token gain, and double Charm Quark effect.",
+            cost: new Decimal(1e-55),
+            unlocked() {return hasUpgrade('M',531)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        533: {
+            title: "Approaching The Attometre II",
+            description: "x1.8 colour token gain, and double Charm Quark effect.",
+            cost: new Decimal(2e-55),
+            unlocked() {return hasUpgrade('M',532)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        534: {
+            title: "Approaching The Attometre II",
+            description: "x1.9 colour token gain.",
+            cost: new Decimal(6e-55),
+            unlocked() {return hasUpgrade('M',533)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
+        },
+        535: {
+            title: "Attometre Boost",
+            description: "x2 colour token gain.",
+            cost: new Decimal(1e-54),
+            unlocked() {return hasUpgrade('M',534)},
+            currencyDisplayName: "m^3",
+            currencyInternalName: "points",
         },
     },
     buyables: {
@@ -805,6 +991,260 @@ addLayer("M", {
             },
             unlocked(){return (hasUpgrade('M',323))},
         },
+        23: {
+            cost(x) { return new Decimal(1e-72).mul(new Decimal(1.1).pow(x)) },
+            title: "Neutrino",
+            display() { return `+1e-81 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                if (hasUpgrade('M',514)) mult = mult.times(2)
+                return getBuyableAmount(this.layer,this.id).mul(1e-81).mul(mult).mul(new Decimal(2).pow(getBuyableAmount(this.layer,this.id).mul(0.04).floor()))},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (hasUpgrade('M',422))},
+        },
+        31: {
+            cost(x) { return new Decimal(1e-66).mul(new Decimal(1.1).pow(x)) },
+            title: "Top Quark",
+            display() { return `+7.5e-79 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                if (hasUpgrade('M',521)) mult = mult.times(2)
+                if (hasUpgrade('M',522)) mult = mult.times(2)
+                if (hasUpgrade('M',523)) mult = mult.times(1.41421356237)
+                return getBuyableAmount(this.layer,this.id).mul(7.5e-79).mul(mult).mul(new Decimal(2).pow(getBuyableAmount(this.layer,this.id).mul(0.04).floor()))},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (hasUpgrade('M',515))},
+        },
+        32: {
+            cost(x) { return new Decimal(4e-63).mul(new Decimal(1.1).pow(x)) },
+            title: "Preon",
+            display() { return `+4e-77 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                return getBuyableAmount(this.layer,this.id).mul(4e-77).mul(mult).mul(new Decimal(2).pow(getBuyableAmount(this.layer,this.id).mul(0.04).floor()))},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (hasUpgrade('M',524))},
+        },
+        33: {
+            cost(x) { return new Decimal(1.5e-59).mul(new Decimal(1.1).pow(x)) },
+            title: "Bottom Quark",
+            display() { return `+2.5e-75 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                if (hasUpgrade('M',525)) mult = mult.times(2)
+                return getBuyableAmount(this.layer,this.id).mul(2.5e-75).mul(mult).mul(new Decimal(2).pow(getBuyableAmount(this.layer,this.id).mul(0.04).floor()))},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (getBuyableAmount(this.layer, 32).gte(1))},
+        },
+        41: {
+            cost(x) { return new Decimal(5e-58).mul(new Decimal(1.1).pow(x)) },
+            title: "Charm Quark",
+            display() { return `+3e-74 m^3 per second.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + '+' + formatSmall(this.effect()) + '/sec'},
+            canAfford() { return player.points.gte(this.cost()) },
+            effect(){
+                let mult = new Decimal(1)
+                if (hasUpgrade('M',531)) mult = mult.times(2)
+                if (hasUpgrade('M',532)) mult = mult.times(2)
+                if (hasUpgrade('M',533)) mult = mult.times(2)
+                return getBuyableAmount(this.layer,this.id).mul(3e-74).mul(mult).mul(new Decimal(2).pow(getBuyableAmount(this.layer,this.id).mul(0.04).floor()))},
+            buy() {
+                player.points = player.points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (getBuyableAmount(this.layer, 33).gte(1))},
+        },
+        10011: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Red Boost",
+            display() { return `x2 red on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].red.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].red.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#ff0000", ...style}
+                } 
+                return {...style}
+            },
+        },
+        10012: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Orange Boost",
+            display() { return `x2 orange on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].orange.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].orange.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#ff6600", ...style}
+                } 
+                return {...style}
+            },
+        },
+        10013: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Yellow Boost",
+            display() { return `x2 yellow on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].yellow.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].yellow.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#ffff00", ...style}
+                } 
+                return {...style}
+            },
+        },
+        10021: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Green Boost",
+            display() { return `x2 green on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].green.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].green.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#00ff00", ...style}
+                } 
+                return {...style}
+            },
+        },
+        10022: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Blue Boost",
+            display() { return `x2 blue on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].blue.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].blue.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#0099ff", ...style}
+                } 
+                return {...style}
+            },
+        },
+        10023: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Indigo Boost",
+            display() { return `x2 indigo on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].indigo.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].indigo.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#4400ff", ...style}
+                } 
+                return {...style}
+            },
+        },
+        10031: {
+            cost(x) { return new Decimal(3).mul(new Decimal(3).pow(x)) },
+            title: "Violet Boost",
+            display() { return `x2 violet on roll.
+            <b>Cost: </b>` + formatSmall(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + 'x' + formatSmall(this.effect())},
+            canAfford() { return player[this.layer].violet.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            unlocked(){return (new Decimal(player[this.layer].violet.gte(1)))},
+            style() {
+                let style = {
+                }
+                if(this.canAfford() == true) {
+                    return {"background-color": "#9900ff", ...style}
+                } 
+                return {...style}
+            },
+        },
     },
     bars: {
         bigBar: {
@@ -818,5 +1258,252 @@ addLayer("M", {
             },
             unlocked () {return hasUpgrade('M',13)}
         },
+        redBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].red).div(new Decimal(2).pow(new Decimal(player[this.layer].red).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].red).add(0.0000001).log(2).ceil().max(0)) + ` Red Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].red).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#ff0000"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
+        orangeBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].orange).div(new Decimal(2).pow(new Decimal(player[this.layer].orange).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].orange).add(0.0000001).log(2).ceil().max(0)) + ` Orange Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].orange).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#ff6600"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
+        yellowBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].yellow).div(new Decimal(2).pow(new Decimal(player[this.layer].yellow).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].yellow).add(0.0000001).log(2).ceil().max(0)) + ` Yellow Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].yellow).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#ffff00"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
+        greenBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].green).div(new Decimal(2).pow(new Decimal(player[this.layer].green).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].green).add(0.0000001).log(2).ceil().max(0)) + ` Green Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].green).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#00ff00"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
+        blueBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].blue).div(new Decimal(2).pow(new Decimal(player[this.layer].blue).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].blue).add(0.0000001).log(2).ceil().max(0)) + ` Blue Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].blue).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#0099ff"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
+        indigoBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].indigo).div(new Decimal(2).pow(new Decimal(player[this.layer].indigo).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].indigo).add(0.0000001).log(2).ceil().max(0)) + ` Indigo Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].indigo).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#4400ff"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
+        violetBar: {
+            direction: RIGHT,
+            width: 400,
+            height: 50,
+            progress() { return new Decimal(player[this.layer].violet).div(new Decimal(2).pow(new Decimal(player[this.layer].violet).add(0.0000001).log(2).ceil().max(1)))},
+            display() {return format(new Decimal(player[this.layer].violet).add(0.0000001).log(2).ceil().max(0)) + ` Violet Level, which gives a ` + format(new Decimal(1.1).pow(new Decimal(player[this.layer].violet).add(0.0000001).log(2).ceil().max(0))) + `x boost to volume gain.`},
+            fillStyle: {
+                backgroundColor: "#9900ff"
+            },
+            unlocked () {return hasUpgrade('M',422)}
+        },
     },
+    clickables: {
+        11: {
+            title: "Red",
+            display: "Click this to get a random amount of red.<br><br>Cost: 50 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(50)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(50)
+                player[this.layer].red = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10011)).max(player[this.layer].red)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(50)
+                player[this.layer].red = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10011)).max(player[this.layer].red)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#ff0000", ...style}
+                } 
+                return {...style}
+            },
+        },
+        12: {
+            title: "Orange",
+            display: "Click this to get a random amount of orange.<br><br>Cost: 150 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(150)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(150)
+                player[this.layer].orange = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10012)).max(player[this.layer].orange)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(150)
+                player[this.layer].orange = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10012)).max(player[this.layer].orange)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#ff6600", ...style}
+                } 
+                return {...style}
+            },
+        },
+        13: {
+            title: "Yellow",
+            display: "Click this to get a random amount of yellow.<br><br>Cost: 500 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(500)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(500)
+                player[this.layer].yellow = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10013)).max(player[this.layer].yellow)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(500)
+                player[this.layer].yellow = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10013)).max(player[this.layer].yellow)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#ffff00", ...style}
+                } 
+                return {...style}
+            },
+        },
+        14: {
+            title: "Green",
+            display: "Click this to get a random amount of green.<br><br>Cost: 1800 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(1800)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(1800)
+                player[this.layer].green = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10021)).max(player[this.layer].green)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(1800)
+                player[this.layer].green = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10021)).max(player[this.layer].green)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#00ff00", ...style}
+                } 
+                return {...style}
+            },
+        },
+        15: {
+            title: "Blue",
+            display: "Click this to get a random amount of blue.<br><br>Cost: 7000 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(7000)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(7000)
+                player[this.layer].blue = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10022)).max(player[this.layer].blue)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(7000)
+                player[this.layer].blue = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10022)).max(player[this.layer].blue)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#0099ff", ...style}
+                } 
+                return {...style}
+            },
+        },
+        21: {
+            title: "Indigo",
+            display: "Click this to get a random amount of indigo.<br><br>Cost: 30000 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(30000)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(30000)
+                player[this.layer].indigo = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10023)).max(player[this.layer].indigo)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(30000)
+                player[this.layer].indigo = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10023)).max(player[this.layer].indigo)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#4400ff", ...style}
+                } 
+                return {...style}
+            },
+        },
+        22: {
+            title: "Violet",
+            display: "Click this to get a random amount of violet.<br><br>Cost: 125000 colour tokens",
+            canClick() {
+                if (new Decimal(player[this.layer].colour_tokens).gte(125000)) return true
+                else return false
+            },
+            onClick() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(125000)
+                player[this.layer].violet = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10031)).max(player[this.layer].violet)
+            },
+            onHold() {
+                player[this.layer].colour_tokens = new Decimal(player[this.layer].colour_tokens).sub(125000)
+                player[this.layer].violet = new Decimal(Math.random()).pow(-1).sqrt().mul(buyableEffect('M',10031)).max(player[this.layer].violet)
+            },
+            style() {
+                let style = {
+                }
+                if(this.canClick() == true) {
+                    return {"background-color": "#9900ff", ...style}
+                } 
+                return {...style}
+            },
+        },
+    }
 })

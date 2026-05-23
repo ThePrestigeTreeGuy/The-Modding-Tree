@@ -12,11 +12,16 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.21",
-	name: "hotfix",
+	num: "0.3",
+	name: "More and more matter",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.3</h3><br>
+		- Added 5 types of matter.<br>
+		- Added upgrades.<br>
+		- Added colours and the colour levels.<br>
+		- Endgame: 1e-54 m^3 (1 attometre wide).<br>
 	<h3>v0.21</h3><br>
 		- Fixed a bug.<br>
 		- Changed some other things.<br>
@@ -55,12 +60,26 @@ function getPointGen() {
 	gain = gain.add(buyableEffect('M',13))
 	gain = gain.add(buyableEffect('M',21))
 	gain = gain.add(buyableEffect('M',22))
+	gain = gain.add(buyableEffect('M',23))
+	gain = gain.add(buyableEffect('M',31))
+	gain = gain.add(buyableEffect('M',32))
+	gain = gain.add(buyableEffect('M',33))
+	gain = gain.add(buyableEffect('M',41))
 	gain = gain.times(new Decimal(1.05).pow(new Decimal(player.points).mul(1e100).log(2).floor().add(1).max(0)).mul(new Decimal(player.points).mul(1e100).log(2).floor().add(2).max(1)).floor())
 	if (hasUpgrade('M',134)) gain = gain.times(2)
 	if (hasUpgrade('M',222)) gain = gain.times(upgradeEffect('M',222))
 	if (hasUpgrade('M',323)) gain = gain.times(4)
 	if (hasUpgrade('M',421)) gain = gain.times(upgradeEffect('M',421))
 	if (hasUpgrade('M',422)) gain = gain.times(2)
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].red).add(0.0000001).log(2).ceil().max(0)))
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].orange).add(0.0000001).log(2).ceil().max(0)))
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].yellow).add(0.0000001).log(2).ceil().max(0)))
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].green).add(0.0000001).log(2).ceil().max(0)))
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].blue).add(0.0000001).log(2).ceil().max(0)))
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].indigo).add(0.0000001).log(2).ceil().max(0)))
+	gain = gain.times(new Decimal(1.1).pow(new Decimal(player['M'].violet).add(0.0000001).log(2).ceil().max(0)))
+	if (hasUpgrade('M',515)) gain = gain.times(upgradeEffect('M',515))
+	if (hasUpgrade('M',524)) gain = gain.times(2)
 	return gain
 }
 
@@ -97,7 +116,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e-72"))
+	return player.points.gte(new Decimal("e-54"))
 }
 
 
