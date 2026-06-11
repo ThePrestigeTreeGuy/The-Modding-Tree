@@ -12,11 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "Succession",
+	num: "0.2",
+	name: "Addition",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.2</h3><br>
+		- Added 2 layers (addition & subtraction)<br>
+		- Endgame: 100<br>
 	<h3>v0.1</h3><br>
 		- Added 1 layer (succession)<br>
 		- Endgame: 10`
@@ -59,6 +62,18 @@ function getPointGen() {
     if (hasUpgrade('S', 75)) gain = gain.times(2.5)
     if (hasUpgrade('S', 81)) gain = gain.times(2)
     if (hasUpgrade('S', 82)) gain = gain.times(1.2)
+    if (hasUpgrade('S', 83)) gain = gain.times(4)
+    if (hasUpgrade('S', 84)) gain = gain.times(3)
+    if (hasUpgrade('S', 85)) gain = gain.times(2)
+    if (hasUpgrade('+', 12)) gain = gain.times(upgradeEffect('+', 12))
+    if (hasUpgrade('+', 14)) gain = gain.times(upgradeEffect('+', 14))
+    gain = gain.times(tmp['-'].effect)
+    if (hasUpgrade('+', 31)) gain = gain.times(1.8)
+    if (hasUpgrade('+', 32)) gain = gain.times(1.75)
+    if (hasUpgrade('+', 33)) gain = gain.times(1.8)
+    if (hasUpgrade('+', 34)) gain = gain.times(1.85)
+    if (hasUpgrade('+', 35)) gain = gain.times(1.9)
+    if (hasUpgrade('+', 41)) gain = gain.times(1.85)
 	return gain
 }
 
@@ -73,7 +88,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.S.points.gte(new Decimal("e15"))
+	return player["-"].points.gte(21)
 }
 
 
