@@ -17,6 +17,9 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.3</h3><br>
+		- Added 1 layers (multiplication)<br>
+		- Endgame: 486<br>
 	<h3>v0.2</h3><br>
 		- Added 2 layers (addition & subtraction)<br>
 		- Endgame: 100<br>
@@ -74,6 +77,23 @@ function getPointGen() {
     if (hasUpgrade('+', 34)) gain = gain.times(1.85)
     if (hasUpgrade('+', 35)) gain = gain.times(1.9)
     if (hasUpgrade('+', 41)) gain = gain.times(1.85)
+    if (hasUpgrade('x', 11)) gain = gain.times(4)
+    if (hasUpgrade('+', 42)) gain = gain.times(10)
+    if (hasUpgrade('x', 12)) gain = gain.times(7.5)
+    if (hasUpgrade('x', 13)) gain = gain.times(7.75)
+    if (hasUpgrade('x', 14)) gain = gain.times(8)
+    if (hasUpgrade('x', 21)) gain = gain.times(8.25)
+    if (hasUpgrade('x', 22)) gain = gain.times(8.5)
+    if (hasUpgrade('x', 23)) gain = gain.times(8.75)
+    if (hasUpgrade('x', 24)) gain = gain.times(9)
+    if (hasUpgrade('x', 25)) gain = gain.times(9.25)
+    if (hasUpgrade('x', 31)) gain = gain.times(9.5)
+    if (hasUpgrade('x', 32)) gain = gain.times(9.75)
+    if (hasUpgrade('x', 33)) gain = gain.times(10)
+    gain = gain.times(buyableEffect('x', 11))
+    if (hasUpgrade('x', 34)) gain = gain.times(10)
+    if (hasUpgrade('x', 35)) gain = gain.times(10)
+    gain = gain.min(new Decimal(9.99e99).sub(player.points))
 	return gain
 }
 
@@ -88,7 +108,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player["-"].points.gte(21)
+	return player.points.gte(9.99e99)
 }
 
 
