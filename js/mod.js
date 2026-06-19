@@ -12,13 +12,16 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2",
-	name: "Addition",
+	num: "0.4",
+	name: "Goin' Down by Redslash (get it? because the update is about having less googology points?)",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.4</h3><br>
+		- Added 2 layers (division & nullology)<br>
+		- Endgame: 7,744<br>
 	<h3>v0.3</h3><br>
-		- Added 1 layers (multiplication)<br>
+		- Added 1 layer (multiplication)<br>
 		- Endgame: 486<br>
 	<h3>v0.2</h3><br>
 		- Added 2 layers (addition & subtraction)<br>
@@ -93,6 +96,25 @@ function getPointGen() {
     gain = gain.times(buyableEffect('x', 11))
     if (hasUpgrade('x', 34)) gain = gain.times(10)
     if (hasUpgrade('x', 35)) gain = gain.times(10)
+    gain = gain.div(tmp['÷'].effect)
+    if (hasUpgrade('-', 35)) gain = gain.div(1000)
+    if (hasUpgrade('x', 45)) gain = gain.div(1000)
+    if (hasUpgrade('÷', 11)) gain = gain.div(1e10)
+    if (hasUpgrade('x', 53)) gain = gain.times(25.753)
+    if (hasUpgrade('x', 54)) gain = gain.times(27.777)
+    if (hasUpgrade('x', 55)) gain = gain.times(20.847)
+    if (hasUpgrade('÷', 12)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 13)) gain = gain.div(1e10)
+    if (hasUpgrade('n', 15)) gain = gain.times(12)
+    if (hasUpgrade('n', 25)) gain = gain.times(13.85)
+    if (hasUpgrade('n', 35)) gain = gain.times(upgradeEffect('n',35))
+    if (hasUpgrade('n', 45)) gain = gain.times(5.2197)
+    if (hasUpgrade('n', 55)) gain = gain.times(7.314)
+    if (hasUpgrade('n', 65)) gain = gain.times(5.4098)
+    if (hasUpgrade('n', 75)) gain = gain.times(5.4913)
+    if (hasUpgrade('n', 85)) gain = gain.times(8.5346)
+    if (hasUpgrade('n', 95)) gain = gain.times(5.6666)
+    if (hasUpgrade('n', 105)) gain = gain.times(6.7744)
     gain = gain.min(new Decimal(9.99e99).sub(player.points))
 	return gain
 }
@@ -108,7 +130,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(9.99e99)
+	return player.points.gte("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee10")
 }
 
 
