@@ -12,11 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4",
-	name: "Goin' Down by Redslash (get it? because the update is about having less googology points?)",
+	num: "0.5 Part 1",
+	name: "Upgrade Spam",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.5 Part 1</h3><br>
+		- Added a bunch of upgrades<br>
+		- Endgame: 999,999<br>
 	<h3>v0.4</h3><br>
 		- Added 2 layers (division & nullology)<br>
 		- Endgame: 7,744<br>
@@ -115,6 +118,39 @@ function getPointGen() {
     if (hasUpgrade('n', 85)) gain = gain.times(8.5346)
     if (hasUpgrade('n', 95)) gain = gain.times(5.6666)
     if (hasUpgrade('n', 105)) gain = gain.times(6.7744)
+    if (hasUpgrade('n', 115)) gain = gain.times(7)
+    if (hasUpgrade('n', 125)) gain = gain.times(7)
+    if (hasUpgrade('n', 135)) gain = gain.times(7)
+    if (hasUpgrade('n', 145)) gain = gain.times(7)
+    if (hasUpgrade('x', 63)) gain = gain.times(10)
+    if (hasUpgrade('x', 64)) gain = gain.times(10)
+    if (hasUpgrade('x', 65)) gain = gain.times(10)
+    if (hasUpgrade('x', 71)) gain = gain.times(10)
+    if (hasUpgrade('÷', 14)) gain = gain.div(1e10)
+    if (hasUpgrade('n', 151)) gain = gain.times(7)
+    if (hasUpgrade('n', 152)) gain = gain.times(7)
+    if (hasUpgrade('n', 153)) gain = gain.times(10)
+    if (hasUpgrade('n', 154)) gain = gain.times(10)
+    if (hasUpgrade('n', 155)) gain = gain.times(10)
+    if (hasUpgrade('n', 161)) gain = gain.times(10)
+    if (hasUpgrade('n', 162)) gain = gain.times(10)
+    if (hasUpgrade('n', 163)) gain = gain.times(10)
+    if (hasUpgrade('n', 164)) gain = gain.times(10)
+    if (hasUpgrade('x', 72)) gain = gain.times(10)
+    if (hasUpgrade('x', 73)) gain = gain.times(10)
+    if (hasUpgrade('x', 74)) gain = gain.times(10)
+    if (hasUpgrade('x', 75)) gain = gain.times(10)
+    if (hasUpgrade('x', 81)) gain = gain.times(10)
+    if (hasUpgrade('x', 82)) gain = gain.times(10)
+    if (hasUpgrade('x', 83)) gain = gain.times(10)
+    if (hasUpgrade('x', 84)) gain = gain.times(10)
+    if (hasUpgrade('x', 85)) gain = gain.times(10)
+    if (hasUpgrade('x', 91)) gain = gain.times(10)
+    if (hasUpgrade('x', 92)) gain = gain.times(10)
+    if (hasUpgrade('x', 93)) gain = gain.times(10)
+    if (hasUpgrade('x', 94)) gain = gain.times(10)
+    if (hasUpgrade('x', 95)) gain = gain.times(10)
+    if (hasUpgrade('÷', 15)) gain = gain.div(1e3)
     gain = gain.min(new Decimal(9.99e99).sub(player.points))
 	return gain
 }
