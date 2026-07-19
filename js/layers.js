@@ -256,6 +256,82 @@ addLayer("S", {
         if (hasUpgrade('+',83)) player[this.layer].number = "913,001"
         if (hasUpgrade('+',84)) player[this.layer].number = "985,321"
         if (hasUpgrade('+',85)) player[this.layer].number = "999,999"
+        if (hasUpgrade('x',121)) player[this.layer].number = "1,000,000"
+        if (hasUpgrade('S',121)) player[this.layer].number = "1,004,020"
+        if (hasUpgrade('S',122)) player[this.layer].number = "1,048,576"
+        if (hasUpgrade('S',123)) player[this.layer].number = "1,132,021"
+        if (hasUpgrade('S',124)) player[this.layer].number = "1,273,262"
+        if (hasUpgrade('S',125)) player[this.layer].number = "1,338,227"
+        if (hasUpgrade('S',131)) player[this.layer].number = "1,345,986"
+        if (hasUpgrade('S',132)) player[this.layer].number = "1,398,101"
+        if (hasUpgrade('S',133)) player[this.layer].number = "1,419,857"
+        if (hasUpgrade('S',134)) player[this.layer].number = "1,500,625"
+        if (hasUpgrade('S',135)) player[this.layer].number = "1,679,616"
+        if (hasUpgrade('S',141)) player[this.layer].number = "1,953,125"
+        if (hasUpgrade('S',142)) player[this.layer].number = "2,000,000"
+        if (hasUpgrade('S',143)) player[this.layer].number = "2,097,152"
+        if (hasUpgrade('S',144)) player[this.layer].number = "2,419,200"
+        if (hasUpgrade('S',145)) player[this.layer].number = "2,985,984"
+        if (hasUpgrade('S',151)) player[this.layer].number = "2,985,991"
+        if (hasUpgrade('S',152)) player[this.layer].number = "2,986,031"
+        if (hasUpgrade('S',153)) player[this.layer].number = "2,986,037"
+        if (hasUpgrade('S',154)) player[this.layer].number = "3,628,800"
+        if (hasUpgrade('S',155)) player[this.layer].number = "4,000,000"
+        if (hasUpgrade('S',161)) player[this.layer].number = "4,194,304"
+        if (hasUpgrade('S',162)) player[this.layer].number = "4,222,025"
+        if (hasUpgrade('S',163)) player[this.layer].number = "4,838,400"
+        if (hasUpgrade('S',164)) player[this.layer].number = "5,302,022"
+        if (hasUpgrade('S',165)) player[this.layer].number = "5,308,416"
+        if (hasUpgrade('S',171)) player[this.layer].number = "7,257,600"
+        if (hasUpgrade('S',172)) player[this.layer].number = "9,676,800"
+        if (hasUpgrade('S',173)) player[this.layer].number = "9,765,625"
+        if (hasUpgrade('S',174)) player[this.layer].number = "9,870,123"
+        if (hasUpgrade('S',175)) player[this.layer].number = "10,000,000"
+        if (hasUpgrade('S',181)) player[this.layer].number = "12,096,000"
+        if (hasUpgrade('S',182)) player[this.layer].number = "14,348,907"
+        if (hasUpgrade('S',183)) player[this.layer].number = "14,515,200"
+        if (hasUpgrade('S',184)) player[this.layer].number = "15,893,760"
+        if (hasUpgrade('S',185)) player[this.layer].number = "16,711,680"
+        if (hasUpgrade('S',191)) player[this.layer].number = "16,777,216"
+        if (hasUpgrade('S',192)) player[this.layer].number = "16,934,400"
+        if (hasUpgrade('S',193)) player[this.layer].number = "19,353,600"
+        if (hasUpgrade('S',194)) player[this.layer].number = "21,772,800"
+        if (hasUpgrade('S',195)) player[this.layer].number = "24,137,569"
+        if (hasUpgrade('S',201)) player[this.layer].number = "24,192,000"
+        if (hasUpgrade('S',202)) player[this.layer].number = "26,611,200"
+        if (hasUpgrade('S',203)) player[this.layer].number = "29,030,400"
+        if (hasUpgrade('S',204)) player[this.layer].number = "31,449,600"
+        if (hasUpgrade('S',205)) player[this.layer].number = "31,622,777"
+        if (getBuyableAmount('+',91).gte(1)) player[this.layer].number = "33,554,432"
+        if (getBuyableAmount('+',92).gte(1)) player[this.layer].number = "52,521,875"
+        if (getBuyableAmount('+',93).gte(1)) player[this.layer].number = "64,000,000"
+        if (getBuyableAmount('+',94).gte(1)) player[this.layer].number = "100,000,000"
+        if (getBuyableAmount('+',95).gte(1)) player[this.layer].number = "105,413,513"
+        if (getBuyableAmount('+',101).gte(1)) player[this.layer].number = "124,944,347"
+        if (getBuyableAmount('+',102).gte(1)) player[this.layer].number = "134,217,728"
+        if (getBuyableAmount('+',103).gte(1)) player[this.layer].number = "254,803,968"
+        if (getBuyableAmount('+',104).gte(1)) player[this.layer].number = "299,792,458"
+        if (getBuyableAmount('+',105).gte(1)) player[this.layer].number = "387,420,489"
+        if (getBuyableAmount('+',111).gte(1)) player[this.layer].number = "500,000,000"
+        if (getBuyableAmount('+',112).gte(1)) player[this.layer].number = "750,000,000"
+        if (getBuyableAmount('+',113).gte(1)) player[this.layer].number = "777,600,000"
+        if (getBuyableAmount('+',114).gte(1)) player[this.layer].number = "987,654,321"
+        if (getBuyableAmount('+',115).gte(1)) player[this.layer].number = "1,000,000,000"
+        if (getBuyableAmount('+',121).gte(1)) player[this.layer].number = "1,000,000,001"
+        if (getBuyableAmount('+',122).gte(1)) player[this.layer].number = "1,013,480,278"
+        if (getBuyableAmount('+',123).gte(1)) player[this.layer].number = "1,073,741,824"
+        if (getBuyableAmount('+',124).gte(1)) player[this.layer].number = "1,162,261,467"
+        if (getBuyableAmount('+',125).gte(1)) player[this.layer].number = "1,621,609,416"
+        if (getBuyableAmount('+',131).gte(1)) player[this.layer].number = "2,000,000,000"
+        if (getBuyableAmount('+',132).gte(1)) player[this.layer].number = "2,176,782,336"
+        if (getBuyableAmount('+',133).gte(1)) player[this.layer].number = "3,486,784,401"
+        if (getBuyableAmount('+',134).gte(1)) player[this.layer].number = "4,000,000,000"
+        if (getBuyableAmount('+',135).gte(1)) player[this.layer].number = "4,294,967,296"
+        if (getBuyableAmount('+',141).gte(1)) player[this.layer].number = "5,000,000,000"
+        if (getBuyableAmount('+',142).gte(1)) player[this.layer].number = "5,159,780,352"
+        if (getBuyableAmount('+',143).gte(1)) player[this.layer].number = "5,368,709,120"
+        if (getBuyableAmount('+',144).gte(1)) player[this.layer].number = "8,000,000,000"
+        if (getBuyableAmount('+',145).gte(1)) player[this.layer].number = "10,000,000,000"
     },
     color: "#fff",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -381,6 +457,78 @@ addLayer("S", {
         if (hasUpgrade('+', 83)) mult = mult.times(upgradeEffect('+', 73))
         if (hasUpgrade('+', 84)) mult = mult.times(upgradeEffect('+', 74))
         if (hasUpgrade('+', 85)) mult = mult.times(upgradeEffect('+', 75))
+        mult = mult.times(buyableEffect('x',22))
+        if (hasUpgrade('S', 124)) mult = mult.times(10)
+        if (hasUpgrade('S', 125)) mult = mult.times(10)
+        if (hasUpgrade('S', 131)) mult = mult.times(10)
+        if (hasUpgrade('S', 132)) mult = mult.times(10)
+        if (hasUpgrade('S', 133)) mult = mult.times(10)
+        if (hasUpgrade('S', 134)) mult = mult.times(10)
+        if (hasUpgrade('S', 135)) mult = mult.times(10)
+        if (hasUpgrade('S', 141)) mult = mult.times(10)
+        if (hasUpgrade('S', 142)) mult = mult.times(10)
+        if (hasUpgrade('S', 143)) mult = mult.times(10)
+        if (hasUpgrade('S', 144)) mult = mult.times(10)
+        if (hasUpgrade('S', 145)) mult = mult.times(10)
+        if (hasUpgrade('S', 151)) mult = mult.times(10)
+        if (hasUpgrade('S', 152)) mult = mult.times(10)
+        if (hasUpgrade('S', 153)) mult = mult.times(10)
+        if (hasUpgrade('S', 154)) mult = mult.times(10)
+        if (hasUpgrade('S', 155)) mult = mult.times(10)
+        if (hasUpgrade('S', 161)) mult = mult.times(10)
+        if (hasUpgrade('S', 162)) mult = mult.times(10)
+        if (hasUpgrade('S', 163)) mult = mult.times(10)
+        if (hasUpgrade('S', 164)) mult = mult.times(10)
+        if (hasUpgrade('S', 165)) mult = mult.times(10)
+        if (hasUpgrade('S', 171)) mult = mult.times(10)
+        if (hasUpgrade('S', 172)) mult = mult.times(10)
+        if (hasUpgrade('S', 173)) mult = mult.times(10)
+        if (hasUpgrade('S', 174)) mult = mult.times(10)
+        if (hasUpgrade('S', 175)) mult = mult.times(10)
+        if (hasUpgrade('S', 181)) mult = mult.times(10)
+        if (hasUpgrade('S', 182)) mult = mult.times(10)
+        if (hasUpgrade('S', 183)) mult = mult.times(10)
+        if (hasUpgrade('S', 184)) mult = mult.times(10)
+        if (hasUpgrade('S', 185)) mult = mult.times(10)
+        if (hasUpgrade('S', 191)) mult = mult.times(10)
+        if (hasUpgrade('S', 192)) mult = mult.times(10)
+        if (hasUpgrade('S', 193)) mult = mult.times(10)
+        if (hasUpgrade('S', 194)) mult = mult.times(10)
+        if (hasUpgrade('S', 195)) mult = mult.times(10)
+        if (hasUpgrade('S', 201)) mult = mult.times(100)
+        if (hasUpgrade('S', 202)) mult = mult.times(100)
+        if (hasUpgrade('S', 203)) mult = mult.times(100)
+        if (hasUpgrade('S', 204)) mult = mult.times(100)
+        if (hasUpgrade('S', 205)) mult = mult.times(1000)
+        mult = mult.times(buyableEffect('+',91))
+        mult = mult.times(buyableEffect('+',92))
+        mult = mult.times(buyableEffect('+',93))
+        mult = mult.times(buyableEffect('+',94))
+        mult = mult.times(buyableEffect('+',95))
+        mult = mult.times(buyableEffect('+',101))
+        mult = mult.times(buyableEffect('+',102))
+        mult = mult.times(buyableEffect('+',103))
+        mult = mult.times(buyableEffect('+',104))
+        mult = mult.times(buyableEffect('+',105))
+        mult = mult.times(buyableEffect('+',111))
+        mult = mult.times(buyableEffect('+',112))
+        mult = mult.times(buyableEffect('+',113))
+        mult = mult.times(buyableEffect('+',114))
+        mult = mult.times(buyableEffect('+',115))
+        mult = mult.times(buyableEffect('+',121))
+        mult = mult.times(buyableEffect('+',122))
+        mult = mult.times(buyableEffect('+',123))
+        mult = mult.times(buyableEffect('+',124))
+        mult = mult.times(buyableEffect('+',125))
+        mult = mult.times(buyableEffect('+',131))
+        mult = mult.times(buyableEffect('+',132))
+        mult = mult.times(buyableEffect('+',133))
+        mult = mult.times(buyableEffect('+',134))
+        mult = mult.times(buyableEffect('+',135))
+        mult = mult.times(buyableEffect('+',141))
+        mult = mult.times(buyableEffect('+',142))
+        mult = mult.times(buyableEffect('+',143))
+        mult = mult.times(buyableEffect('+',144))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -410,6 +558,15 @@ addLayer("S", {
                 if (hasUpgrade('x',41)) {buyUpgrade('S',i+90)}
                 if (hasUpgrade('x',41)) {buyUpgrade('S',i+100)}
                 if (hasUpgrade('x',75)) {buyUpgrade('S',i+110)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+120)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+130)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+140)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+150)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+160)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+170)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+180)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+190)}
+                if (hasMilestone('÷',1)) {buyUpgrade('S',i+200)}
             }
         }
         if (hasUpgrade("-", 12) || hasUpgrade('x',22)) {
@@ -804,6 +961,288 @@ addLayer("S", {
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         unlocked(){return (hasUpgrade("n",105))}
         },
+        121: {
+        title: "Welkillillion",
+        description: "Succession points boost subexponential point gain.",
+        cost: new Decimal(1e229),
+        effect() {
+            return player[this.layer].points.add(1).div(1e150).pow(0.0025).max(1)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        122: {
+        title: "Guppybit",
+        description: "Addition points boost subexponential point gain.",
+        cost: new Decimal(1e230),
+        effect() {
+            return player['+'].points.add(1).div(1e60).pow(0.02).max(1)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        123: {
+        title: "Killer",
+        description: "Multiplication points boost subexponential point gain. No more subexponential point upgrades (for now)...",
+        cost: new Decimal(1e231),
+        effect() {
+            return player['x'].points.add(1).div(1e19).pow(0.05).max(1)
+        },
+        effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        124: {
+        title: "Wściekłość",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e233),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        125: {
+        title: "Aspirin",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e234),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        131: {
+        title: "Ruin",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e235),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        132: {
+        title: "Kyran",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e237),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        133: {
+        title: "Iaq",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e238),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        134: {
+        title: "Algardome",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e240),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        135: {
+        title: "Biexian",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e242),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        141: {
+        title: "Heads-Tri-1-primol",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e243),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        142: {
+        title: "Clover mite-bunch",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e245),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        143: {
+        title: "Octal-pipsqueak",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e247),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        144: {
+        title: "Januaryillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e249),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        145: {
+        title: "Kilogross",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e251),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        151: {
+        title: "Gooprovi",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e253),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        152: {
+        title: "Trooprovi",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e255),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        153: {
+        title: "Quadrooprovi",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e256),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        154: {
+        title: "Texclamation",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e257),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        155: {
+        title: "Nalowale",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e259),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        161: {
+        title: "Curry",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e261),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        162: {
+        title: "Krwawa podłoga w świetle księżyca dwóch tysięcy dwudziestu pięciu (samobójcze)",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e263),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        163: {
+        title: "Februaryillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e264),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        164: {
+        title: "Left",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e266),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        165: {
+        title: "Tetrus",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e267),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        171: {
+        title: "Marchillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e269),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        172: {
+        title: "Aprilillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e271),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        173: {
+        title: "Fablo",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e272),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        174: {
+        title: "Vazhil",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e274),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        175: {
+        title: "Crore",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e276),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        181: {
+        title: "Mayillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e277),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        182: {
+        title: "Ternary-small fry",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e278),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        183: {
+        title: "Juneillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e280),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        184: {
+        title: "Tangerine",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e282),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        185: {
+        title: "Czerwony sznur losu",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e284),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        191: {
+        title: "Binary-minnowchunk",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e286),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        192: {
+        title: "Julyillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e287),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        193: {
+        title: "Augustillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e289),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        194: {
+        title: "Septemberillion",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e291),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        195: {
+        title: "Klos",
+        description: "x10 succession point gain.",
+        cost: new Decimal(1e292),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        201: {
+        title: "Octoberillion",
+        description: "x100 succession point gain.",
+        cost: new Decimal(1e294),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        202: {
+        title: "Novemberillion",
+        description: "x100 succession point gain.",
+        cost: new Decimal(1e297),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        203: {
+        title: "Decemberillion",
+        description: "x100 succession point gain.",
+        cost: new Decimal(1e300),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        204: {
+        title: "Love",
+        description: "x100 succession point gain.",
+        cost: new Decimal(1e302),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
+        205: {
+        title: "Sesquillion",
+        description: "This is the last one-time upgrade for now. x1,000 succession point gain.",
+        cost: new Decimal(1e306),
+        unlocked(){return (hasUpgrade("x",121))}
+        },
     },
     buyables: {
         11: {
@@ -881,10 +1320,10 @@ addLayer("+", {
     },
     tabFormat: {
         "Numbers": {
-            content: ['main-display','prestige-button','upgrades'],
+            content: ['main-display','prestige-button','upgrades',['buyables',[9,10,11,12,13,14,15,16,17,18,19,20]],],
         },
         "Functions": {
-            content: ['main-display','prestige-button','buyables'],
+            content: ['main-display','prestige-button',['buyable',11]],
         },
     },
     upgrades: {
@@ -1233,6 +1672,516 @@ addLayer("+", {
             purchaseLimit: 25,
             unlocked(){return (hasUpgrade("+",25))}
         },
+        91: {
+            cost(x) { return new Decimal(1e91).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Minnowbit",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        92: {
+            cost(x) { return new Decimal(3e91).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Ametrillion",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        93: {
+            cost(x) { return new Decimal(9e91).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Alau",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        94: {
+            cost(x) { return new Decimal(3e92).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Yi",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        95: {
+            cost(x) { return new Decimal(1.5e93).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Gooprovij",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        101: {
+            cost(x) { return new Decimal(3.5e93).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "(II–)Sulfatrillion",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        102: {
+            cost(x) { return new Decimal(8e93).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Till",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        103: {
+            cost(x) { return new Decimal(2e94).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Pentus",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        104: {
+            cost(x) { return new Decimal(8e94).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "The speed of light",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        105: {
+            cost(x) { return new Decimal(4e95).mul(new Decimal(2).pow(new Decimal(x))) },
+            title: "Fznine",
+            display() { return `+100% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        111: {
+            cost(x) { return new Decimal(1.5e97).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Nogil",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        112: {
+            cost(x) { return new Decimal(7e97).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Dreiviertelmilliarde",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        113: {
+            cost(x) { return new Decimal(2e98).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Sexagesimal-qoonol",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        114: {
+            cost(x) { return new Decimal(8e98).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Cyanide",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        115: {
+            cost(x) { return new Decimal(1.5e100).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Billion",
+            display() { return `WOW! A BILLION??? You're getting closer to a new operation! +300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        121: {
+            cost(x) { return new Decimal(2e101).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Giga-Zeralum",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        122: {
+            cost(x) { return new Decimal(5e101).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Chciwość",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        123: {
+            cost(x) { return new Decimal(1e102).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Binary-gobycrumb",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        124: {
+            cost(x) { return new Decimal(5e102).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Ternary-guppychunk",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        125: {
+            cost(x) { return new Decimal(2e104).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Dramala",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        131: {
+            cost(x) { return new Decimal(2e106).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Eyelash mite-crowd",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        132: {
+            cost(x) { return new Decimal(5e106).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Triexian",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        133: {
+            cost(x) { return new Decimal(2e107).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Ternary-guppy",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        134: {
+            cost(x) { return new Decimal(5e107).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Sagan",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        135: {
+            cost(x) { return new Decimal(1.5e108).mul(new Decimal(4).pow(new Decimal(x))) },
+            title: "Binary-Gooqnolplex",
+            display() { return `+300% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 33,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        141: {
+            cost(x) { return new Decimal(5e109).mul(new Decimal(6).pow(new Decimal(x))) },
+            title: "Dust mite-crowd",
+            display() { return `+900% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 11,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        142: {
+            cost(x) { return new Decimal(1e111).mul(new Decimal(6).pow(new Decimal(x))) },
+            title: "Thrian",
+            display() { return `+900% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 11,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        143: {
+            cost(x) { return new Decimal(2e112).mul(new Decimal(6).pow(new Decimal(x))) },
+            title: "Octal-squeaker",
+            display() { return `+900% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 11,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        144: {
+            cost(x) { return new Decimal(4e113).mul(new Decimal(6).pow(new Decimal(x))) },
+            title: "Cheese mite-crowd",
+            display() { return `+900% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 11,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
+        145: {
+            cost(x) { return new Decimal(1e115).mul(new Decimal(10).pow(new Decimal(x))) },
+            title: "Dialogue",
+            display() { return `The first level unlocks the next layer. +100% subexponential point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 99,
+            unlocked(){return (hasUpgrade("S",205))}
+        },
     },
 })
 addLayer("-", {
@@ -1263,9 +2212,9 @@ addLayer("-", {
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return (hasUpgrade('+',15) || player[this.layer].total.gte(1))},
-    hotkeys: [
+    hotkeys() {if (hasUpgrade('x',25)) [
         {key: "-", description: "-: subtraction reset", onPress(){if (canReset(this.layer) && !hasUpgrade('x',25)) doReset(this.layer)}},
-    ],
+    ]},
     effect() {return new Decimal(new Decimal(2).add(new Decimal(player[this.layer].upgrades.length).mul(0.25))).pow(player[this.layer].points)},
     effectDescription() { return 'multiplying googology point gain by ' + format(tmp['-'].effect)},
     autoUpgrade() {return false},
@@ -1399,7 +2348,19 @@ addLayer("x", {
         unlocked: true,
 		points: new Decimal(0),
         total: new Decimal(0),
+        sp: new Decimal(0),
     }},
+    update(diff) {
+        if (hasUpgrade('x', 121)) {
+            let spGain = Decimal.dOne;
+            spGain = spGain.times(buyableEffect('x',21));
+            if (hasUpgrade('S',121)) spGain = spGain.times(upgradeEffect('S',121));
+            if (hasUpgrade('S',122)) spGain = spGain.times(upgradeEffect('S',122));
+            if (hasUpgrade('S',123)) spGain = spGain.times(upgradeEffect('S',123));
+            spGain = spGain.times(buyableEffect('+',145))
+            player[this.layer].sp = player[this.layer].sp.plus(spGain.times(diff));
+        }
+    },
     color: "#87F9FF",
     requires: new Decimal(1e11), // Can be a function that takes requirement increases into account
     resource: "multiplication points", // Name of prestige currency
@@ -1421,7 +2382,7 @@ addLayer("x", {
         {key: "x", description: "x: multiplication reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     passiveGeneration() {
-        return false
+        return hasMilestone('÷',1)
     },
     autoUpgrade() {return false},
     canBuyMax() {return false},
@@ -1432,14 +2393,22 @@ addLayer("x", {
             content: ['main-display','prestige-button','upgrades'],
         },
         "Functions": {
-            content: ['main-display','prestige-button','buyables'],
+            content: ['main-display','prestige-button',['buyable','11']],
         },
         "Lore": {
             content: [
                 ['infobox','1'],
                 ['infobox','2'],
                 ['infobox','3'],
+                ['infobox','4'],
             ],
+        },
+        "Subexponential Points": {
+            content: [
+            ["display-text", function() {return `You have ` + format(player[this.layer].sp) + ` subexponential points`}],
+            ['buyables',[2]],
+            ],
+            unlocked() {return hasUpgrade('x',121)}
         },
     },
     upgrades: {
@@ -1759,6 +2728,12 @@ addLayer("x", {
         cost: new Decimal(3.5e19),
         unlocked() {return hasUpgrade('÷',14)}
         },
+        121: {
+        title: "Million",
+        description: "WOW! A MILLION??? Division upgrades no longer divide succession point gain, the exponent of nullology points is 1 instead of -1, and unlock a new feature.",
+        cost: new Decimal(1e22),
+        unlocked() {return hasUpgrade('÷',14)}
+        },
     },
     buyables: {
         11: {
@@ -1778,6 +2753,40 @@ addLayer("x", {
             purchaseLimit: 15,
             unlocked(){return (hasUpgrade("x",33))}
         },
+        21: {
+            cost(x) { return new Decimal(10).mul(new Decimal(1.4).pow(x)) },
+            title: "x^log(x)",
+            display() { return `x1.2 subexponential point gain.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].sp.gte(this.cost()) },
+            effect(){
+                return new Decimal(1.2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                player[this.layer].sp = player[this.layer].sp.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 1000,
+            unlocked(){return (hasUpgrade("x",121))}
+        },
+        22: {
+            cost(x) { return new Decimal(10).mul(new Decimal(1.5).pow(x)) },
+            title: "x^√x",
+            display() { return `x2 succession point gain.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].sp.gte(this.cost()) },
+            effect(){
+                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+            buy() {
+                player[this.layer].sp = player[this.layer].sp.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 1000,
+            unlocked(){return (hasUpgrade("x",121))}
+        },
     },
     infoboxes: {
         1: {
@@ -1791,8 +2800,13 @@ addLayer("x", {
         },
         3: {
         title: "OH NO!!!",
-        body() { return "You... can't get to a googol googology points? Is it because they are called googology points? Maybe you should try increasing your number in some way? It seems like a new layer [coming soon] has appeared..." },
+        body() { return "You... can't get to a googol googology points? Is it because they are called googology points? Maybe you should try increasing your number in some way? It seems like a new layer has appeared..." },
         unlocked() {return player.points.gte(9.99e99)}
+        },
+        4: {
+        title: "Ascension",
+        body() { return "Your numbers are climbing higher and higher. You have also discovered a new type of growth, which is faster than multiplication, but slower than exponentiation." },
+        unlocked() {return hasUpgrade('x',121)}
         },
     }
 })
@@ -1833,6 +2847,7 @@ addLayer("÷", {
     canBuyMax() {return hasUpgrade('÷',15)},
     automate() {
     },
+    resetsNothing() {return hasMilestone('÷',1)},
     tabFormat: {
         "Numbers": {
             content: ['main-display','prestige-button','upgrades'],
@@ -1879,6 +2894,14 @@ addLayer("÷", {
         onPurchase() { player.points = player.points.div(1e3)}
         },
     },
+    milestones: {
+        1: {
+            requirementDescription: "40 division points",
+            effectDescription: "Division points reset nothing, passively generate 100% of multiplication points per second, and autobuy succession rows 12-20.",
+            done() { return player[this.layer].points.gte(40) },
+            unlocked() {return (hasUpgrade('x',121))}
+        },
+    },
     infoboxes: {
         1: {
         title: "A new operation?",
@@ -1911,7 +2934,9 @@ addLayer("n", {
     baseResource: "googology points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: -1, // Prestige currency exponent
+    exponent() {if (hasUpgrade('x',121)) return 1
+        else return -1
+    }, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1e82)
         mult = mult.times(buyableEffect('x',11))
@@ -2040,6 +3065,8 @@ addLayer("n", {
                 buyUpgrade(this.layer,i+120)
                 buyUpgrade(this.layer,i+130)
                 buyUpgrade(this.layer,i+140)
+                if (hasMilestone('÷',1)) {buyUpgrade('n',i+150)}
+                if (hasMilestone('÷',1)) {buyUpgrade('n',i+160)}
             }
         }
     },

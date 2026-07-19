@@ -12,26 +12,30 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.5 Part 1",
-	name: "Upgrade Spam",
+	num: "0.5 Part 2",
+	name: "The 'Star'",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.5 Part 2</h3><br>
+		- Added a bunch of upgrades and buyables.<br>
+		- Added subexponentiation points.<br>
+		- Endgame: 10,000,000,000, 1e11 subexponentiation points<br>
 	<h3>v0.5 Part 1</h3><br>
 		- Added a bunch of upgrades<br>
-		- Endgame: 999,999<br>
+		- Endgame: 999,999, 5e65 addition points<br>
 	<h3>v0.4</h3><br>
 		- Added 2 layers (division & nullology)<br>
-		- Endgame: 7,744<br>
+		- Endgame: 7,744, 3e27 nullology points<br>
 	<h3>v0.3</h3><br>
 		- Added 1 layer (multiplication)<br>
-		- Endgame: 486<br>
+		- Endgame: 486, 9.99e99 googology points)<br>
 	<h3>v0.2</h3><br>
 		- Added 2 layers (addition & subtraction)<br>
-		- Endgame: 100<br>
+		- Endgame: 100, 21 subtraction points)<br>
 	<h3>v0.1</h3><br>
 		- Added 1 layer (succession)<br>
-		- Endgame: 10`
+		- Endgame: 10, 7.5e14 succession points)`
 
 let winText = `Congratulations! You have reached the end and beaten this game, for now...`
 
@@ -102,12 +106,12 @@ function getPointGen() {
     gain = gain.div(tmp['÷'].effect)
     if (hasUpgrade('-', 35)) gain = gain.div(1000)
     if (hasUpgrade('x', 45)) gain = gain.div(1000)
-    if (hasUpgrade('÷', 11)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 11) && !hasUpgrade('x',121)) gain = gain.div(1e10)
     if (hasUpgrade('x', 53)) gain = gain.times(25.753)
     if (hasUpgrade('x', 54)) gain = gain.times(27.777)
     if (hasUpgrade('x', 55)) gain = gain.times(20.847)
-    if (hasUpgrade('÷', 12)) gain = gain.div(1e10)
-    if (hasUpgrade('÷', 13)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 12) && !hasUpgrade('x',121)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 13) && !hasUpgrade('x',121)) gain = gain.div(1e10)
     if (hasUpgrade('n', 15)) gain = gain.times(12)
     if (hasUpgrade('n', 25)) gain = gain.times(13.85)
     if (hasUpgrade('n', 35)) gain = gain.times(upgradeEffect('n',35))
@@ -126,7 +130,7 @@ function getPointGen() {
     if (hasUpgrade('x', 64)) gain = gain.times(10)
     if (hasUpgrade('x', 65)) gain = gain.times(10)
     if (hasUpgrade('x', 71)) gain = gain.times(10)
-    if (hasUpgrade('÷', 14)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 14) && !hasUpgrade('x',121)) gain = gain.div(1e10)
     if (hasUpgrade('n', 151)) gain = gain.times(7)
     if (hasUpgrade('n', 152)) gain = gain.times(7)
     if (hasUpgrade('n', 153)) gain = gain.times(10)
@@ -150,7 +154,7 @@ function getPointGen() {
     if (hasUpgrade('x', 93)) gain = gain.times(10)
     if (hasUpgrade('x', 94)) gain = gain.times(10)
     if (hasUpgrade('x', 95)) gain = gain.times(10)
-    if (hasUpgrade('÷', 15)) gain = gain.div(1e3)
+    if (hasUpgrade('÷', 15) && !hasUpgrade('x',121)) gain = gain.div(1e3)
     gain = gain.min(new Decimal(9.99e99).sub(player.points))
 	return gain
 }
