@@ -12,16 +12,20 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.5 Part 2",
-	name: "The 'Star'",
+	num: "0.7",
+	name: "'Supernova'",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.5 Part 2</h3><br>
+	<h3>v0.7</h3><br>
+		- Added a bunch of buyables.<br>
+		- Added exponentiation points, power, and Exponential Multiplier.<br>
+		- Endgame: 7,625,597,484,987, 1e12 exponentiation points<br>
+	<h3>v0.6</h3><br>
 		- Added a bunch of upgrades and buyables.<br>
 		- Added subexponentiation points.<br>
 		- Endgame: 10,000,000,000, 1e11 subexponentiation points<br>
-	<h3>v0.5 Part 1</h3><br>
+	<h3>v0.5</h3><br>
 		- Added a bunch of upgrades<br>
 		- Endgame: 999,999, 5e65 addition points<br>
 	<h3>v0.4</h3><br>
@@ -103,15 +107,15 @@ function getPointGen() {
     gain = gain.times(buyableEffect('x', 11))
     if (hasUpgrade('x', 34)) gain = gain.times(10)
     if (hasUpgrade('x', 35)) gain = gain.times(10)
-    gain = gain.div(tmp['÷'].effect)
-    if (hasUpgrade('-', 35)) gain = gain.div(1000)
-    if (hasUpgrade('x', 45)) gain = gain.div(1000)
-    if (hasUpgrade('÷', 11) && !hasUpgrade('x',121)) gain = gain.div(1e10)
+    if (!hasMilestone('^',1)) gain = gain.div(tmp['÷'].effect)
+    if (hasUpgrade('-', 35) && !hasMilestone('^',1)) gain = gain.div(1000)
+    if (hasUpgrade('x', 45) && !hasMilestone('^',1)) gain = gain.div(1000)
+    if (hasUpgrade('÷', 11) && !hasUpgrade('x',121) && !hasMilestone('^',1)) gain = gain.div(1e10)
     if (hasUpgrade('x', 53)) gain = gain.times(25.753)
     if (hasUpgrade('x', 54)) gain = gain.times(27.777)
     if (hasUpgrade('x', 55)) gain = gain.times(20.847)
-    if (hasUpgrade('÷', 12) && !hasUpgrade('x',121)) gain = gain.div(1e10)
-    if (hasUpgrade('÷', 13) && !hasUpgrade('x',121)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 12) && !hasUpgrade('x',121) && !hasMilestone('^',1)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 13) && !hasUpgrade('x',121) && !hasMilestone('^',1)) gain = gain.div(1e10)
     if (hasUpgrade('n', 15)) gain = gain.times(12)
     if (hasUpgrade('n', 25)) gain = gain.times(13.85)
     if (hasUpgrade('n', 35)) gain = gain.times(upgradeEffect('n',35))
@@ -130,7 +134,7 @@ function getPointGen() {
     if (hasUpgrade('x', 64)) gain = gain.times(10)
     if (hasUpgrade('x', 65)) gain = gain.times(10)
     if (hasUpgrade('x', 71)) gain = gain.times(10)
-    if (hasUpgrade('÷', 14) && !hasUpgrade('x',121)) gain = gain.div(1e10)
+    if (hasUpgrade('÷', 14) && !hasUpgrade('x',121) && !hasMilestone('^',1) && !hasMilestone('^',1)) gain = gain.div(1e10)
     if (hasUpgrade('n', 151)) gain = gain.times(7)
     if (hasUpgrade('n', 152)) gain = gain.times(7)
     if (hasUpgrade('n', 153)) gain = gain.times(10)
@@ -154,7 +158,10 @@ function getPointGen() {
     if (hasUpgrade('x', 93)) gain = gain.times(10)
     if (hasUpgrade('x', 94)) gain = gain.times(10)
     if (hasUpgrade('x', 95)) gain = gain.times(10)
-    if (hasUpgrade('÷', 15) && !hasUpgrade('x',121)) gain = gain.div(1e3)
+    if (hasUpgrade('÷', 15) && !hasUpgrade('x',121) && !hasMilestone('^',1)) gain = gain.div(1e3)
+    if (hasMilestone('^',3)) gain = gain.times(1000)
+    gain = gain.times(player['^'].expmult)
+    if (hasMilestone('^',1)) gain = gain.pow(1.01)
     gain = gain.min(new Decimal(9.99e99).sub(player.points))
 	return gain
 }
