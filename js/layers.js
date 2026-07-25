@@ -2251,9 +2251,9 @@ addLayer("-", {
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return (hasUpgrade('+',15) || player[this.layer].total.gte(1))},
-    hotkeys() {if (hasUpgrade('x',25) || hasMilestone('^',1)) [
-        {key: "-", description: "-: subtraction reset", onPress(){if (canReset(this.layer) && !hasUpgrade('x',25)) doReset(this.layer)}},
-    ]},
+    hotkeys: [
+        {key: "-", description: "-: subtraction reset", onPress(){if (canReset(this.layer) && !hasUpgrade('x',25) && !hasMilestone('^',1)) doReset(this.layer)}},
+    ],
     effect() {return new Decimal(new Decimal(2).add(new Decimal(player[this.layer].upgrades.length).mul(0.25))).pow(player[this.layer].points)},
     effectDescription() { return 'multiplying googology point gain by ' + format(tmp['-'].effect)},
     autoUpgrade() {return hasMilestone('^',2)},
@@ -2960,9 +2960,9 @@ addLayer("÷", {
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return (player.points.gte('9.99e99') || player[this.layer].total.gte(1) || hasMilestone('^',2))},
-    hotkeys() {if (hasUpgrade('÷',15) || hasMilestone('^',1)) [
-        {key: "/", description: "/: division reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-    ]},
+    hotkeys: [
+        {key: "/", description: "/: division reset", onPress(){if (canReset(this.layer) && !hasUpgrade('÷',15) && !hasMilestone('^',1)) doReset(this.layer)}},
+    ],
     effect() {return new Decimal(10).pow(player[this.layer].points)},
     effectDescription() { return 'dividing googology point gain by ' + format(tmp['÷'].effect) + ' and multiplying succession point gain by '+ format(tmp['÷'].effect)},
     autoUpgrade() {return false},
@@ -3186,9 +3186,9 @@ addLayer("n", {
         return exp
     },
     layerShown(){return (hasUpgrade('÷',13) || player[this.layer].total.gte(1))},
-    hotkeys() {if (hasUpgrade('÷',13)) [
-        {key: "n", description: "n: nullology reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-    ]},
+    hotkeys: [
+        {key: "n", description: "n: nullology reset", onPress(){if (canReset(this.layer) && hasUpgrade('÷',13)) doReset(this.layer)}},
+    ],
     autoUpgrade() {return false},
     automate() {
         if (hasUpgrade('x',65) || hasMilestone('^',1)) {

@@ -12,11 +12,13 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.7",
+	num: "0.7.1",
 	name: "'Supernova'",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.7.1</h3><br>
+		- Fixed a bug.<br>
 	<h3>v0.7</h3><br>
 		- Added a bunch of buyables.<br>
 		- Added exponentiation points, power, and Exponential Multiplier.<br>
