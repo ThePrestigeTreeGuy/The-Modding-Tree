@@ -19,6 +19,7 @@ let VERSION = {
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.8</h3><br>
 		- Changed the succession, addition, division, and nullology reset layers. <br>
+		- Slightly changed the GUI. <br>
 		- Fixed a bug. <br>
 	<h3>v0.7.1</h3><br>
 		- Fixed a bug.<br>
