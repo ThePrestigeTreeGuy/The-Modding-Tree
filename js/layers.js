@@ -10,22 +10,22 @@ addLayer("S", {
     update(diff) {
         if (hasUpgrade('S',11)) player[this.layer].number = "0"
         if (hasUpgrade('S',12)) player[this.layer].number = "ε"
-        if (hasUpgrade('S',13)) player[this.layer].number = "0.000001"
-        if (hasUpgrade('S',14)) player[this.layer].number = "0.000002"
-        if (hasUpgrade('S',15)) player[this.layer].number = "0.000005"
-        if (hasUpgrade('S',21)) player[this.layer].number = "0.000008"
-        if (hasUpgrade('S',22)) player[this.layer].number = "0.00001"
-        if (hasUpgrade('S',23)) player[this.layer].number = "0.00002"
-        if (hasUpgrade('S',24)) player[this.layer].number = "0.0000508"
-        if (hasUpgrade('S',25)) player[this.layer].number = "0.0001"
-        if (hasUpgrade('S',31)) player[this.layer].number = "0.001"
-        if (hasUpgrade('S',32)) player[this.layer].number = "0.00129"
-        if (hasUpgrade('S',33)) player[this.layer].number = "0.01"
-        if (hasUpgrade('S',34)) player[this.layer].number = "0.1"
-        if (hasUpgrade('S',35)) player[this.layer].number = "0.2"
-        if (hasUpgrade('S',41)) player[this.layer].number = "0.425"
-        if (hasUpgrade('S',42)) player[this.layer].number = "0.5"
-        if (hasUpgrade('S',43)) player[this.layer].number = "0.8"
+        if (getBuyableAmount('S',13).gte(1)) player[this.layer].number = "0.000001"
+        if (getBuyableAmount('S',14).gte(1)) player[this.layer].number = "0.000002"
+        if (getBuyableAmount('S',15).gte(1)) player[this.layer].number = "0.000005"
+        if (getBuyableAmount('S',21).gte(1)) player[this.layer].number = "0.000008"
+        if (getBuyableAmount('S',22).gte(1)) player[this.layer].number = "0.00001"
+        if (getBuyableAmount('S',23).gte(1)) player[this.layer].number = "0.00002"
+        if (getBuyableAmount('S',24).gte(1)) player[this.layer].number = "0.0000508"
+        if (getBuyableAmount('S',25).gte(1)) player[this.layer].number = "0.0001"
+        if (getBuyableAmount('S',31).gte(1)) player[this.layer].number = "0.001"
+        if (getBuyableAmount('S',32).gte(1)) player[this.layer].number = "0.00129"
+        if (getBuyableAmount('S',33).gte(1)) player[this.layer].number = "0.01"
+        if (getBuyableAmount('S',34).gte(1)) player[this.layer].number = "0.1"
+        if (getBuyableAmount('S',35).gte(1)) player[this.layer].number = "0.2"
+        if (getBuyableAmount('S',41).gte(1)) player[this.layer].number = "0.425"
+        if (getBuyableAmount('S',42).gte(1)) player[this.layer].number = "0.5"
+        if (getBuyableAmount('S',43).gte(1)) player[this.layer].number = "0.8"
         if (hasUpgrade('S',44)) player[this.layer].number = "1"
         if (hasUpgrade('S',45)) player[this.layer].number = "1.30"
         if (hasUpgrade('S',51)) player[this.layer].number = "1.4"
@@ -365,22 +365,22 @@ addLayer("S", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        if (hasUpgrade('S', 13)) mult = mult.times(1.1)
-        if (hasUpgrade('S', 14)) mult = mult.times(1.1)
-        if (hasUpgrade('S', 15)) mult = mult.times(1.11)
-        if (hasUpgrade('S', 21)) mult = mult.times(1.12)
-        if (hasUpgrade('S', 22)) mult = mult.times(1.13)
-        if (hasUpgrade('S', 23)) mult = mult.times(1.14)
-        if (hasUpgrade('S', 24)) mult = mult.times(1.15)
-        if (hasUpgrade('S', 25)) mult = mult.times(1.16)
-        if (hasUpgrade('S', 31)) mult = mult.times(1.17)
-        if (hasUpgrade('S', 32)) mult = mult.times(1.18)
-        if (hasUpgrade('S', 33)) mult = mult.times(1.19)
-        if (hasUpgrade('S', 34)) mult = mult.times(1.2)
-        if (hasUpgrade('S', 35)) mult = mult.times(1.21)
-        if (hasUpgrade('S', 41)) mult = mult.times(1.23)
-        if (hasUpgrade('S', 42)) mult = mult.times(1.25)
-        if (hasUpgrade('S', 43)) mult = mult.times(1.28)
+        mult = mult.times(buyableEffect('S',13))
+        mult = mult.times(buyableEffect('S',14))
+        mult = mult.times(buyableEffect('S',15))
+        mult = mult.times(buyableEffect('S',21))
+        mult = mult.times(buyableEffect('S',22))
+        mult = mult.times(buyableEffect('S',23))
+        mult = mult.times(buyableEffect('S',24))
+        mult = mult.times(buyableEffect('S',25))
+        mult = mult.times(buyableEffect('S',31))
+        mult = mult.times(buyableEffect('S',32))
+        mult = mult.times(buyableEffect('S',33))
+        mult = mult.times(buyableEffect('S',34))
+        mult = mult.times(buyableEffect('S',35))
+        mult = mult.times(buyableEffect('S',41))
+        mult = mult.times(buyableEffect('S',42))
+        mult = mult.times(buyableEffect('S',43))
         if (hasUpgrade('S', 61)) mult = mult.times(upgradeEffect('S', 61))
         if (hasUpgrade('S', 62)) mult = mult.times(upgradeEffect('S', 62))
         if (hasUpgrade('S', 63)) mult = mult.times(upgradeEffect('S', 63))
@@ -440,34 +440,34 @@ addLayer("S", {
         if (hasUpgrade('+', 63)) mult = mult.times(upgradeEffect('+', 53))
         if (hasUpgrade('+', 64)) mult = mult.times(upgradeEffect('+', 54))
         if (hasUpgrade('+', 65)) mult = mult.times(upgradeEffect('+', 55))
-        if (hasUpgrade('x', 63)) mult = mult.times(10)
-        if (hasUpgrade('x', 64)) mult = mult.times(10)
+        if (hasUpgrade('x', 63)) mult = mult.times(20)
+        if (hasUpgrade('x', 64)) mult = mult.times(5)
         if (hasUpgrade('x', 65)) mult = mult.times(10)
-        if (hasUpgrade('x', 71)) mult = mult.times(20)
-        if (hasUpgrade('x', 72)) mult = mult.times(20)
+        if (hasUpgrade('x', 71)) mult = mult.times(40)
+        if (hasUpgrade('x', 72)) mult = mult.times(10)
         if (hasUpgrade('÷', 14)) mult = mult.times(1000)
-        if (hasUpgrade('x', 73)) mult = mult.times(20)
-        if (hasUpgrade('x', 74)) mult = mult.times(20)
-        if (hasUpgrade('x', 75)) mult = mult.times(20)
-        if (hasUpgrade('x', 81)) mult = mult.times(20)
-        if (hasUpgrade('x', 82)) mult = mult.times(20)
-        if (hasUpgrade('x', 83)) mult = mult.times(20)
-        if (hasUpgrade('x', 84)) mult = mult.times(20)
-        if (hasUpgrade('x', 85)) mult = mult.times(20)
-        if (hasUpgrade('x', 91)) mult = mult.times(20)
-        if (hasUpgrade('x', 92)) mult = mult.times(20)
-        if (hasUpgrade('x', 93)) mult = mult.times(20)
-        if (hasUpgrade('x', 94)) mult = mult.times(20)
+        if (hasUpgrade('x', 73)) mult = mult.times(40)
+        if (hasUpgrade('x', 74)) mult = mult.times(10)
+        if (hasUpgrade('x', 75)) mult = mult.times(40)
+        if (hasUpgrade('x', 81)) mult = mult.times(10)
+        if (hasUpgrade('x', 82)) mult = mult.times(30)
+        if (hasUpgrade('x', 83)) mult = mult.times(13.333)
+        if (hasUpgrade('x', 84)) mult = mult.times(30)
+        if (hasUpgrade('x', 85)) mult = mult.times(13.333)
+        if (hasUpgrade('x', 91)) mult = mult.times(30)
+        if (hasUpgrade('x', 92)) mult = mult.times(13.333)
+        if (hasUpgrade('x', 93)) mult = mult.times(30)
+        if (hasUpgrade('x', 94)) mult = mult.times(13.333)
         if (hasUpgrade('x', 95)) mult = mult.times(20)
-        if (hasUpgrade('x', 101)) mult = mult.times(20)
-        if (hasUpgrade('x', 102)) mult = mult.times(20)
-        if (hasUpgrade('x', 103)) mult = mult.times(20)
-        if (hasUpgrade('x', 104)) mult = mult.times(20)
+        if (hasUpgrade('x', 101)) mult = mult.times(40)
+        if (hasUpgrade('x', 102)) mult = mult.times(10)
+        if (hasUpgrade('x', 103)) mult = mult.times(40)
+        if (hasUpgrade('x', 104)) mult = mult.times(10)
         if (hasUpgrade('x', 105)) mult = mult.times(20)
-        if (hasUpgrade('x', 111)) mult = mult.times(25)
-        if (hasUpgrade('x', 112)) mult = mult.times(25)
-        if (hasUpgrade('x', 113)) mult = mult.times(25)
-        if (hasUpgrade('x', 114)) mult = mult.times(25)
+        if (hasUpgrade('x', 111)) mult = mult.times(50)
+        if (hasUpgrade('x', 112)) mult = mult.times(12.5)
+        if (hasUpgrade('x', 113)) mult = mult.times(50)
+        if (hasUpgrade('x', 114)) mult = mult.times(12.5)
         if (hasUpgrade('x', 115)) mult = mult.times(625)
         if (hasUpgrade('÷', 15)) mult = mult.times(100)
         if (hasUpgrade('+', 71)) mult = mult.times(upgradeEffect('+', 71))
@@ -576,8 +576,14 @@ addLayer("S", {
         if (hasMilestone("-", 1) || hasUpgrade('x',21) || hasMilestone('^',1)) {
             for (let i = 1; i < 6; i++) {
                 buyUpgrade('S',i+10)
-                buyUpgrade('S',i+20)
-                buyUpgrade('S',i+30)
+                buyBuyable('S',13)
+                buyBuyable('S',14)
+                buyBuyable('S',15)
+                buyBuyable('S',i+20)
+                buyBuyable('S',i+30)
+                buyBuyable('S',41)
+                buyBuyable('S',42)
+                buyBuyable('S',43)
                 buyUpgrade('S',i+40)
                 buyUpgrade('S',i+50)
                 buyUpgrade('S',i+60)
@@ -603,10 +609,10 @@ addLayer("S", {
     },
     tabFormat: {
         "Numbers": {
-            content: ['main-display','prestige-button','upgrades'],
+            content: ['main-display','prestige-button',['row', [['upgrade',11], ['upgrade',12], ['buyable',13], ['buyable', 14], ['buyable', 15]]],['row', [['buyable',21], ['buyable',22], ['buyable',23], ['buyable', 24], ['buyable', 25]]],['row', [['buyable',31], ['buyable',32], ['buyable',33], ['buyable', 34], ['buyable', 35]]],['row', [['buyable',41], ['buyable',42], ['buyable',43], ['upgrade', 44], ['upgrade', 45]]],['upgrades',[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]]],
         },
         "Functions": {
-            content: ['main-display','prestige-button','buyables'],
+            content: ['main-display','prestige-button',['buyable',11]],
         },
     },
     upgrades: {
@@ -627,86 +633,6 @@ addLayer("S", {
             return player[this.layer].points.add(1).pow(0.25).div(player[this.layer].points.add(1).pow(0.25).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-        },
-        13: {
-        title: "Plasmarillion",
-        description: "x1.1 succession point gain.",
-        cost: new Decimal(10),
-        },
-        14: {
-        title: "Eyelash mite-speck",
-        description: "x1.1 succession point gain.",
-        cost: new Decimal(12),
-        },
-        15: {
-        title: "Dust mite-speck",
-        description: "x1.11 succession point gain.",
-        cost: new Decimal(14),
-        },
-        21: {
-        title: "Cheese mite-speck",
-        description: "x1.12 succession point gain.",
-        cost: new Decimal(16),
-        },
-        22: {
-        title: "Clover mite-speck",
-        description: "x1.13 succession point gain.",
-        cost: new Decimal(19),
-        },
-        23: {
-        title: "Polaritillion",
-        description: "x1.14 succession point gain.",
-        cost: new Decimal(23),
-        },
-        24: {
-        title: "Affordable",
-        description: "x1.15 succession point gain.",
-        cost: new Decimal(29),
-        },
-        25: {
-        title: "Polaritillion",
-        description: "x1.16 succession point gain.",
-        cost: new Decimal(36),
-        },
-        31: {
-        title: "Polarillion",
-        description: "x1.17 succession point gain.",
-        cost: new Decimal(46),
-        },
-        32: {
-        title: "One-leaf Clover",
-        description: "x1.18 succession point gain.",
-        cost: new Decimal(59),
-        },
-        33: {
-        title: "Rotillion",
-        description: "x1.19 succession point gain.",
-        cost: new Decimal(77),
-        },
-        34: {
-        title: "Triollion",
-        description: "x1.2 succession point gain.",
-        cost: new Decimal(101),
-        },
-        35: {
-        title: "Eyelash mite-crumb",
-        description: "x1.21 succession point gain.",
-        cost: new Decimal(136),
-        },
-        41: {
-        title: "Aarex's Funny Number",
-        description: "x1.23 succession point gain.",
-        cost: new Decimal(184),
-        },
-        42: {
-        title: "Dust mite-crumb",
-        description: "x1.25 succession point gain.",
-        cost: new Decimal(256),
-        },
-        43: {
-        title: "Cheese mite-crumb",
-        description: "x1.28 succession point gain.",
-        cost: new Decimal(366),
         },
         44: {
         title: "One",
@@ -774,7 +700,7 @@ addLayer("S", {
         description: "Googology points boost succession point gain.",
         cost: new Decimal(2.5e9),
         effect() {
-            return player.points.add(1).pow(0.03).div(player.points.add(1).pow(0.03).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player.points.add(1).pow(0.0275).div(player.points.add(1).pow(0.0275).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         unlocked(){return (hasUpgrade("S",44))}
@@ -784,7 +710,7 @@ addLayer("S", {
         description: "Googology points boost succession point gain again.",
         cost: new Decimal(1.5e10),
         effect() {
-            return player.points.add(1).pow(0.02).div(player.points.add(1).pow(0.02).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player.points.add(1).pow(0.0225).div(player.points.add(1).pow(0.0225).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         unlocked(){return (hasUpgrade("S",44))}
@@ -794,7 +720,7 @@ addLayer("S", {
         description: "Googology points boost succession point gain again.",
         cost: new Decimal(5e10),
         effect() {
-            return player.points.add(1).pow(0.02).div(player.points.add(1).pow(0.02).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player.points.add(1).pow(0.0175).div(player.points.add(1).pow(0.0175).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         unlocked(){return (hasUpgrade("S",44))}
@@ -804,7 +730,7 @@ addLayer("S", {
         description: "Googology points boost succession point gain again.",
         cost: new Decimal(2e11),
         effect() {
-            return player.points.add(1).pow(0.01).div(player.points.add(1).pow(0.01).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player.points.add(1).pow(0.0125).div(player.points.add(1).pow(0.0125).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         unlocked(){return (hasUpgrade("S",44))}
@@ -821,37 +747,37 @@ addLayer("S", {
         },
         71: {
         title: "Yibase",
-        description: "x3 googology point gain.",
+        description: "x3.2 googology point gain.",
         cost: new Decimal(5e11),
         unlocked(){return (hasUpgrade("S",44))}
         },
         72: {
         title: "Blue bilby",
-        description: "x3 googology point gain again.",
+        description: "x3 googology point gain.",
         cost: new Decimal(2e12),
         unlocked(){return (hasUpgrade("S",44))}
         },
         73: {
         title: "Tau",
-        description: "x3 googology point gain again.",
+        description: "x2.8 googology point gain.",
         cost: new Decimal(6e12),
         unlocked(){return (hasUpgrade("S",44))}
         },
         74: {
         title: "Gagtwo",
-        description: "x2.5 googology point gain.",
+        description: "x2.7 googology point gain.",
         cost: new Decimal(2.5e13),
         unlocked(){return (hasUpgrade("S",44))}
         },
         75: {
         title: "Octal-Goonol",
-        description: "x2.5 googology point gain again.",
+        description: "x2.3 googology point gain.",
         cost: new Decimal(7.5e13),
         unlocked(){return (hasUpgrade("S",44))}
         },
         81: {
         title: "Ternary-Goodol",
-        description: "x2 googology point gain again.",
+        description: "x2 googology point gain.",
         cost: new Decimal(2.5e14),
         unlocked(){return (hasUpgrade("S",44))}
         },
@@ -1277,7 +1203,7 @@ addLayer("S", {
         11: {
             cost(x) { return new Decimal(10000000).mul(new Decimal(100).pow(x)) },
             title: "f0(n)",
-            display() { return `x2.5 googology point gain.
+            display() { return `x2.5 googology point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
             <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) +`
             <b>Effect: </b>` + format(this.effect()) + 'x'},
@@ -1290,6 +1216,278 @@ addLayer("S", {
             },
             purchaseLimit: 25,
             unlocked(){return (hasUpgrade("S",52))}
+        },
+        13: {
+            cost(x) { return new Decimal(1) },
+            title: "Plasmarillion",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 10,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        14: {
+            cost(x) { return new Decimal(1.2) },
+            title: "Eyelash mite-speck",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 10,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        15: {
+            cost(x) { return new Decimal(1.4) },
+            title: "Dust mite-speck",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 11,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        21: {
+            cost(x) { return new Decimal(1.6) },
+            title: "Cheese mite-speck",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 12,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        22: {
+            cost(x) { return new Decimal(1.8) },
+            title: "Plasmillion",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 13,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        23: {
+            cost(x) { return new Decimal(2) },
+            title: "Clover mite-speck",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 14,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        24: {
+            cost(x) { return new Decimal(2.2) },
+            title: "Affordable",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 15,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        25: {
+            cost(x) { return new Decimal(2.5) },
+            title: "Polaritillion",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 16,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        31: {
+            cost(x) { return new Decimal(3) },
+            title: "Polarillion",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 17,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        32: {
+            cost(x) { return new Decimal(3.5) },
+            title: "One-leaf Clover",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 18,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        33: {
+            cost(x) { return new Decimal(4) },
+            title: "Rotillion",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 19,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        34: {
+            cost(x) { return new Decimal(4.5) },
+            title: "Triollion",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 20,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        35: {
+            cost(x) { return new Decimal(5.5) },
+            title: "Eyelash mite-crumb",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 21,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        41: {
+            cost(x) { return new Decimal(7) },
+            title: "Aarex's Funny Number",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 23,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        42: {
+            cost(x) { return new Decimal(10) },
+            title: "Dust mite-crumb",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 25,
+            unlocked(){return (hasUpgrade("S",12))}
+        },
+        43: {
+            cost(x) { return new Decimal(15) },
+            title: "Cheese mite-crumb",
+            display() { return `+1% succession point gain per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
+            effect(){
+                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 28,
+            unlocked(){return (hasUpgrade("S",12))}
         },
     },
 })
@@ -1359,7 +1557,7 @@ addLayer("+", {
     },
     tabFormat: {
         "Numbers": {
-            content: ['main-display','prestige-button','upgrades',['buyables',[9,10,11,12,13,14,15,16,17,18,19,20]],],
+            content: ['main-display','prestige-button','upgrades',['row', [['buyable',91], ['buyable',92], ['buyable',93], ['buyable', 94], ['buyable', 95]]],['row', [['buyable',101], ['buyable',102], ['buyable',103], ['buyable', 104], ['buyable', 105]]],['row', [['buyable',111], ['buyable',112], ['buyable',113], ['buyable', 114], ['buyable', 115]]],['row', [['buyable',121], ['buyable',122], ['buyable',123], ['buyable', 124], ['buyable', 125]]],['row', [['buyable',131], ['buyable',132], ['buyable',133], ['buyable', 134], ['buyable', 135]]],['row', [['buyable',141], ['buyable',142], ['buyable',143], ['buyable', 144], ['buyable', 145]]]],
         },
         "Functions": {
             content: ['main-display','prestige-button',['buyable',11]],
@@ -1376,7 +1574,7 @@ addLayer("+", {
         description: "Total addition points boost googology point gain.",
         cost: new Decimal(2),
         effect() {
-            return player['+'].total.add(1).pow(0.75).div(player['+'].total.add(1).pow(0.75).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player['+'].total.pow(0.75).add(2).div(player['+'].total.pow(0.75).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -1385,7 +1583,7 @@ addLayer("+", {
         description: "Total addition points boost succession point gain.",
         cost: new Decimal(3),
         effect() {
-            return player['+'].total.add(1).pow(0.4).div(player['+'].total.add(1).pow(0.4).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player['+'].total.pow(0.4).add(2).div(player['+'].total.pow(0.4).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -1394,7 +1592,7 @@ addLayer("+", {
         description: "Unspent addition points boost googology point gain.",
         cost: new Decimal(9),
         effect() {
-            return player['+'].points.add(1).pow(0.4).div(player['+'].points.add(1).pow(0.4).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player['+'].points.pow(0.4).add(2).div(player['+'].points.pow(0.4).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -1403,7 +1601,7 @@ addLayer("+", {
         description: "Unspent addition points boost succession point gain, and unlock a new layer.",
         cost: new Decimal(20),
         effect() {
-            return player['+'].points.add(1).pow(0.2).div(player['+'].points.add(1).pow(0.2).max(1000).div(1000).pow(0.9)).min(1000000)
+            return player['+'].points.pow(0.2).add(2).div(player['+'].points.pow(0.2).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
         effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -2254,7 +2452,9 @@ addLayer("-", {
     hotkeys: [
         {key: "-", description: "-: subtraction reset", onPress(){if (canReset(this.layer) && !hasUpgrade('x',25) && !hasMilestone('^',1)) doReset(this.layer)}},
     ],
-    effect() {return new Decimal(new Decimal(2).add(new Decimal(player[this.layer].upgrades.length).mul(0.25))).pow(player[this.layer].points)},
+    effect() {if (hasUpgrade('-',11)) return new Decimal(new Decimal(2).add(new Decimal(player[this.layer].upgrades.length).mul(0.25))).pow(player[this.layer].points)
+        else return new Decimal(2).pow(player[this.layer].points)
+    },
     effectDescription() { return 'multiplying googology point gain by ' + format(tmp['-'].effect)},
     autoUpgrade() {return hasMilestone('^',2)},
     autoPrestige() {return hasUpgrade('x',42) || hasMilestone('^',2)},
@@ -2630,13 +2830,13 @@ addLayer("x", {
         },
         63: {
         title: "Ternary-guppyspeck",
-        description: "x10 googology and succession point gain and x20 nullology point gain.",
+        description: "x20 googology and succession point gain and x40 nullology point gain.",
         cost: new Decimal(5e12),
         unlocked() {return hasUpgrade('÷',13)}
         },
         64: {
         title: "Ontwo",
-        description: "x10 googology and succession point gain and x20 nullology point gain.",
+        description: "x5 googology and succession point gain and x10 nullology point gain.",
         cost: new Decimal(8e12),
         unlocked() {return hasUpgrade('÷',13)}
         },
@@ -2648,85 +2848,85 @@ addLayer("x", {
         },
         71: {
         title: "Cheese mite",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x20 googology point gain and x40 nullology and succession point gain.",
         cost: new Decimal(1.6e13),
         unlocked() {return hasUpgrade('÷',13)}
         },
         72: {
         title: "Integral-megaseptile",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x5 googology point gain and x10 nullology and succession point gain.",
         cost: new Decimal(1e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         73: {
         title: "Jã:cʰe",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x20 googology point gain and x40 nullology and succession point gain.",
         cost: new Decimal(2.25e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         74: {
         title: "Brokillion",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x5 googology point gain and x10 nullology and succession point gain.",
         cost: new Decimal(3.5e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         75: {
         title: "Rootbeer on the rocks",
-        description: "x10 googology point gain, x20 nullology and succession point gain, and autobuy succession row 11 and addition rows 5 and 6.",
+        description: "x20 googology point gain, x40 nullology and succession point gain, and autobuy succession row 11 and addition rows 5 and 6.",
         cost: new Decimal(9e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         81: {
         title: "Tueslakh",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x5 googology point gain and x10 nullology and succession point gain.",
         cost: new Decimal(1.6e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         82: {
         title: "Esra",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x15 googology point gain and x30 nullology and succession point gain.",
         cost: new Decimal(2.5e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         83: {
         title: "Clover mite",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
         cost: new Decimal(5e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         84: {
         title: "🠅🠅🠇🠇🠄🠆🠄🠆BA",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x15 googology point gain and x30 nullology and succession point gain.",
         cost: new Decimal(7e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         85: {
         title: "Anika",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
         cost: new Decimal(1.25e16),
         unlocked() {return hasUpgrade('÷',13)}
         },
         91: {
         title: "Duodecimal-qoonol",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x15 googology point gain and x30 nullology and succession point gain.",
         cost: new Decimal(3e16),
         unlocked() {return hasUpgrade('÷',14)}
         },
         92: {
         title: "Wedneslakh",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
         cost: new Decimal(4.5e16),
         unlocked() {return hasUpgrade('÷',14)}
         },
         93: {
         title: "Mor",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x15 googology point gain and x30 nullology and succession point gain.",
         cost: new Decimal(7e16),
         unlocked() {return hasUpgrade('÷',14)}
         },
         94: {
         title: "Meemee wemb",
-        description: "x10 googology point gain and x20 nullology and succession point gain.",
+        description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
         cost: new Decimal(1.5e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
@@ -2738,25 +2938,25 @@ addLayer("x", {
         },
         101: {
         title: "New Jerusalem",
-        description: "x20 succession point gain.",
+        description: "x40 succession point gain.",
         cost: new Decimal(3e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         102: {
         title: "Ternary-squeaker",
-        description: "x20 succession point gain.",
+        description: "x10 succession point gain.",
         cost: new Decimal(5e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         103: {
         title: "Thurslakh",
-        description: "x20 succession point gain.",
+        description: "x40 succession point gain.",
         cost: new Decimal(7.5e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         104: {
         title: "Ma'adjega",
-        description: "x20 succession point gain.",
+        description: "x10 succession point gain.",
         cost: new Decimal(1e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
@@ -2768,25 +2968,25 @@ addLayer("x", {
         },
         111: {
         title: "Lehu",
-        description: "x25 succession point gain.",
+        description: "x50 succession point gain.",
         cost: new Decimal(5e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
         112: {
         title: "Frilakh",
-        description: "x25 succession point gain.",
+        description: "x12.5 succession point gain.",
         cost: new Decimal(7.5e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
         113: {
         title: "Quindecimal-balum",
-        description: "x25 succession point gain.",
+        description: "x50 succession point gain.",
         cost: new Decimal(1.125e19),
         unlocked() {return hasUpgrade('÷',14)}
         },
         114: {
         title: "Dust mite-bunch",
-        description: "x25 succession point gain.",
+        description: "x12.5 succession point gain.",
         cost: new Decimal(2.25e19),
         unlocked() {return hasUpgrade('÷',14)}
         },
@@ -2959,7 +3159,7 @@ addLayer("÷", {
         return exp
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return (player.points.gte('9.99e99') || player[this.layer].total.gte(1) || hasMilestone('^',2))},
+    layerShown(){return (player.points.gte('9.98e99') || player[this.layer].total.gte(1) || hasMilestone('^',2))},
     hotkeys: [
         {key: "/", description: "/: division reset", onPress(){if (canReset(this.layer) && !hasUpgrade('÷',15) && !hasMilestone('^',1)) doReset(this.layer)}},
     ],
@@ -3025,14 +3225,14 @@ addLayer("÷", {
         title: "Ubesuperc",
         description: "÷10,000,000,000 googology point gain, and x1,000 succession point gain.",
         cost: new Decimal(16),
-        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15)},
+        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15) && hasUpgrade('x',71)},
         onPurchase() { player.points = player.points.div(1e10)}
         },
         15: {
         title: "Binary-guppychunk",
         description: "÷1,000 googology point gain, and x100 succession point gain. Also, buy max division points. [This disables the division reset hotkey]",
         cost: new Decimal(25),
-        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15)},
+        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15) && hasUpgrade('x',115)},
         onPurchase() { player.points = player.points.div(1e3)}
         },
     },
@@ -3152,10 +3352,10 @@ addLayer("n", {
         if (hasUpgrade('n', 143)) mult = mult.times(upgradeEffect('n',143))
         if (hasUpgrade('n', 144)) mult = mult.times(upgradeEffect('n',144))
         if (hasUpgrade('n', 145)) mult = mult.times(7)
-        if (hasUpgrade('x', 63)) mult = mult.times(20)
-        if (hasUpgrade('x', 64)) mult = mult.times(20)
+        if (hasUpgrade('x', 63)) mult = mult.times(40)
+        if (hasUpgrade('x', 64)) mult = mult.times(10)
         if (hasUpgrade('x', 65)) mult = mult.times(20)
-        if (hasUpgrade('x', 71)) mult = mult.times(20)
+        if (hasUpgrade('x', 71)) mult = mult.times(40)
         if (hasUpgrade('n', 151)) mult = mult.times(7)
         if (hasUpgrade('n', 152)) mult = mult.times(7)
         if (hasUpgrade('n', 153)) mult = mult.times(10)
@@ -3165,19 +3365,19 @@ addLayer("n", {
         if (hasUpgrade('n', 162)) mult = mult.times(10)
         if (hasUpgrade('n', 163)) mult = mult.times(10)
         if (hasUpgrade('n', 164)) mult = mult.times(10)
-        if (hasUpgrade('x', 72)) mult = mult.times(20)
-        if (hasUpgrade('x', 73)) mult = mult.times(20)
-        if (hasUpgrade('x', 74)) mult = mult.times(20)
-        if (hasUpgrade('x', 75)) mult = mult.times(20)
-        if (hasUpgrade('x', 81)) mult = mult.times(20)
-        if (hasUpgrade('x', 82)) mult = mult.times(20)
-        if (hasUpgrade('x', 83)) mult = mult.times(20)
-        if (hasUpgrade('x', 84)) mult = mult.times(20)
-        if (hasUpgrade('x', 85)) mult = mult.times(20)
-        if (hasUpgrade('x', 91)) mult = mult.times(20)
-        if (hasUpgrade('x', 92)) mult = mult.times(20)
-        if (hasUpgrade('x', 93)) mult = mult.times(20)
-        if (hasUpgrade('x', 94)) mult = mult.times(20)
+        if (hasUpgrade('x', 72)) mult = mult.times(10)
+        if (hasUpgrade('x', 73)) mult = mult.times(40)
+        if (hasUpgrade('x', 74)) mult = mult.times(10)
+        if (hasUpgrade('x', 75)) mult = mult.times(40)
+        if (hasUpgrade('x', 81)) mult = mult.times(10)
+        if (hasUpgrade('x', 82)) mult = mult.times(30)
+        if (hasUpgrade('x', 83)) mult = mult.times(13.333)
+        if (hasUpgrade('x', 84)) mult = mult.times(30)
+        if (hasUpgrade('x', 85)) mult = mult.times(13.333)
+        if (hasUpgrade('x', 91)) mult = mult.times(30)
+        if (hasUpgrade('x', 92)) mult = mult.times(13.333)
+        if (hasUpgrade('x', 93)) mult = mult.times(30)
+        if (hasUpgrade('x', 94)) mult = mult.times(13.333)
         if (hasUpgrade('x', 95)) mult = mult.times(20)
         return mult
     },
@@ -3215,7 +3415,7 @@ addLayer("n", {
     passiveGeneration() {return hasMilestone('^', 1) && hasUpgrade('÷',13)},
     tabFormat: {
         "Numbers": {
-            content: ['main-display','prestige-button','upgrades'],
+            content: ['main-display','prestige-button','clickables','upgrades'],
         },
         "Lore": {
             content: [
@@ -3223,6 +3423,14 @@ addLayer("n", {
                 ['infobox','2'],
             ],
         },
+    },
+    clickables: {
+        11: {
+            display() {return "Click/hold to do nullology reset"},
+            onClick() {return doReset('n')},
+            onHold() {return doReset('n')},
+            canClick() {return true}
+        }
     },
     upgrades: {
             11: {

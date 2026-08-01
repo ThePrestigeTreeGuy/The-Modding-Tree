@@ -12,11 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.7.1",
-	name: "'Supernova'",
+	num: "0.8",
+	name: "Change",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.8</h3><br>
+		- Changed the succession, addition, division, and nullology reset layers. <br>
+		- Fixed a bug. <br>
 	<h3>v0.7.1</h3><br>
 		- Fixed a bug.<br>
 	<h3>v0.7</h3><br>
@@ -74,11 +77,11 @@ function getPointGen() {
     if (hasUpgrade('S', 54)) gain = gain.times(upgradeEffect('S', 54))
     if (hasUpgrade('S', 55)) gain = gain.times(upgradeEffect('S', 55))
     gain = gain.times(buyableEffect('S', 11))
-    if (hasUpgrade('S', 71)) gain = gain.times(3)
+    if (hasUpgrade('S', 71)) gain = gain.times(3.2)
     if (hasUpgrade('S', 72)) gain = gain.times(3)
-    if (hasUpgrade('S', 73)) gain = gain.times(3)
-    if (hasUpgrade('S', 74)) gain = gain.times(2.5)
-    if (hasUpgrade('S', 75)) gain = gain.times(2.5)
+    if (hasUpgrade('S', 73)) gain = gain.times(2.8)
+    if (hasUpgrade('S', 74)) gain = gain.times(2.7)
+    if (hasUpgrade('S', 75)) gain = gain.times(2.3)
     if (hasUpgrade('S', 81)) gain = gain.times(2)
     if (hasUpgrade('S', 82)) gain = gain.times(1.2)
     if (hasUpgrade('S', 83)) gain = gain.times(4)
@@ -132,10 +135,10 @@ function getPointGen() {
     if (hasUpgrade('n', 125)) gain = gain.times(7)
     if (hasUpgrade('n', 135)) gain = gain.times(7)
     if (hasUpgrade('n', 145)) gain = gain.times(7)
-    if (hasUpgrade('x', 63)) gain = gain.times(10)
-    if (hasUpgrade('x', 64)) gain = gain.times(10)
+    if (hasUpgrade('x', 63)) gain = gain.times(20)
+    if (hasUpgrade('x', 64)) gain = gain.times(5)
     if (hasUpgrade('x', 65)) gain = gain.times(10)
-    if (hasUpgrade('x', 71)) gain = gain.times(10)
+    if (hasUpgrade('x', 71)) gain = gain.times(20)
     if (hasUpgrade('÷', 14) && !hasUpgrade('x',121) && !hasMilestone('^',1) && !hasMilestone('^',1)) gain = gain.div(1e10)
     if (hasUpgrade('n', 151)) gain = gain.times(7)
     if (hasUpgrade('n', 152)) gain = gain.times(7)
@@ -146,19 +149,19 @@ function getPointGen() {
     if (hasUpgrade('n', 162)) gain = gain.times(10)
     if (hasUpgrade('n', 163)) gain = gain.times(10)
     if (hasUpgrade('n', 164)) gain = gain.times(10)
-    if (hasUpgrade('x', 72)) gain = gain.times(10)
-    if (hasUpgrade('x', 73)) gain = gain.times(10)
-    if (hasUpgrade('x', 74)) gain = gain.times(10)
-    if (hasUpgrade('x', 75)) gain = gain.times(10)
-    if (hasUpgrade('x', 81)) gain = gain.times(10)
-    if (hasUpgrade('x', 82)) gain = gain.times(10)
-    if (hasUpgrade('x', 83)) gain = gain.times(10)
-    if (hasUpgrade('x', 84)) gain = gain.times(10)
-    if (hasUpgrade('x', 85)) gain = gain.times(10)
-    if (hasUpgrade('x', 91)) gain = gain.times(10)
-    if (hasUpgrade('x', 92)) gain = gain.times(10)
-    if (hasUpgrade('x', 93)) gain = gain.times(10)
-    if (hasUpgrade('x', 94)) gain = gain.times(10)
+    if (hasUpgrade('x', 72)) gain = gain.times(5)
+    if (hasUpgrade('x', 73)) gain = gain.times(20)
+    if (hasUpgrade('x', 74)) gain = gain.times(5)
+    if (hasUpgrade('x', 75)) gain = gain.times(20)
+    if (hasUpgrade('x', 81)) gain = gain.times(5)
+    if (hasUpgrade('x', 82)) gain = gain.times(15)
+    if (hasUpgrade('x', 83)) gain = gain.times(6.666)
+    if (hasUpgrade('x', 84)) gain = gain.times(15)
+    if (hasUpgrade('x', 85)) gain = gain.times(6.666)
+    if (hasUpgrade('x', 91)) gain = gain.times(15)
+    if (hasUpgrade('x', 92)) gain = gain.times(6.666)
+    if (hasUpgrade('x', 93)) gain = gain.times(15)
+    if (hasUpgrade('x', 94)) gain = gain.times(6.666)
     if (hasUpgrade('x', 95)) gain = gain.times(10)
     if (hasUpgrade('÷', 15) && !hasUpgrade('x',121) && !hasMilestone('^',1)) gain = gain.div(1e3)
     if (hasMilestone('^',3)) gain = gain.times(1000)
