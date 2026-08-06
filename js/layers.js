@@ -4120,7 +4120,7 @@ addLayer("^", {
             content: ['main-display','prestige-button','milestones'],
         },
         "Root": {
-            content: ['main-display','prestige-button',["display-text", function() {if (hasMilestone('^',5)) return `You have ` + format(player[this.layer].sqrtp) + ` root points`}],'challenges',['buyables',[11,12,13,14,15,16,17,18,19,20]]],
+            content: ['main-display','prestige-button',["display-text", function() {return `You have ` + format(player[this.layer].sqrtp) + ` root points`}],'challenges',['buyables',[11,12,13,14,15,16,17,18,19,20]]],
             unlocked() {return hasMilestone('^',5)}
         },
         "Lore": {
