@@ -12,40 +12,47 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.8",
-	name: "Change",
+	num: "0.9",
+	name: "Root Part 1",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.8</h3><br>
+	<h3>v0.9: Root Part 1</h3><br>
+		- Added a lot of buyables, three challenges, and four milestones. <br>
+		- Added the root feature. <br>
+		- Changed the changelog. <br>
+		- Endgame: 100,000,000,000,000,000,000, 1e44 power.<br>
+	<h3>v0.8: Revamp</h3><br>
 		- Changed the succession, addition, division, and nullology reset layers. <br>
-		- Slightly changed the GUI. <br>
+		- Slightly changed the UI. <br>
 		- Fixed a bug. <br>
+		- Endgame: The same as v0.7.<br>
 	<h3>v0.7.1</h3><br>
 		- Fixed a bug.<br>
-	<h3>v0.7</h3><br>
-		- Added a bunch of buyables.<br>
+		- Endgame: The same as v0.7.<br>
+	<h3>v0.7: Exponentiation</h3><br>
+		- Added a lot of buyables and five milestones.<br>
 		- Added exponentiation points, power, and Exponential Multiplier.<br>
 		- Endgame: 7,625,597,484,987, 1e12 exponentiation points<br>
-	<h3>v0.6</h3><br>
+	<h3>v0.6: Subexponentiation</h3><br>
 		- Added a bunch of upgrades and buyables.<br>
 		- Added subexponentiation points.<br>
 		- Endgame: 10,000,000,000, 1e11 subexponentiation points<br>
-	<h3>v0.5</h3><br>
-		- Added a bunch of upgrades<br>
+	<h3>v0.5: Upgrade Spam</h3><br>
+		- Added a bunch of upgrades.<br>
 		- Endgame: 999,999, 5e65 addition points<br>
-	<h3>v0.4</h3><br>
-		- Added 2 layers (division & nullology)<br>
+	<h3>v0.4: Goin' Down</h3><br>
+		- Added 2 layers (division & nullology).<br>
 		- Endgame: 7,744, 3e27 nullology points<br>
-	<h3>v0.3</h3><br>
-		- Added 1 layer (multiplication)<br>
-		- Endgame: 486, 9.99e99 googology points)<br>
-	<h3>v0.2</h3><br>
-		- Added 2 layers (addition & subtraction)<br>
-		- Endgame: 100, 21 subtraction points)<br>
-	<h3>v0.1</h3><br>
-		- Added 1 layer (succession)<br>
-		- Endgame: 10, 7.5e14 succession points)`
+	<h3>v0.3: Multiplication</h3><br>
+		- Added 1 layer (multiplication).<br>
+		- Endgame: 486, 9.99e99 googology points<br>
+	<h3>v0.2: Addition and Subtraction</h3><br>
+		- Added 2 layers (addition & subtraction).<br>
+		- Endgame: 100, 21 subtraction points<br>
+	<h3>v0.1: Succession</h3><br>
+		- Added 1 layer (succession).<br>
+		- Endgame: 10, 7.5e14 succession points`
 
 let winText = `Congratulations! You have reached the end and beaten this game, for now...`
 
@@ -178,12 +185,15 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	function () {return `Your number is ` + String(player['S'].number)}
+	function () {if (inChallenge('^',21)) return `Your number is ∜` + String(player['S'].number)
+        else if (inChallenge('^',12)) return `Your number is ∛` + String(player['S'].number)
+        else if (inChallenge('^',11)) return `Your number is √` + String(player['S'].number)
+        else return `Your number is ` + String(player['S'].number)}
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte("eeeeeeeeeeeeeeeeeeeeeeeeeeeeee10")
+	return player['^'].power.gte("e44")
 }
 
 
