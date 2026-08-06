@@ -21,6 +21,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Added a lot of buyables, three challenges, and four milestones. <br>
 		- Added the root feature. <br>
 		- Changed the changelog. <br>
+		- Added a thumbnail on galaxy.click. <br>
 		- Endgame: 100,000,000,000,000,000,000, 1e44 power.<br>
 	<h3>v0.8: Revamp</h3><br>
 		- Changed the succession, addition, division, and nullology reset layers. <br>
