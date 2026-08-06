@@ -5515,7 +5515,7 @@ addLayer("^", {
         },
         5: {
             requirementDescription: "Exponential Tier 5 [1,000,000,000,000 exponential points]",
-            effectDescription: `Unlock root points.`,
+            effectDescription: `Unlock root points (located within a new tab in this layer).`,
             done() { return player[this.layer].points.gte(1e12) },
         },
         6: {

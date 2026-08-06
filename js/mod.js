@@ -17,6 +17,9 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.9.1</h3><br>
+		- Added some clarification.<br>
+		- Endgame: The same as v0.9.<br>
 	<h3>v0.9: Root Part 1</h3><br>
 		- Added a lot of buyables, three challenges, and four milestones. <br>
 		- Added the root feature. <br>
