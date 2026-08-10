@@ -6,21 +6,24 @@ let modInfo = {
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (0), // Used for hard resets and new players
+	initialStartPoints: new MetaNum (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.9.1",
-	name: "Root Part 1",
+	num: "0.9.2",
+	name: "Preparations",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.9.2: Preparations</h3><br>
+		- Changed the big number library to MetaNum.<br>
+		- Endgame: The same as v0.9.<br>
 	<h3>v0.9.1</h3><br>
 		- Added some clarification.<br>
 		- Endgame: The same as v0.9.<br>
-	<h3>v0.9: Root Part 1</h3><br>
+	<h3>v0.9: The Radical Update</h3><br>
 		- Added a lot of buyables, three challenges, and four milestones. <br>
 		- Added the root feature. <br>
 		- Changed the changelog. <br>
@@ -65,7 +68,7 @@ let winText = `Congratulations! You have reached the end and beaten this game, f
 var doNotCallTheseFunctionsEveryTick = ["blowUpEverything"]
 
 function getStartPoints(){
-    return new Decimal(modInfo.initialStartPoints)
+    return new MetaNum(modInfo.initialStartPoints)
 }
 
 // Determines if it should show points/sec
@@ -76,9 +79,9 @@ function canGenPoints(){
 // Calculate points/sec!
 function getPointGen() {
 	if(!canGenPoints())
-		return new Decimal(0)
+		return new MetaNum(0)
 
-	let gain = new Decimal(1)
+	let gain = new MetaNum(1)
     if (hasUpgrade('S', 11)) gain = gain.times(upgradeEffect('S', 11))
     if (hasUpgrade('S', 12)) gain = gain.times(upgradeEffect('S', 12))
     if (hasUpgrade('S', 44)) gain = gain.times(upgradeEffect('S', 44))
@@ -179,7 +182,7 @@ function getPointGen() {
     if (hasMilestone('^',3)) gain = gain.times(1000)
     gain = gain.times(player['^'].expmult)
     if (hasMilestone('^',1)) gain = gain.pow(1.01)
-    gain = gain.min(new Decimal(9.99e99).sub(player.points))
+    gain = gain.min(new MetaNum(9.99e99).sub(player.points))
 	return gain
 }
 

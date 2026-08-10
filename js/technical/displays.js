@@ -64,10 +64,10 @@ function updateWidth() {
 function updateOomps(diff)
 {
 	tmp.other.oompsMag = 0
-	if (player.points.lte(new Decimal(1e100)) || diff == 0) return
+	if (player.points.lte(new MetaNum(1e100)) || diff == 0) return
 
-	var pp = new Decimal(player.points);
-	var lp = tmp.other.lastPoints || new Decimal(0);
+	var pp = new MetaNum(player.points);
+	var lp = tmp.other.lastPoints || new MetaNum(0);
 	if (pp.gt(lp)) {
 		if (pp.gte("10^^8")) {
 			pp = pp.slog(1e10)
@@ -91,7 +91,7 @@ function constructBarStyle(layer, id) {
 	let style = {}
 
 	let tempProgress
-	if (bar.progress instanceof Decimal)
+	if (bar.progress instanceof MetaNum)
 		tempProgress = (1 -Math.min(Math.max(bar.progress.toNumber(), 0), 1)) * 100
 	else
 		tempProgress = (1 -Math.min(Math.max(bar.progress, 0), 1)) * 100

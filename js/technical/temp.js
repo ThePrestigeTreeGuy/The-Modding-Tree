@@ -63,7 +63,7 @@ function setupTempData(layerData, tmpData, funcsData) {
 		if (layerData[item] == null) {
 			tmpData[item] = null
 		}
-		else if (layerData[item] instanceof Decimal)
+		else if (layerData[item] instanceof MetaNum)
 			tmpData[item] = layerData[item]
 		else if (Array.isArray(layerData[item])) {
 			tmpData[item] = []
@@ -106,7 +106,7 @@ function updateTemp() {
 		tmp[layer].trueGlowColor = tmp[layer].glowColor
 		tmp[layer].notify = shouldNotify(layer)
 		tmp[layer].prestigeNotify = prestigeNotify(layer)
-		if (tmp[layer].passiveGeneration === true) tmp[layer].passiveGeneration = 1 // new Decimal(true) = decimalZero
+		if (tmp[layer].passiveGeneration === true) tmp[layer].passiveGeneration = 1 // new MetaNum(true) = decimalZero
 
 	}
 
@@ -175,5 +175,5 @@ function setupBuyables(layer) {
 }
 
 function checkDecimalNaN(x) {
-	return (x instanceof Decimal) && !x.eq(x)
+	return (x instanceof MetaNum) && !x.eq(x)
 }

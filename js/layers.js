@@ -7,7 +7,7 @@ addLayer("S", {
     }},
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+		points: new MetaNum(0),
         number: "-1",
     }},
     update(diff) {
@@ -415,14 +415,14 @@ addLayer("S", {
         if (getBuyableAmount('^',95).gte(1)) player[this.layer].number = "100,000,000,000,000,000,000"
     },
     color: "#fff",
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(10), // Can be a function that takes requirement increases into account
     resource: "succession points", // Name of prestige currency
     baseResource: "googology points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        mult = new MetaNum(1)
         mult = mult.times(buyableEffect('S',13))
         mult = mult.times(buyableEffect('S',14))
         mult = mult.times(buyableEffect('S',15))
@@ -615,11 +615,11 @@ addLayer("S", {
         mult = mult.times(buyableEffect('x',131))
         mult = mult.times(buyableEffect('x',132))
         mult = mult.times(buyableEffect('x',133))
-        if (hasMilestone('^',8)) mult = mult.times(new Decimal(player['^'].sqrtp).pow(1.4))
+        if (hasMilestone('^',8)) mult = mult.times(new MetaNum(player['^'].sqrtp).pow(1.4))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         if (inChallenge('^', 12)) exp = exp.mul(0.8)
         if (inChallenge('^', 21)) exp = exp.mul(0.64)
         return exp
@@ -680,7 +680,7 @@ addLayer("S", {
         11: {
         title: "Zero",
         description: "Succession points boost googology points gain.",
-        cost: new Decimal(1),
+        cost: new MetaNum(1),
         effect() {
             return player[this.layer].points.add(1).pow(0.5).div(player[this.layer].points.add(1).pow(0.5).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -689,7 +689,7 @@ addLayer("S", {
         12: {
         title: "Infinitesimal",
         description: "Succession points boost googology points gain again.",
-        cost: new Decimal(3),
+        cost: new MetaNum(3),
         effect() {
             return player[this.layer].points.add(1).pow(0.25).div(player[this.layer].points.add(1).pow(0.25).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -698,7 +698,7 @@ addLayer("S", {
         44: {
         title: "One",
         description: "Googology points boost their own gain.",
-        cost: new Decimal(4000),
+        cost: new MetaNum(4000),
         effect() {
             return player.points.add(1).pow(0.15).div(player.points.add(1).pow(0.15).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -707,7 +707,7 @@ addLayer("S", {
         45: {
         title: "Mills' Constant",
         description: "Googology points boost their own gain again, and gain 100% of succession points per second.",
-        cost: new Decimal(7500),
+        cost: new MetaNum(7500),
         effect() {
             return player.points.add(1).pow(0.1).div(player.points.add(1).pow(0.1).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -717,19 +717,19 @@ addLayer("S", {
         51: {
         title: "Yiutu",
         description: "First softcap, eh? x2.5 googology point gain.",
-        cost: new Decimal(1500000),
+        cost: new MetaNum(1500000),
         unlocked(){return (hasUpgrade("S",44))}
         },
         52: {
         title: "Golden Ratio",
         description: "Another x2.5 googology point gain. Ykw, we might need a buyable to repeat that!",
-        cost: new Decimal(5000000),
+        cost: new MetaNum(5000000),
         unlocked(){return (hasUpgrade("S",44))}
         },
         53: {
         title: "Clover mite-crumb",
         description: "Googology points boost their own gain again.",
-        cost: new Decimal(25000000),
+        cost: new MetaNum(25000000),
         effect() {
             return player.points.add(1).pow(0.05).div(player.points.add(1).pow(0.05).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -739,7 +739,7 @@ addLayer("S", {
         54: {
         title: "Sierpinski's Constant",
         description: "Googology points boost their own gain again.",
-        cost: new Decimal(100000000),
+        cost: new MetaNum(100000000),
         effect() {
             return player.points.add(1).pow(0.04).div(player.points.add(1).pow(0.04).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -749,7 +749,7 @@ addLayer("S", {
         55: {
         title: "Euler's Number",
         description: "Googology points boost their own gain again.",
-        cost: new Decimal(400000000),
+        cost: new MetaNum(400000000),
         effect() {
             return player.points.add(1).pow(0.03).div(player.points.add(1).pow(0.03).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -759,7 +759,7 @@ addLayer("S", {
         61: {
         title: "Ternary-Goonol",
         description: "Googology points boost succession point gain.",
-        cost: new Decimal(2.5e9),
+        cost: new MetaNum(2.5e9),
         effect() {
             return player.points.add(1).pow(0.0275).div(player.points.add(1).pow(0.0275).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -769,7 +769,7 @@ addLayer("S", {
         62: {
         title: "Pi",
         description: "Googology points boost succession point gain again.",
-        cost: new Decimal(1.5e10),
+        cost: new MetaNum(1.5e10),
         effect() {
             return player.points.add(1).pow(0.0225).div(player.points.add(1).pow(0.0225).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -779,7 +779,7 @@ addLayer("S", {
         63: {
         title: "Binary-Goonolplex",
         description: "Googology points boost succession point gain again.",
-        cost: new Decimal(5e10),
+        cost: new MetaNum(5e10),
         effect() {
             return player.points.add(1).pow(0.0175).div(player.points.add(1).pow(0.0175).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -789,7 +789,7 @@ addLayer("S", {
         64: {
         title: "Trigintiprimis",
         description: "Googology points boost succession point gain again.",
-        cost: new Decimal(2e11),
+        cost: new MetaNum(2e11),
         effect() {
             return player.points.add(1).pow(0.0125).div(player.points.add(1).pow(0.0125).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -799,7 +799,7 @@ addLayer("S", {
         65: {
         title: "Sjyp",
         description: "Googology points boost succession point gain again.",
-        cost: new Decimal(3e11),
+        cost: new MetaNum(3e11),
         effect() {
             return player.points.add(1).pow(0.01).div(player.points.add(1).pow(0.01).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -809,127 +809,127 @@ addLayer("S", {
         71: {
         title: "Yibase",
         description: "x3.2 googology point gain.",
-        cost: new Decimal(5e11),
+        cost: new MetaNum(5e11),
         unlocked(){return (hasUpgrade("S",44))}
         },
         72: {
         title: "Blue bilby",
         description: "x3 googology point gain.",
-        cost: new Decimal(2e12),
+        cost: new MetaNum(2e12),
         unlocked(){return (hasUpgrade("S",44))}
         },
         73: {
         title: "Tau",
         description: "x2.8 googology point gain.",
-        cost: new Decimal(6e12),
+        cost: new MetaNum(6e12),
         unlocked(){return (hasUpgrade("S",44))}
         },
         74: {
         title: "Gagtwo",
         description: "x2.7 googology point gain.",
-        cost: new Decimal(2.5e13),
+        cost: new MetaNum(2.5e13),
         unlocked(){return (hasUpgrade("S",44))}
         },
         75: {
         title: "Octal-Goonol",
         description: "x2.3 googology point gain.",
-        cost: new Decimal(7.5e13),
+        cost: new MetaNum(7.5e13),
         unlocked(){return (hasUpgrade("S",44))}
         },
         81: {
         title: "Ternary-Goodol",
         description: "x2 googology point gain.",
-        cost: new Decimal(2.5e14),
+        cost: new MetaNum(2.5e14),
         unlocked(){return (hasUpgrade("S",44))}
         },
         82: {
         title: "Onety",
         description: "x1.2 googology point gain, and unlock a new layer.",
-        cost: new Decimal(7.5e14),
+        cost: new MetaNum(7.5e14),
         unlocked(){return (hasUpgrade("S",44))}
         },
         83: {
         title: "Dozen",
         description: "x4 googology point gain.",
-        cost: new Decimal(1),
+        cost: new MetaNum(1),
         unlocked(){return (hasUpgrade("+",11))}
         },
         84: {
         title: "Baker's Dozen",
         description: "x3 googology point gain.",
-        cost: new Decimal(1e5),
+        cost: new MetaNum(1e5),
         unlocked(){return (hasUpgrade("+",11))}
         },
         85: {
         title: "Poulter's Dozen",
         description: "x2 googology point gain.",
-        cost: new Decimal(1e10),
+        cost: new MetaNum(1e10),
         unlocked(){return (hasUpgrade("+",11))}
         },
         91: {
         title: "Sesquiwonx",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e6),
+        cost: new MetaNum(1e6),
         unlocked(){return (hasUpgrade("x",11))}
         },
         92: {
         title: "Twelfty",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e15),
+        cost: new MetaNum(1e15),
         unlocked(){return (hasUpgrade("x",11))}
         },
         93: {
         title: "Thirteenty",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e45),
+        cost: new MetaNum(1e45),
         unlocked(){return (hasUpgrade("x",11))}
         },
         94: {
         title: "Ternary-eyelash mite",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e60),
+        cost: new MetaNum(1e60),
         unlocked(){return (hasUpgrade("x",11))}
         },
         95: {
         title: "End run",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e65),
+        cost: new MetaNum(1e65),
         unlocked(){return (hasUpgrade("x",11))}
         },
         101: {
         title: "Ternary-gooqnol",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e70),
+        cost: new MetaNum(1e70),
         unlocked(){return (hasUpgrade("x",11))}
         },
         102: {
         title: "Dancing dragon",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e75),
+        cost: new MetaNum(1e75),
         unlocked(){return (hasUpgrade("x",11))}
         },
         103: {
         title: "Centzontli",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e80),
+        cost: new MetaNum(1e80),
         unlocked(){return (hasUpgrade("x",11))}
         },
         104: {
         title: "Ternary-clover mite",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e85),
+        cost: new MetaNum(1e85),
         unlocked(){return (hasUpgrade("x",11))}
         },
         105: {
         title: "Tho",
         description: "x3 succession point gain.",
-        cost: new Decimal(1e90),
+        cost: new MetaNum(1e90),
         unlocked(){return (hasUpgrade("x",11))}
         },
         111: {
         title: "Wärämäkä",
         description: "Succession points boost succession point gain.",
-        cost: new Decimal(5e123),
+        cost: new MetaNum(5e123),
         effect() {
             return player[this.layer].points.add(1).pow(0.0025).div(player[this.layer].points.add(1).pow(0.0025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -939,7 +939,7 @@ addLayer("S", {
         112: {
         title: "Cenxiquipilli",
         description: "Succession points boost succession point gain again.",
-        cost: new Decimal(1e124),
+        cost: new MetaNum(1e124),
         effect() {
             return player[this.layer].points.add(1).pow(0.0025).div(player[this.layer].points.add(1).pow(0.0025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -949,7 +949,7 @@ addLayer("S", {
         113: {
         title: "Ycibelc",
         description: "Succession points boost succession point gain again.",
-        cost: new Decimal(5e126),
+        cost: new MetaNum(5e126),
         effect() {
             return player[this.layer].points.add(1).pow(0.0025).div(player[this.layer].points.add(1).pow(0.0025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -959,7 +959,7 @@ addLayer("S", {
         114: {
         title: "Petadollaxul",
         description: "Succession points boost succession point gain again.",
-        cost: new Decimal(1.5e127),
+        cost: new MetaNum(1.5e127),
         effect() {
             return player[this.layer].points.add(1).pow(0.0025).div(player[this.layer].points.add(1).pow(0.0025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -969,7 +969,7 @@ addLayer("S", {
         115: {
         title: "Supercube",
         description: "Succession points boost succession point gain again.",
-        cost: new Decimal(1e128),
+        cost: new MetaNum(1e128),
         effect() {
             return player[this.layer].points.add(1).pow(0.0025).div(player[this.layer].points.add(1).pow(0.0025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -979,7 +979,7 @@ addLayer("S", {
         121: {
         title: "Welkillillion",
         description: "Succession points boost subexponential point gain.",
-        cost: new Decimal(1e229),
+        cost: new MetaNum(1e229),
         effect() {
             if (hasMilestone('^',4)) return player[this.layer].points.add(1).div(1e150).pow(0.0025).max(1).pow(2.4).min(1000)
             else return player[this.layer].points.add(1).div(1e150).pow(0.0025).max(1).min(1000)
@@ -990,7 +990,7 @@ addLayer("S", {
         122: {
         title: "Guppybit",
         description: "Addition points boost subexponential point gain.",
-        cost: new Decimal(1e230),
+        cost: new MetaNum(1e230),
         effect() {
             return player['+'].points.add(1).div(1e60).pow(0.02).max(1).min(1000)
         },
@@ -1000,7 +1000,7 @@ addLayer("S", {
         123: {
         title: "Killer",
         description: "Multiplication points boost subexponential point gain. No more subexponential point upgrades (for now)...",
-        cost: new Decimal(1e231),
+        cost: new MetaNum(1e231),
         effect() {
             return player['x'].points.add(1).div(1e19).pow(0.05).max(1).min(1000)
         },
@@ -1010,259 +1010,259 @@ addLayer("S", {
         124: {
         title: "Wściekłość",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e233),
+        cost: new MetaNum(1e233),
         unlocked(){return (hasUpgrade("x",121))}
         },
         125: {
         title: "Aspirin",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e234),
+        cost: new MetaNum(1e234),
         unlocked(){return (hasUpgrade("x",121))}
         },
         131: {
         title: "Ruin",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e235),
+        cost: new MetaNum(1e235),
         unlocked(){return (hasUpgrade("x",121))}
         },
         132: {
         title: "Kyran",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e237),
+        cost: new MetaNum(1e237),
         unlocked(){return (hasUpgrade("x",121))}
         },
         133: {
         title: "Iaq",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e238),
+        cost: new MetaNum(1e238),
         unlocked(){return (hasUpgrade("x",121))}
         },
         134: {
         title: "Algardome",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e240),
+        cost: new MetaNum(1e240),
         unlocked(){return (hasUpgrade("x",121))}
         },
         135: {
         title: "Biexian",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e242),
+        cost: new MetaNum(1e242),
         unlocked(){return (hasUpgrade("x",121))}
         },
         141: {
         title: "Heads-Tri-1-primol",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e243),
+        cost: new MetaNum(1e243),
         unlocked(){return (hasUpgrade("x",121))}
         },
         142: {
         title: "Clover mite-bunch",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e245),
+        cost: new MetaNum(1e245),
         unlocked(){return (hasUpgrade("x",121))}
         },
         143: {
         title: "Octal-pipsqueak",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e247),
+        cost: new MetaNum(1e247),
         unlocked(){return (hasUpgrade("x",121))}
         },
         144: {
         title: "Januaryillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e249),
+        cost: new MetaNum(1e249),
         unlocked(){return (hasUpgrade("x",121))}
         },
         145: {
         title: "Kilogross",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e251),
+        cost: new MetaNum(1e251),
         unlocked(){return (hasUpgrade("x",121))}
         },
         151: {
         title: "Gooprovi",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e253),
+        cost: new MetaNum(1e253),
         unlocked(){return (hasUpgrade("x",121))}
         },
         152: {
         title: "Trooprovi",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e255),
+        cost: new MetaNum(1e255),
         unlocked(){return (hasUpgrade("x",121))}
         },
         153: {
         title: "Quadrooprovi",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e256),
+        cost: new MetaNum(1e256),
         unlocked(){return (hasUpgrade("x",121))}
         },
         154: {
         title: "Texclamation",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e257),
+        cost: new MetaNum(1e257),
         unlocked(){return (hasUpgrade("x",121))}
         },
         155: {
         title: "Nalowale",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e259),
+        cost: new MetaNum(1e259),
         unlocked(){return (hasUpgrade("x",121))}
         },
         161: {
         title: "Curry",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e261),
+        cost: new MetaNum(1e261),
         unlocked(){return (hasUpgrade("x",121))}
         },
         162: {
         title: "Krwawa podłoga w świetle księżyca dwóch tysięcy dwudziestu pięciu (samobójcze)",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e263),
+        cost: new MetaNum(1e263),
         unlocked(){return (hasUpgrade("x",121))}
         },
         163: {
         title: "Februaryillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e264),
+        cost: new MetaNum(1e264),
         unlocked(){return (hasUpgrade("x",121))}
         },
         164: {
         title: "Left",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e266),
+        cost: new MetaNum(1e266),
         unlocked(){return (hasUpgrade("x",121))}
         },
         165: {
         title: "Tetrus",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e267),
+        cost: new MetaNum(1e267),
         unlocked(){return (hasUpgrade("x",121))}
         },
         171: {
         title: "Marchillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e269),
+        cost: new MetaNum(1e269),
         unlocked(){return (hasUpgrade("x",121))}
         },
         172: {
         title: "Aprilillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e271),
+        cost: new MetaNum(1e271),
         unlocked(){return (hasUpgrade("x",121))}
         },
         173: {
         title: "Fablo",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e272),
+        cost: new MetaNum(1e272),
         unlocked(){return (hasUpgrade("x",121))}
         },
         174: {
         title: "Vazhil",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e274),
+        cost: new MetaNum(1e274),
         unlocked(){return (hasUpgrade("x",121))}
         },
         175: {
         title: "Crore",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e276),
+        cost: new MetaNum(1e276),
         unlocked(){return (hasUpgrade("x",121))}
         },
         181: {
         title: "Mayillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e277),
+        cost: new MetaNum(1e277),
         unlocked(){return (hasUpgrade("x",121))}
         },
         182: {
         title: "Ternary-small fry",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e278),
+        cost: new MetaNum(1e278),
         unlocked(){return (hasUpgrade("x",121))}
         },
         183: {
         title: "Juneillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e280),
+        cost: new MetaNum(1e280),
         unlocked(){return (hasUpgrade("x",121))}
         },
         184: {
         title: "Tangerine",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e282),
+        cost: new MetaNum(1e282),
         unlocked(){return (hasUpgrade("x",121))}
         },
         185: {
         title: "Czerwony sznur losu",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e284),
+        cost: new MetaNum(1e284),
         unlocked(){return (hasUpgrade("x",121))}
         },
         191: {
         title: "Binary-minnowchunk",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e286),
+        cost: new MetaNum(1e286),
         unlocked(){return (hasUpgrade("x",121))}
         },
         192: {
         title: "Julyillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e287),
+        cost: new MetaNum(1e287),
         unlocked(){return (hasUpgrade("x",121))}
         },
         193: {
         title: "Augustillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e289),
+        cost: new MetaNum(1e289),
         unlocked(){return (hasUpgrade("x",121))}
         },
         194: {
         title: "Septemberillion",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e291),
+        cost: new MetaNum(1e291),
         unlocked(){return (hasUpgrade("x",121))}
         },
         195: {
         title: "Klos",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e292),
+        cost: new MetaNum(1e292),
         unlocked(){return (hasUpgrade("x",121))}
         },
         201: {
         title: "Octoberillion",
         description: "x100 succession point gain.",
-        cost: new Decimal(1e294),
+        cost: new MetaNum(1e294),
         unlocked(){return (hasUpgrade("x",121))}
         },
         202: {
         title: "Novemberillion",
         description: "x100 succession point gain.",
-        cost: new Decimal(1e297),
+        cost: new MetaNum(1e297),
         unlocked(){return (hasUpgrade("x",121))}
         },
         203: {
         title: "Decemberillion",
         description: "x100 succession point gain.",
-        cost: new Decimal(1e300),
+        cost: new MetaNum(1e300),
         unlocked(){return (hasUpgrade("x",121))}
         },
         204: {
         title: "Love",
         description: "x100 succession point gain.",
-        cost: new Decimal(1e302),
+        cost: new MetaNum(1e302),
         unlocked(){return (hasUpgrade("x",121))}
         },
         205: {
         title: "Sesquillion",
         description: "This is the last one-time upgrade for now. x1,000 succession point gain.",
-        cost: new Decimal(1e306),
+        cost: new MetaNum(1e306),
         unlocked(){return (hasUpgrade("x",121))}
         },
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(10000000).mul(new Decimal(100).pow(x)) },
+            cost(x) { return new MetaNum(10000000).mul(new MetaNum(100).pow(x)) },
             title: "f0(n)",
             display() { return `x2.5 googology point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1270,7 +1270,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(2.5).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(2.5).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 if (!hasUpgrade('-',13)) player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1279,7 +1279,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",52))}
         },
         13: {
-            cost(x) { return new Decimal(1) },
+            cost(x) { return new MetaNum(1) },
             title: "Plasmarillion",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1287,7 +1287,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1296,7 +1296,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         14: {
-            cost(x) { return new Decimal(1.2) },
+            cost(x) { return new MetaNum(1.2) },
             title: "Eyelash mite-speck",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1304,7 +1304,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1313,7 +1313,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         15: {
-            cost(x) { return new Decimal(1.4) },
+            cost(x) { return new MetaNum(1.4) },
             title: "Dust mite-speck",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1321,7 +1321,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1330,7 +1330,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         21: {
-            cost(x) { return new Decimal(1.6) },
+            cost(x) { return new MetaNum(1.6) },
             title: "Cheese mite-speck",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1338,7 +1338,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1347,7 +1347,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         22: {
-            cost(x) { return new Decimal(1.8) },
+            cost(x) { return new MetaNum(1.8) },
             title: "Plasmillion",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1355,7 +1355,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1364,7 +1364,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         23: {
-            cost(x) { return new Decimal(2) },
+            cost(x) { return new MetaNum(2) },
             title: "Clover mite-speck",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1372,7 +1372,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1381,7 +1381,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         24: {
-            cost(x) { return new Decimal(2.2) },
+            cost(x) { return new MetaNum(2.2) },
             title: "Affordable",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1389,7 +1389,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1398,7 +1398,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         25: {
-            cost(x) { return new Decimal(2.5) },
+            cost(x) { return new MetaNum(2.5) },
             title: "Polaritillion",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1406,7 +1406,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1415,7 +1415,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         31: {
-            cost(x) { return new Decimal(3) },
+            cost(x) { return new MetaNum(3) },
             title: "Polarillion",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1423,7 +1423,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1432,7 +1432,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         32: {
-            cost(x) { return new Decimal(3.5) },
+            cost(x) { return new MetaNum(3.5) },
             title: "One-leaf Clover",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1440,7 +1440,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1449,7 +1449,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         33: {
-            cost(x) { return new Decimal(4) },
+            cost(x) { return new MetaNum(4) },
             title: "Rotillion",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1457,7 +1457,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1466,7 +1466,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         34: {
-            cost(x) { return new Decimal(4.5) },
+            cost(x) { return new MetaNum(4.5) },
             title: "Triollion",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1474,7 +1474,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1483,7 +1483,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         35: {
-            cost(x) { return new Decimal(5.5) },
+            cost(x) { return new MetaNum(5.5) },
             title: "Eyelash mite-crumb",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1491,7 +1491,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1500,7 +1500,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         41: {
-            cost(x) { return new Decimal(7) },
+            cost(x) { return new MetaNum(7) },
             title: "Aarex's Funny Number",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1508,7 +1508,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1517,7 +1517,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         42: {
-            cost(x) { return new Decimal(10) },
+            cost(x) { return new MetaNum(10) },
             title: "Dust mite-crumb",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1525,7 +1525,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1534,7 +1534,7 @@ addLayer("S", {
             unlocked(){return (hasUpgrade("S",12))}
         },
         43: {
-            cost(x) { return new Decimal(15) },
+            cost(x) { return new MetaNum(15) },
             title: "Cheese mite-crumb",
             display() { return `+1% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1542,7 +1542,7 @@ addLayer("S", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer,this.id)).mul(0.01).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1562,18 +1562,18 @@ addLayer("+", {
     branches: ['S'],
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-        total: new Decimal(0),
+		points: new MetaNum(0),
+        total: new MetaNum(0),
     }},
     color: "#70FF75",
-    requires: new Decimal(1e15), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(1e15), // Can be a function that takes requirement increases into account
     resource: "addition points", // Name of prestige currency
     baseResource: "succession points", // Name of resource prestige is based on
     baseAmount() {return player.S.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.3, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        mult = new MetaNum(1)
         if (hasUpgrade('x', 11)) mult = mult.times(2)
         if (hasUpgrade('+', 43)) mult = mult.times(2)
         if (hasUpgrade('+', 44)) mult = mult.times(2)
@@ -1581,11 +1581,11 @@ addLayer("+", {
         if (hasUpgrade('-', 34)) mult = mult.times(2.5)
         mult = mult.times(buyableEffect('^',10002))
         mult = mult.times(player['^'].expmult)
-        if (hasMilestone('^',8)) mult = mult.times(new Decimal(player['^'].sqrtp).pow(0.9))
+        if (hasMilestone('^',8)) mult = mult.times(new MetaNum(player['^'].sqrtp).pow(0.9))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         if (inChallenge('^', 12)) exp = exp.mul(0.8)
         if (inChallenge('^', 21)) exp = exp.mul(0.64)
         return exp
@@ -1634,12 +1634,12 @@ addLayer("+", {
         11: {
         title: "Zeralum",
         description: "Unlock new succession upgrades.",
-        cost: new Decimal(1),
+        cost: new MetaNum(1),
         },
         12: {
         title: "Hex",
         description: "Total addition points boost googology point gain.",
-        cost: new Decimal(2),
+        cost: new MetaNum(2),
         effect() {
             return player['+'].total.pow(0.75).add(2).div(player['+'].total.pow(0.75).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1648,7 +1648,7 @@ addLayer("+", {
         13: {
         title: "Tus",
         description: "Total addition points boost succession point gain.",
-        cost: new Decimal(3),
+        cost: new MetaNum(3),
         effect() {
             return player['+'].total.pow(0.4).add(2).div(player['+'].total.pow(0.4).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1657,7 +1657,7 @@ addLayer("+", {
         14: {
         title: "Thirsy",
         description: "Unspent addition points boost googology point gain.",
-        cost: new Decimal(9),
+        cost: new MetaNum(9),
         effect() {
             return player['+'].points.pow(0.4).add(2).div(player['+'].points.pow(0.4).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1666,7 +1666,7 @@ addLayer("+", {
         15: {
         title: "Twoty",
         description: "Unspent addition points boost succession point gain, and unlock a new layer.",
-        cost: new Decimal(20),
+        cost: new MetaNum(20),
         effect() {
             return player['+'].points.pow(0.2).add(2).div(player['+'].points.pow(0.2).add(2).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1675,92 +1675,92 @@ addLayer("+", {
         21: {
         title: "Long Score",
         description: "x1.75 succession point gain.",
-        cost: new Decimal(75),
+        cost: new MetaNum(75),
         },
         22: {
         title: "Dumevalka",
         description: "x1.8 succession point gain.",
-        cost: new Decimal(150),
+        cost: new MetaNum(150),
         },
         23: {
         title: "King's dozen",
         description: "x1.85 succession point gain.",
-        cost: new Decimal(450),
+        cost: new MetaNum(450),
         },
         24: {
         title: "Gaz",
         description: "x1.8 succession point gain.",
-        cost: new Decimal(1500),
+        cost: new MetaNum(1500),
         },
         25: {
         title: "Foursy",
         description: "x1.75 succession point gain, and unlock new stuff.",
-        cost: new Decimal(3000),
+        cost: new MetaNum(3000),
         },
         31: {
         title: "Binary-eyelash mite",
         description: "x1.8 googology point and succession point gain.",
-        cost: new Decimal(200000),
+        cost: new MetaNum(200000),
         unlocked(){return (hasUpgrade("+",25))}
         },
         32: {
         title: "Sevensy",
         description: "x1.75 googology point and succession point gain.",
-        cost: new Decimal(500000),
+        cost: new MetaNum(500000),
         unlocked(){return (hasUpgrade("+",25))}
         },
         33: {
         title: "Fibonax",
         description: "x1.8 googology point and succession point gain.",
-        cost: new Decimal(25000000),
+        cost: new MetaNum(25000000),
         unlocked(){return (hasUpgrade("+",25))}
         },
         34: {
         title: "Gag-three",
         description: "x1.85 googology point and succession point gain.",
-        cost: new Decimal(300000000),
+        cost: new MetaNum(300000000),
         unlocked(){return (hasUpgrade("+",25))}
         },
         35: {
         title: "Elevensy",
         description: "x1.9 googology point and succession point gain.",
-        cost: new Decimal(1500000000),
+        cost: new MetaNum(1500000000),
         unlocked(){return (hasUpgrade("+",25))}
         },
         41: {
         title: "Garnine",
         description: "x1.85 googology point and succession point gain.",
-        cost: new Decimal(5e9),
+        cost: new MetaNum(5e9),
         unlocked(){return (hasUpgrade("+",25))}
         },
         42: {
         title: "Binary-cheese mite",
         description: "x10 googology point gain.",
-        cost: new Decimal(1000),
+        cost: new MetaNum(1000),
         unlocked(){return (hasUpgrade("x",11))}
         },
         43: {
         title: "Long gross",
         description: "x2 addition point gain.",
-        cost: new Decimal(1e15),
+        cost: new MetaNum(1e15),
         unlocked(){return (hasUpgrade("x",11))}
         },
         44: {
         title: "Sesquibuckles",
         description: "x2 addition point gain.",
-        cost: new Decimal(1e18),
+        cost: new MetaNum(1e18),
         unlocked(){return (hasUpgrade("x",11))}
         },
         45: {
         title: "Sesquitreys",
         description: "x2 addition point gain.",
-        cost: new Decimal(1e21),
+        cost: new MetaNum(1e21),
         unlocked(){return (hasUpgrade("x",11))}
         },
         51: {
         title: "Falen",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(4e37),
+        cost: new MetaNum(4e37),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1770,7 +1770,7 @@ addLayer("+", {
         52: {
         title: "Cibelcy",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(1e38),
+        cost: new MetaNum(1e38),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1780,7 +1780,7 @@ addLayer("+", {
         53: {
         title: "Exadollaxul",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(2e38),
+        cost: new MetaNum(2e38),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1790,7 +1790,7 @@ addLayer("+", {
         54: {
         title: "Heads-Hexprimol",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(7e38),
+        cost: new MetaNum(7e38),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1800,7 +1800,7 @@ addLayer("+", {
         55: {
         title: "Pi-ty thousand",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(2e39),
+        cost: new MetaNum(2e39),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1810,7 +1810,7 @@ addLayer("+", {
         61: {
         title: "Cubesuper",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(2e40),
+        cost: new MetaNum(2e40),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1820,7 +1820,7 @@ addLayer("+", {
         62: {
         title: "Kini",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(4e40),
+        cost: new MetaNum(4e40),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1830,7 +1830,7 @@ addLayer("+", {
         63: {
         title: "Fzsix",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(2e41),
+        cost: new MetaNum(2e41),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1840,7 +1840,7 @@ addLayer("+", {
         64: {
         title: "Dust mite",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(5e41),
+        cost: new MetaNum(5e41),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1850,7 +1850,7 @@ addLayer("+", {
         65: {
         title: "Little Straight",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(1.5e42),
+        cost: new MetaNum(1.5e42),
         effect() {
             return player[this.layer].points.add(1).pow(0.025).div(player[this.layer].points.add(1).pow(0.025).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1860,7 +1860,7 @@ addLayer("+", {
         71: {
         title: "One weekillion",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(1e62),
+        cost: new MetaNum(1e62),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1870,7 +1870,7 @@ addLayer("+", {
         72: {
         title: "Dreiviertelmillion",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(2.5e62),
+        cost: new MetaNum(2.5e62),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1880,7 +1880,7 @@ addLayer("+", {
         73: {
         title: "Aopz pz aol luk, pzu'a pa?",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(4e62),
+        cost: new MetaNum(4e62),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1890,7 +1890,7 @@ addLayer("+", {
         74: {
         title: "Wilkillion",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(8e62),
+        cost: new MetaNum(8e62),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1900,7 +1900,7 @@ addLayer("+", {
         75: {
         title: "Cheese mite-bunch",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(3e63),
+        cost: new MetaNum(3e63),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1910,7 +1910,7 @@ addLayer("+", {
         81: {
         title: "Fzseven",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(1.25e64),
+        cost: new MetaNum(1.25e64),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1920,7 +1920,7 @@ addLayer("+", {
         82: {
         title: "Ads",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(2.5e64),
+        cost: new MetaNum(2.5e64),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1930,7 +1930,7 @@ addLayer("+", {
         83: {
         title: "Welkillion",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(5e64),
+        cost: new MetaNum(5e64),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1940,7 +1940,7 @@ addLayer("+", {
         84: {
         title: "Srae",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(1e65),
+        cost: new MetaNum(1e65),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1950,7 +1950,7 @@ addLayer("+", {
         85: {
         title: "Zeus",
         description: "Addition points boost succession point gain.",
-        cost: new Decimal(5e65),
+        cost: new MetaNum(5e65),
         effect() {
             return player[this.layer].points.add(1).pow(0.015).div(player[this.layer].points.add(1).pow(0.015).max(1000).div(1000).pow(0.9)).min(1000000)
         },
@@ -1960,7 +1960,7 @@ addLayer("+", {
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(5000).mul(new Decimal(2.5).pow(new Decimal(x).pow(1.5))) },
+            cost(x) { return new MetaNum(5000).mul(new MetaNum(2.5).pow(new MetaNum(x).pow(1.5))) },
             title: "f0^m(n)",
             display() { return `x(Succession point^0.01) succession point gain.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1977,7 +1977,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("+",25))}
         },
         91: {
-            cost(x) { return new Decimal(1e91).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e91).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Minnowbit",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -1985,7 +1985,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -1994,7 +1994,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         92: {
-            cost(x) { return new Decimal(3e91).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e91).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Ametrillion",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2002,7 +2002,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2011,7 +2011,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         93: {
-            cost(x) { return new Decimal(9e91).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(9e91).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Alau",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2019,7 +2019,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2028,7 +2028,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         94: {
-            cost(x) { return new Decimal(3e92).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e92).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Yi",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2036,7 +2036,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2045,7 +2045,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         95: {
-            cost(x) { return new Decimal(1.5e93).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e93).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Gooprovij",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2053,7 +2053,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2062,7 +2062,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         101: {
-            cost(x) { return new Decimal(3.5e93).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3.5e93).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "(II–)Sulfatrillion",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2070,7 +2070,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2079,7 +2079,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         102: {
-            cost(x) { return new Decimal(8e93).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e93).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Till",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2087,7 +2087,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2096,7 +2096,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         103: {
-            cost(x) { return new Decimal(2e94).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e94).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Pentus",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2104,7 +2104,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2113,7 +2113,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         104: {
-            cost(x) { return new Decimal(8e94).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e94).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "The speed of light",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2121,7 +2121,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2130,7 +2130,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         105: {
-            cost(x) { return new Decimal(4e95).mul(new Decimal(2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(4e95).mul(new MetaNum(2).pow(new MetaNum(x))) },
             title: "Fznine",
             display() { return `+100% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2138,7 +2138,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2147,7 +2147,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         111: {
-            cost(x) { return new Decimal(1.5e97).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e97).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Nogil",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2155,7 +2155,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2164,7 +2164,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         112: {
-            cost(x) { return new Decimal(7e97).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(7e97).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Dreiviertelmilliarde",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2172,7 +2172,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2181,7 +2181,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         113: {
-            cost(x) { return new Decimal(2e98).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e98).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Sexagesimal-qoonol",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2189,7 +2189,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2198,7 +2198,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         114: {
-            cost(x) { return new Decimal(8e98).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e98).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Cyanide",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2206,7 +2206,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2215,7 +2215,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         115: {
-            cost(x) { return new Decimal(1.5e100).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e100).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Billion",
             display() { return `WOW! A BILLION??? You're getting closer to a new operation! +300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2223,7 +2223,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2232,7 +2232,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         121: {
-            cost(x) { return new Decimal(2e101).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e101).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Giga-Zeralum",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2240,7 +2240,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2249,7 +2249,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         122: {
-            cost(x) { return new Decimal(5e101).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e101).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Chciwość",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2257,7 +2257,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2266,7 +2266,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         123: {
-            cost(x) { return new Decimal(1e102).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e102).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Binary-gobycrumb",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2274,7 +2274,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2283,7 +2283,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         124: {
-            cost(x) { return new Decimal(5e102).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e102).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Ternary-guppychunk",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2291,7 +2291,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2300,7 +2300,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         125: {
-            cost(x) { return new Decimal(2e104).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e104).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Dramala",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2308,7 +2308,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2317,7 +2317,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         131: {
-            cost(x) { return new Decimal(2e106).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e106).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Eyelash mite-crowd",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2325,7 +2325,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2334,7 +2334,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         132: {
-            cost(x) { return new Decimal(5e106).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e106).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Triexian",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2342,7 +2342,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2351,7 +2351,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         133: {
-            cost(x) { return new Decimal(2e107).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e107).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Ternary-guppy",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2359,7 +2359,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2368,7 +2368,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         134: {
-            cost(x) { return new Decimal(5e107).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e107).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Sagan",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2376,7 +2376,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2385,7 +2385,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         135: {
-            cost(x) { return new Decimal(1.5e108).mul(new Decimal(4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e108).mul(new MetaNum(4).pow(new MetaNum(x))) },
             title: "Binary-Gooqnolplex",
             display() { return `+300% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2393,7 +2393,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(3).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2402,7 +2402,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         141: {
-            cost(x) { return new Decimal(5e109).mul(new Decimal(6).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e109).mul(new MetaNum(6).pow(new MetaNum(x))) },
             title: "Dust mite-crowd",
             display() { return `+900% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2410,7 +2410,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2419,7 +2419,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         142: {
-            cost(x) { return new Decimal(1e111).mul(new Decimal(6).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e111).mul(new MetaNum(6).pow(new MetaNum(x))) },
             title: "Thrian",
             display() { return `+900% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2427,7 +2427,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2436,7 +2436,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         143: {
-            cost(x) { return new Decimal(2e112).mul(new Decimal(6).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e112).mul(new MetaNum(6).pow(new MetaNum(x))) },
             title: "Octal-squeaker",
             display() { return `+900% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2444,7 +2444,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2453,7 +2453,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         144: {
-            cost(x) { return new Decimal(4e113).mul(new Decimal(6).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(4e113).mul(new MetaNum(6).pow(new MetaNum(x))) },
             title: "Cheese mite-crowd",
             display() { return `+900% succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2461,7 +2461,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(9).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2470,7 +2470,7 @@ addLayer("+", {
             unlocked(){return (hasUpgrade("S",205))}
         },
         145: {
-            cost(x) { return new Decimal(1e115).mul(new Decimal(10).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e115).mul(new MetaNum(10).pow(new MetaNum(x))) },
             title: "Dialogue",
             display() { return `The first level unlocks the next layer. +100% subexponential point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -2478,7 +2478,7 @@ addLayer("+", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).add(1)},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -2498,11 +2498,11 @@ addLayer("-", {
     branches: ['S'],
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-        total: new Decimal(0),
+		points: new MetaNum(0),
+        total: new MetaNum(0),
     }},
     color: "#FF7570",
-    requires: new Decimal(1e20), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(1e20), // Can be a function that takes requirement increases into account
     resource: "subtraction points", // Name of prestige currency
     baseResource: "succession points", // Name of resource prestige is based on
     baseAmount() {return player.S.points}, // Get the current amount of baseResource
@@ -2510,11 +2510,11 @@ addLayer("-", {
     base: 5,
     exponent: 1.25, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        mult = new MetaNum(1)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         return exp
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
@@ -2522,8 +2522,8 @@ addLayer("-", {
     hotkeys: [
         {key: "-", description: "-: subtraction reset", onPress(){if (canReset(this.layer) && !hasUpgrade('x',25) && !hasMilestone('^',1)) doReset(this.layer)}},
     ],
-    effect() {if (hasUpgrade('-',11)) return new Decimal(new Decimal(2).add(new Decimal(player[this.layer].upgrades.length).mul(0.25))).pow(player[this.layer].points)
-        else return new Decimal(2).pow(player[this.layer].points)
+    effect() {if (hasUpgrade('-',11)) return new MetaNum(new MetaNum(2).add(new MetaNum(player[this.layer].upgrades.length).mul(0.25))).pow(player[this.layer].points)
+        else return new MetaNum(2).pow(player[this.layer].points)
     },
     effectDescription() { return 'multiplying googology point gain by ' + format(tmp['-'].effect)},
     autoUpgrade() {return hasMilestone('^',2)},
@@ -2551,91 +2551,91 @@ addLayer("-", {
         11: {
         title: "Garfive",
         description: "Each subtraction point upgrade adds 0.25 to the subtraction point effect base, and passively generate 100% of succession points per second.",
-        cost: new Decimal(7),
+        cost: new MetaNum(7),
         unlocked(){return (hasUpgrade("+",25))}
         },
         12: {
         title: "Hypertri",
         description: "Automate the f0(n) buyable.",
-        cost: new Decimal(8),
+        cost: new MetaNum(8),
         unlocked(){return (hasUpgrade("+",25))}
         },
         13: {
         title: "Fifsy",
         description: "The f0(n) buyable costs nothing.",
-        cost: new Decimal(10),
+        cost: new MetaNum(10),
         unlocked(){return (hasUpgrade("+",25))}
         },
         14: {
         title: "Garsix",
         description: "No effect! Or is there?",
-        cost: new Decimal(11),
+        cost: new MetaNum(11),
         unlocked(){return (hasUpgrade("+",25))}
         },
         15: {
         title: "Eightsy",
         description: "No effect! Or is there?",
-        cost: new Decimal(12),
+        cost: new MetaNum(12),
         unlocked(){return (hasUpgrade("+",25))}
         },
         21: {
         title: "Garseven",
         description: "No effect! Or is there?",
-        cost: new Decimal(13),
+        cost: new MetaNum(13),
         unlocked(){return (hasUpgrade("+",25))}
         },
         22: {
         title: "Ninesy",
         description: "You can buy max subtraction points.",
-        cost: new Decimal(15),
+        cost: new MetaNum(15),
         unlocked(){return (hasUpgrade("+",25))}
         },
         23: {
         title: "Kopa",
         description: "No effect! Or is there?",
-        cost: new Decimal(16),
+        cost: new MetaNum(16),
         unlocked(){return (hasUpgrade("+",25))}
         },
         24: {
         title: "Binary-clover mite",
         description: "No effect! Or is there?",
-        cost: new Decimal(18),
+        cost: new MetaNum(18),
         unlocked(){return (hasUpgrade("+",25))}
         },
         25: {
         title: "Binary-dust mite",
         description: "No effect! Or is there?",
-        cost: new Decimal(19),
+        cost: new MetaNum(19),
         unlocked(){return (hasUpgrade("+",25))}
         },
         31: {
         title: "Myul",
         description: "No effect! Or is there?",
-        cost: new Decimal(20),
+        cost: new MetaNum(20),
         unlocked(){return (hasUpgrade("+",25))}
         },
         32: {
         title: "Goodol",
         description: "Unlock a new layer.",
-        cost: new Decimal(21),
+        cost: new MetaNum(21),
         unlocked(){return (hasUpgrade("+",25))}
         },
         33: {
         title: "Short ream",
         description: "No effect! Or is there?",
-        cost: new Decimal(38),
+        cost: new MetaNum(38),
         unlocked(){return (hasUpgrade("x",35))}
         },
         34: {
         title: "Ream",
         description: "Finally, an effect!!! x2.5 addition point gain.",
-        cost: new Decimal(40),
+        cost: new MetaNum(40),
         unlocked(){return (hasUpgrade("x",35))}
         },
         35: {
         title: "Linear",
         description: "÷1,000 googology point gain (also divides your current googology points), and x32 succession point gain.",
-        cost: new Decimal(41),
+        cost: new MetaNum(41),
         unlocked(){return (player['÷'].total.gte(1))},
         onPurchase() { player.points = player.points.div(1000)}
         },
@@ -2658,13 +2658,13 @@ addLayer("x", {
     branches: ['+'],
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-        total: new Decimal(0),
-        sp: new Decimal(0),
+		points: new MetaNum(0),
+        total: new MetaNum(0),
+        sp: new MetaNum(0),
     }},
     update(diff) {
         if (hasUpgrade('x', 121) || (player['^'].total.gte(1) && !inChallenge('^',11) && !inChallenge('^',12) && !inChallenge('^',21))) {
-            let spGain = Decimal.dOne;
+            let spGain = MetaNum.dOne;
             spGain = spGain.times(buyableEffect('x',21));
             if (hasUpgrade('S',121)) spGain = spGain.times(upgradeEffect('S',121));
             if (hasUpgrade('S',122)) spGain = spGain.times(upgradeEffect('S',122));
@@ -2682,20 +2682,20 @@ addLayer("x", {
         }
     },
     color: "#87F9FF",
-    requires: new Decimal(1e11), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(1e11), // Can be a function that takes requirement increases into account
     resource: "multiplication points", // Name of prestige currency
     baseResource: "addition points", // Name of resource prestige is based on
     baseAmount() {return player['+'].points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.4, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        mult = new MetaNum(1)
         mult = mult.times(buyableEffect('^',10003))
         mult = mult.times(player['^'].expmult)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         if (inChallenge('^', 12)) exp = exp.mul(0.8)
         if (inChallenge('^', 21)) exp = exp.mul(0.64)
         return exp
@@ -2758,329 +2758,329 @@ addLayer("x", {
         11: {
         title: "Eleventy",
         description: "x4 googology point gain, x3 succession point gain, and x2 addition point gain! Unlock new succession and addition upgrades.",
-        cost: new Decimal(1),
+        cost: new MetaNum(1),
         },
         12: {
         title: "Fourteenty",
         description: "x7.5 googology point gain.",
-        cost: new Decimal(10),
+        cost: new MetaNum(10),
         },
         13: {
         title: "Gross",
         description: "x7.75 googology point gain, and passively generate 100% of succession point gain per second.",
-        cost: new Decimal(20),
+        cost: new MetaNum(20),
         },
         14: {
         title: "Baker's gross",
         description: "x8 googology point gain, and buy max subtraction points.",
-        cost: new Decimal(30),
+        cost: new MetaNum(30),
         },
         15: {
         title: "Poulter's gross",
         description: "Gain 100% of addition points per second.",
-        cost: new Decimal(60),
+        cost: new MetaNum(60),
         },
         21: {
         title: "Tarumba",
         description: "x8.25 googology point gain, and autobuy the first 8 rows of succession upgrades.",
-        cost: new Decimal(500),
+        cost: new MetaNum(500),
         },
         22: {
         title: "King's gross",
         description: "x8.5 googology point gain, and autobuy the f0(n) buyable.",
-        cost: new Decimal(1250),
+        cost: new MetaNum(1250),
         },
         23: {
         title: "Fzfour",
         description: "x8.75 googology point gain, and the f0^m(n) buyable costs nothing.",
-        cost: new Decimal(2500),
+        cost: new MetaNum(2500),
         },
         24: {
         title: "Flah",
         description: "x9 googology point gain, and automate the f0^m(n) buyable.",
-        cost: new Decimal(3500),
+        cost: new MetaNum(3500),
         },
         25: {
         title: "Pedupi",
         description: "x9.25 googology point gain, and subtraction resets nothing. [This also disables the subtraction reset hotkey]",
-        cost: new Decimal(5000),
+        cost: new MetaNum(5000),
         },
         31: {
         title: "Idiot's array",
         description: "x9.5 googology point gain.",
-        cost: new Decimal(8000),
+        cost: new MetaNum(8000),
         },
         32: {
         title: "Tjega",
         description: "x9.75 googology point gain.",
-        cost: new Decimal(12000),
+        cost: new MetaNum(12000),
         },
         33: {
         title: "Kinoctove",
         description: "x10 googology point gain, autobuy the first 4 rows of addition upgrades, and unlock a buyable.",
-        cost: new Decimal(20000),
+        cost: new MetaNum(20000),
         },
         34: {
         title: "Ternary-dust mite",
         description: "x10 googology point gain.",
-        cost: new Decimal(75000),
+        cost: new MetaNum(75000),
         },
         35: {
         title: "Owch",
         description: "x10 googology point gain, and unlock more subtraction upgrades.",
-        cost: new Decimal(125000),
+        cost: new MetaNum(125000),
         },
         41: {
         title: "Eulerplex",
         description: "xe succession point gain, autobuy rows 9 and 10 of succession upgrades, and autobuy the first 3 rows of subtraction upgrades.",
-        cost: new Decimal(3000000),
+        cost: new MetaNum(3000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         42: {
         title: "Chow",
         description: "x4 succession point gain, and automate subtraction point gain.",
-        cost: new Decimal(3500000),
+        cost: new MetaNum(3500000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         43: {
         title: "Aniquilación",
         description: "x4 succession point gain.",
-        cost: new Decimal(4000000),
+        cost: new MetaNum(4000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         44: {
         title: "Vulgate number",
         description: "x4 succession point gain.",
-        cost: new Decimal(5000000),
+        cost: new MetaNum(5000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         45: {
         title: "Fara",
         description: "÷1,000 googology point gain, and x10 succession point gain.",
-        cost: new Decimal(10000000),
+        cost: new MetaNum(10000000),
         unlocked() {return player['÷'].total.gte(1)},
         onPurchase() { player.points = player.points.div(1000)}
         },
         51: {
         title: "Musashi",
         description: "x5 succession point gain.",
-        cost: new Decimal(11500000),
+        cost: new MetaNum(11500000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         52: {
         title: "Ternary-cheese mite",
         description: "x5 succession point gain.",
-        cost: new Decimal(13000000),
+        cost: new MetaNum(13000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         53: {
         title: "Valles",
         description: "x25.753 googology point gain.",
-        cost: new Decimal(17000000),
+        cost: new MetaNum(17000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         54: {
         title: "Jackpot number",
         description: "x27.777 googology point gain.",
-        cost: new Decimal(35000000),
+        cost: new MetaNum(35000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         55: {
         title: "Yimum",
         description: "x20.847 googology point gain.",
-        cost: new Decimal(40000000),
+        cost: new MetaNum(40000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         61: {
         title: "Thousand",
         description: "WOW! A THOUSAND??? Anyway, here's a x10 succession point gain boost!",
-        cost: new Decimal(125000000),
+        cost: new MetaNum(125000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         62: {
         title: "Märchenzahl",
         description: "x6.001 succession point gain.",
-        cost: new Decimal(150000000),
+        cost: new MetaNum(150000000),
         unlocked() {return player['÷'].total.gte(1)}
         },
         63: {
         title: "Ternary-guppyspeck",
         description: "x20 googology and succession point gain and x40 nullology point gain.",
-        cost: new Decimal(5e12),
+        cost: new MetaNum(5e12),
         unlocked() {return hasUpgrade('÷',13)}
         },
         64: {
         title: "Ontwo",
         description: "x5 googology and succession point gain and x10 nullology point gain.",
-        cost: new Decimal(8e12),
+        cost: new MetaNum(8e12),
         unlocked() {return hasUpgrade('÷',13)}
         },
         65: {
         title: "Octal-clover mite",
         description: "x10 googology and succession point gain, x20 nullology point gain, and autobuy the first 14 rows of nullology upgrades.",
-        cost: new Decimal(1.3e13),
+        cost: new MetaNum(1.3e13),
         unlocked() {return hasUpgrade('÷',13)}
         },
         71: {
         title: "Cheese mite",
         description: "x20 googology point gain and x40 nullology and succession point gain.",
-        cost: new Decimal(1.6e13),
+        cost: new MetaNum(1.6e13),
         unlocked() {return hasUpgrade('÷',13)}
         },
         72: {
         title: "Integral-megaseptile",
         description: "x5 googology point gain and x10 nullology and succession point gain.",
-        cost: new Decimal(1e14),
+        cost: new MetaNum(1e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         73: {
         title: "Jã:cʰe",
         description: "x20 googology point gain and x40 nullology and succession point gain.",
-        cost: new Decimal(2.25e14),
+        cost: new MetaNum(2.25e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         74: {
         title: "Brokillion",
         description: "x5 googology point gain and x10 nullology and succession point gain.",
-        cost: new Decimal(3.5e14),
+        cost: new MetaNum(3.5e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         75: {
         title: "Rootbeer on the rocks",
         description: "x20 googology point gain, x40 nullology and succession point gain, and autobuy succession row 11 and addition rows 5 and 6.",
-        cost: new Decimal(9e14),
+        cost: new MetaNum(9e14),
         unlocked() {return hasUpgrade('÷',13)}
         },
         81: {
         title: "Tueslakh",
         description: "x5 googology point gain and x10 nullology and succession point gain.",
-        cost: new Decimal(1.6e15),
+        cost: new MetaNum(1.6e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         82: {
         title: "Esra",
         description: "x15 googology point gain and x30 nullology and succession point gain.",
-        cost: new Decimal(2.5e15),
+        cost: new MetaNum(2.5e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         83: {
         title: "Clover mite",
         description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
-        cost: new Decimal(5e15),
+        cost: new MetaNum(5e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         84: {
         title: "🠅🠅🠇🠇🠄🠆🠄🠆BA",
         description: "x15 googology point gain and x30 nullology and succession point gain.",
-        cost: new Decimal(7e15),
+        cost: new MetaNum(7e15),
         unlocked() {return hasUpgrade('÷',13)}
         },
         85: {
         title: "Anika",
         description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
-        cost: new Decimal(1.25e16),
+        cost: new MetaNum(1.25e16),
         unlocked() {return hasUpgrade('÷',13)}
         },
         91: {
         title: "Duodecimal-qoonol",
         description: "x15 googology point gain and x30 nullology and succession point gain.",
-        cost: new Decimal(3e16),
+        cost: new MetaNum(3e16),
         unlocked() {return hasUpgrade('÷',14)}
         },
         92: {
         title: "Wedneslakh",
         description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
-        cost: new Decimal(4.5e16),
+        cost: new MetaNum(4.5e16),
         unlocked() {return hasUpgrade('÷',14)}
         },
         93: {
         title: "Mor",
         description: "x15 googology point gain and x30 nullology and succession point gain.",
-        cost: new Decimal(7e16),
+        cost: new MetaNum(7e16),
         unlocked() {return hasUpgrade('÷',14)}
         },
         94: {
         title: "Meemee wemb",
         description: "x6.666 googology point gain and x13.333 nullology and succession point gain.",
-        cost: new Decimal(1.5e17),
+        cost: new MetaNum(1.5e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         95: {
         title: "Viewed",
         description: "x10 googology point gain and x20 nullology and succession point gain.",
-        cost: new Decimal(2e17),
+        cost: new MetaNum(2e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         101: {
         title: "New Jerusalem",
         description: "x40 succession point gain.",
-        cost: new Decimal(3e17),
+        cost: new MetaNum(3e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         102: {
         title: "Ternary-squeaker",
         description: "x10 succession point gain.",
-        cost: new Decimal(5e17),
+        cost: new MetaNum(5e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         103: {
         title: "Thurslakh",
         description: "x40 succession point gain.",
-        cost: new Decimal(7.5e17),
+        cost: new MetaNum(7.5e17),
         unlocked() {return hasUpgrade('÷',14)}
         },
         104: {
         title: "Ma'adjega",
         description: "x10 succession point gain.",
-        cost: new Decimal(1e18),
+        cost: new MetaNum(1e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
         105: {
         title: "Famel",
         description: "x20 succession point gain.",
-        cost: new Decimal(3e18),
+        cost: new MetaNum(3e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
         111: {
         title: "Lehu",
         description: "x50 succession point gain.",
-        cost: new Decimal(5e18),
+        cost: new MetaNum(5e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
         112: {
         title: "Frilakh",
         description: "x12.5 succession point gain.",
-        cost: new Decimal(7.5e18),
+        cost: new MetaNum(7.5e18),
         unlocked() {return hasUpgrade('÷',14)}
         },
         113: {
         title: "Quindecimal-balum",
         description: "x50 succession point gain.",
-        cost: new Decimal(1.125e19),
+        cost: new MetaNum(1.125e19),
         unlocked() {return hasUpgrade('÷',14)}
         },
         114: {
         title: "Dust mite-bunch",
         description: "x12.5 succession point gain.",
-        cost: new Decimal(2.25e19),
+        cost: new MetaNum(2.25e19),
         unlocked() {return hasUpgrade('÷',14)}
         },
         115: {
         title: "Saturlakh",
         description: "x625 succession point gain.",
-        cost: new Decimal(3.5e19),
+        cost: new MetaNum(3.5e19),
         unlocked() {return hasUpgrade('÷',14)}
         },
         121: {
         title: "Million",
         description: "WOW! A MILLION??? Division upgrades no longer divide succession point gain, the exponent of nullology points is 1 instead of -1, and unlock a new feature.",
-        cost: new Decimal(1e22),
+        cost: new MetaNum(1e22),
         unlocked() {return hasUpgrade('÷',14)}
         },
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(25000).mul(new Decimal(2).pow(x)) },
+            cost(x) { return new MetaNum(25000).mul(new MetaNum(2).pow(x)) },
             title: "f1(n)",
             display() { return `x10 googology point gain.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -3088,7 +3088,7 @@ addLayer("x", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(10).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(10).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -3097,7 +3097,7 @@ addLayer("x", {
             unlocked(){return (hasUpgrade("x",33))}
         },
         21: {
-            cost(x) { return new Decimal(10).mul(new Decimal(1.4).pow(x)) },
+            cost(x) { return new MetaNum(10).mul(new MetaNum(1.4).pow(x)) },
             title: "x^log(x)",
             display() { return `x1.2 subexponential point gain.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -3105,7 +3105,7 @@ addLayer("x", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sp.gte(this.cost()) },
             effect(){
-                return new Decimal(1.2).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(1.2).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].sp = player[this.layer].sp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -3114,7 +3114,7 @@ addLayer("x", {
             unlocked(){return (hasUpgrade("x",121) || player['^'].total.gte(1))}
         },
         22: {
-            cost(x) { return new Decimal(10).mul(new Decimal(1.5).pow(x)) },
+            cost(x) { return new MetaNum(10).mul(new MetaNum(1.5).pow(x)) },
             title: "x^√x",
             display() { return `x2 succession point gain.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -3122,7 +3122,7 @@ addLayer("x", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sp.gte(this.cost()) },
             effect(){
-                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(2).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].sp = player[this.layer].sp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -3131,7 +3131,7 @@ addLayer("x", {
             unlocked(){return (hasUpgrade("x",121) || player['^'].total.gte(1))}
         },
         131: {
-            cost(x) { return new Decimal(2.5e49).mul(new Decimal(10).pow(x)) },
+            cost(x) { return new MetaNum(2.5e49).mul(new MetaNum(10).pow(x)) },
             title: "Carrot",
             display() { return `Succession points boost themselves by +^0.005.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -3139,17 +3139,17 @@ addLayer("x", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(player['S'].points).add(1).pow(0.005).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(player['S'].points).add(1).pow(0.005).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
-                player['S'].points = new Decimal(0)
+                player['S'].points = new MetaNum(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             purchaseLimit: 10,
             unlocked() {return hasMilestone('^',2)}
         },
         132: {
-            cost(x) { return new Decimal(1e63).mul(new Decimal(1e3).pow(x)) },
+            cost(x) { return new MetaNum(1e63).mul(new MetaNum(1e3).pow(x)) },
             title: "Banika",
             display() { return `Succession points boost themselves by +^0.005.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -3157,17 +3157,17 @@ addLayer("x", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(player['S'].points).add(1).pow(0.005).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(player['S'].points).add(1).pow(0.005).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
-                player['S'].points = new Decimal(0)
+                player['S'].points = new MetaNum(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             purchaseLimit: 10,
             unlocked() {return hasMilestone('^',2)}
         },
         133: {
-            cost(x) { return new Decimal(1e102).mul(new Decimal(1e9).pow(x)) },
+            cost(x) { return new MetaNum(1e102).mul(new MetaNum(1e9).pow(x)) },
             title: "Factoriup",
             display() { return `Succession points boost themselves by +^0.005.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -3175,10 +3175,10 @@ addLayer("x", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(player['S'].points).add(1).pow(0.005).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(player['S'].points).add(1).pow(0.005).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
-                player['S'].points = new Decimal(0)
+                player['S'].points = new MetaNum(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
             purchaseLimit: 10,
@@ -3217,11 +3217,11 @@ addLayer("÷", {
     branches: ['+','-'],
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-        total: new Decimal(0),
+		points: new MetaNum(0),
+        total: new MetaNum(0),
     }},
     color: "#F9FF87",
-    requires: new Decimal(1e24), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(1e24), // Can be a function that takes requirement increases into account
     resource: "division points", // Name of prestige currency
     baseResource: "addition points", // Name of resource prestige is based on
     baseAmount() {return player['+'].points}, // Get the current amount of baseResource
@@ -3229,11 +3229,11 @@ addLayer("÷", {
     base: 5,
     exponent: 1.25, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        mult = new MetaNum(1)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         return exp
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
@@ -3241,7 +3241,7 @@ addLayer("÷", {
     hotkeys: [
         {key: "/", description: "/: division reset", onPress(){if (canReset(this.layer) && !hasUpgrade('÷',15) && !hasMilestone('^',1)) doReset(this.layer)}},
     ],
-    effect() {return new Decimal(10).pow(player[this.layer].points)},
+    effect() {return new MetaNum(10).pow(player[this.layer].points)},
     effectDescription() { return 'dividing googology point gain by ' + format(tmp['÷'].effect) + ' and multiplying succession point gain by '+ format(tmp['÷'].effect)},
     autoUpgrade() {return false},
     autoPrestige() {return hasMilestone('^',3)},
@@ -3283,34 +3283,34 @@ addLayer("÷", {
         11: {
         title: "Beast number",
         description: "÷10,000,000,000 googology point gain, and x300,000 succession point gain.",
-        cost: new Decimal(6),
+        cost: new MetaNum(6),
         onPurchase() { player.points = player.points.div(1e10)}
         },
         12: {
         title: "Unreasonable",
         description: "÷10,000,000,000 googology point gain, and x750,000 succession point gain.",
-        cost: new Decimal(8),
+        cost: new MetaNum(8),
         onPurchase() { player.points = player.points.div(1e10)}
         },
         13: {
         title: "Very unreasonable",
         description: "÷10,000,000,000 googology point gain, and x980,000 succession point gain.",
-        cost: new Decimal(9),
-        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15)},
+        cost: new MetaNum(9),
+        unlocked() {return new MetaNum(getBuyableAmount('x',11)).gte(15)},
         onPurchase() { player.points = player.points.div(1e10)}
         },
         14: {
         title: "Ubesuperc",
         description: "÷10,000,000,000 googology point gain, and x1,000 succession point gain.",
-        cost: new Decimal(16),
-        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15) && hasUpgrade('x',71)},
+        cost: new MetaNum(16),
+        unlocked() {return new MetaNum(getBuyableAmount('x',11)).gte(15) && hasUpgrade('x',71)},
         onPurchase() { player.points = player.points.div(1e10)}
         },
         15: {
         title: "Binary-guppychunk",
         description: "÷1,000 googology point gain, and x100 succession point gain. Also, buy max division points. [This disables the division reset hotkey]",
-        cost: new Decimal(25),
-        unlocked() {return new Decimal(getBuyableAmount('x',11)).gte(15) && hasUpgrade('x',115)},
+        cost: new MetaNum(25),
+        unlocked() {return new MetaNum(getBuyableAmount('x',11)).gte(15) && hasUpgrade('x',115)},
         onPurchase() { player.points = player.points.div(1e3)}
         },
     },
@@ -3345,11 +3345,11 @@ addLayer("n", {
     branches: ['S','-'],
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-        total: new Decimal(0),
+		points: new MetaNum(0),
+        total: new MetaNum(0),
     }},
     color: "#800000",
-    requires: new Decimal(1e-100), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(1e-100), // Can be a function that takes requirement increases into account
     resource: "nullology points", // Name of prestige currency
     baseResource: "googology points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -3358,7 +3358,7 @@ addLayer("n", {
         else return -1
     }, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1e82)
+        mult = new MetaNum(1e82)
         mult = mult.times(buyableEffect('x',11))
         if (hasUpgrade('n', 11)) mult = mult.times(2)
         if (hasUpgrade('n', 12)) mult = mult.times(2)
@@ -3460,7 +3460,7 @@ addLayer("n", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         return exp
     },
     layerShown(){return (hasUpgrade('÷',13) || player[this.layer].total.gte(1))},
@@ -3514,37 +3514,37 @@ addLayer("n", {
             11: {
                 title: "Gum",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(100),
+                cost: new MetaNum(100),
             },
             12: {
                 title: "Binary-guppyspeck",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(500),
+                cost: new MetaNum(500),
             },
             13: {
                 title: "Lily",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(1500),
+                cost: new MetaNum(1500),
             },
             14: {
                 title: "Gartreys",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(3000),
+                cost: new MetaNum(3000),
             },
             15: {
                 title: "Long thousand",
                 description: "x12 nullology and googology point gain.",
-                cost: new Decimal(10000),
+                cost: new MetaNum(10000),
             },
             21: {
                 title: "Actintrinyllion",
                 description: "x1.5 nullology point gain.",
-                cost: new Decimal(100000),
+                cost: new MetaNum(100000),
             },
             22: {
                 title: "Unexian",
                 description: "Nullology points boost themselves.",
-                cost: new Decimal(150000),
+                cost: new MetaNum(150000),
                 effect() {
                     return player['n'].points.add(1).pow(0.1).div(player['n'].points.add(1).pow(0.1).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3553,7 +3553,7 @@ addLayer("n", {
             23: {
                 title: "Maha",
                 description: "Nullology points boost themselves again.",
-                cost: new Decimal(600000),
+                cost: new MetaNum(600000),
                 effect() {
                     return player['n'].points.add(1).pow(0.1).div(player['n'].points.add(1).pow(0.1).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3562,7 +3562,7 @@ addLayer("n", {
             24: {
                 title: "Piplex",
                 description: "Nullology points boost themselves again.",
-                cost: new Decimal(2500000),
+                cost: new MetaNum(2500000),
                 effect() {
                     return player['n'].points.add(1).pow(0.1).div(player['n'].points.add(1).pow(0.1).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3571,32 +3571,32 @@ addLayer("n", {
             25: {
                 title: "Vatican City",
                 description: "x13.85 nullology and googology point gain.",
-                cost: new Decimal(10000000),
+                cost: new MetaNum(10000000),
             },
             31: {
                 title: "Megadollaxul",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(300000000),
+                cost: new MetaNum(300000000),
             },
             32: {
                 title: "Hyper fixation Number",
                 description: "x2.009 nullology point gain.",
-                cost: new Decimal(1000000000),
+                cost: new MetaNum(1000000000),
             },
             33: {
                 title: "Great gross",
                 description: "x2.028 nullology point gain.",
-                cost: new Decimal(2000000000),
+                cost: new MetaNum(2000000000),
             },
             34: {
                 title: "Hardy-Ramanujan Number",
                 description: "x2.029 nullology point gain.",
-                cost: new Decimal(5000000000),
+                cost: new MetaNum(5000000000),
             },
             35: {
                 title: "Eyelash mite-chunk",
                 description: "2,000 already? Nullology points boost themselves and googology point gain.",
-                cost: new Decimal(1e10),
+                cost: new MetaNum(1e10),
                 effect() {
                     return player['n'].points.add(1).pow(0.075).div(player['n'].points.add(1).pow(0.075).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3605,257 +3605,257 @@ addLayer("n", {
             41: {
                 title: "Retrillion",
                 description: "x1.52 nullology point gain.",
-                cost: new Decimal(3e11),
+                cost: new MetaNum(3e11),
             },
             42: {
                 title: "New Chromoluem",
                 description: "x1.523 nullology point gain.",
-                cost: new Decimal(6e11),
+                cost: new MetaNum(6e11),
             },
             43: {
                 title: "Giga",
                 description: "x1.52048 nullology point gain.",
-                cost: new Decimal(1e12),
+                cost: new MetaNum(1e12),
             },
             44: {
                 title: "Ternary-pipsqueak",
                 description: "x1.52187 nullology point gain.",
-                cost: new Decimal(2e12),
+                cost: new MetaNum(2e12),
             },
             45: {
                 title: "Great baker's gross",
                 description: "x5.2197 nullology and googology point gain.",
-                cost: new Decimal(3e12),
+                cost: new MetaNum(3e12),
             },
             51: {
                 title: "Planus",
                 description: "x1.52304 nullology point gain.",
-                cost: new Decimal(1e14),
+                cost: new MetaNum(1e14),
             },
             52: {
                 title: "Heads-pentprimol",
                 description: "x1.5231 nullology point gain.",
-                cost: new Decimal(2.5e14),
+                cost: new MetaNum(2.5e14),
             },
             53: {
                 title: "Poulter's great gross",
                 description: "x1.52744 nullology point gain.",
-                cost: new Decimal(4e14),
+                cost: new MetaNum(4e14),
             },
             54: {
                 title: "Fzfive",
                 description: "x1.53125 nullology point gain.",
-                cost: new Decimal(7e14),
+                cost: new MetaNum(7e14),
             },
             55: {
                 title: "Petripi",
                 description: "x7.314 nullology and googology point gain.",
-                cost: new Decimal(1e15),
+                cost: new MetaNum(1e15),
             },
             61: {
                 title: "Coxeyes",
                 description: "x1.5321 nullology point gain.",
-                cost: new Decimal(2e16),
+                cost: new MetaNum(2e16),
             },
             62: {
                 title: "Obragsracx",
                 description: "x1.53465 nullology point gain.",
-                cost: new Decimal(3.5e16),
+                cost: new MetaNum(3.5e16),
             },
             63: {
                 title: "Bree",
                 description: "x1.5352 nullology point gain.",
-                cost: new Decimal(6e16),
+                cost: new MetaNum(6e16),
             },
             64: {
                 title: "Shar",
                 description: "x1.536 nullology point gain.",
-                cost: new Decimal(1e17),
+                cost: new MetaNum(1e17),
             },
             65: {
                 title: "White whale",
                 description: "4,000 already? x5.4098 nullology and googology point gain.",
-                cost: new Decimal(1.5e17),
+                cost: new MetaNum(1.5e17),
             },
             71: {
                 title: "Fibonaxix",
                 description: "x1.54181 nullology point gain.",
-                cost: new Decimal(5e18),
+                cost: new MetaNum(5e18),
             },
             72: {
                 title: "Garboxcars",
                 description: "x1.54356 nullology point gain.",
-                cost: new Decimal(8e18),
+                cost: new MetaNum(8e18),
             },
             73: {
                 title: "Lox",
                 description: "x1.54422 nullology point gain.",
-                cost: new Decimal(1.5e19),
+                cost: new MetaNum(1.5e19),
             },            
             74: {
                 title: "Irspa",
                 description: "x1.54477 nullology point gain.",
-                cost: new Decimal(2.5e19),
+                cost: new MetaNum(2.5e19),
             },
             75: {
                 title: "Juun",
                 description: "x5.4913 nullology and googology point gain.",
-                cost: new Decimal(6e19),
+                cost: new MetaNum(6e19),
             },
             81: {
                 title: "Dust mite-chunk",
                 description: "x1.55 nullology point gain.",
-                cost: new Decimal(2e21),
+                cost: new MetaNum(2e21),
             },
             82: {
                 title: "Beauty",
                 description: "x1.55053 nullology point gain.",
-                cost: new Decimal(3.5e21),
+                cost: new MetaNum(3.5e21),
             },
             83: {
                 title: "Binary-squeaker",
                 description: "x1.5512 nullology point gain.",
-                cost: new Decimal(6e21),
+                cost: new MetaNum(6e21),
             },            
             84: {
                 title: "Second qlaco's number",
                 description: "x1.55314 nullology point gain.",
-                cost: new Decimal(1e22),
+                cost: new MetaNum(1e22),
             },
             85: {
                 title: "Ragsracxob",
                 description: "x8.5346 nullology and googology point gain.",
-                cost: new Decimal(2e22),
+                cost: new MetaNum(2e22),
             },
             91: {
                 title: "Ma'asjyp",
                 description: "x1.55461 nullology point gain.",
-                cost: new Decimal(5e23),
+                cost: new MetaNum(5e23),
             },
             92: {
                 title: "Kaprekar's constant",
                 description: "6,000 already? x1.56174 nullology point gain.",
-                cost: new Decimal(8e23),
+                cost: new MetaNum(8e23),
             },
             93: {
                 title: "Teradollaxul",
                 description: "x1.564 nullology point gain.",
-                cost: new Decimal(1.5e24),
+                cost: new MetaNum(1.5e24),
             },            
             94: {
                 title: "Tetrafact",
                 description: "x1.56561 nullology point gain.",
-                cost: new Decimal(2.5e24),
+                cost: new MetaNum(2.5e24),
             },
             95: {
                 title: "Clickety-clix",
                 description: "x5.6666 nullology and googology point gain.",
-                cost: new Decimal(6e24),
+                cost: new MetaNum(6e24),
             },
             101: {
                 title: "Fibonaxx",
                 description: "x1.56765 nullology point gain.",
-                cost: new Decimal(3e26),
+                cost: new MetaNum(3e26),
             },
             102: {
                 title: "Zero-septingenol",
                 description: "x1.57 nullology point gain.",
-                cost: new Decimal(5e26),
+                cost: new MetaNum(5e26),
             },
             103: {
                 title: "The iPad",
                 description: "x1.57577 nullology point gain.",
-                cost: new Decimal(1e27),
+                cost: new MetaNum(1e27),
             },            
             104: {
                 title: "Menilles",
                 description: "x1.57722 nullology point gain.",
-                cost: new Decimal(1.75e27),
+                cost: new MetaNum(1.75e27),
             },
             105: {
                 title: "Garpo",
                 description: "x6.7744 nullology and googology point gain.",
-                cost: new Decimal(3e27),
+                cost: new MetaNum(3e27),
             },
             111: {
                 title: "Ysgartre",
                 description: "x1.58 nullology point gain.",
-                cost: new Decimal(1e29),
+                cost: new MetaNum(1e29),
             },
             112: {
                 title: "Right bucket",
                 description: "x1.59 nullology point gain.",
-                cost: new Decimal(1.75e29),
+                cost: new MetaNum(1.75e29),
             },
             113: {
                 title: "Quadrix",
                 description: "x1.59 nullology point gain.",
-                cost: new Decimal(3e29),
+                cost: new MetaNum(3e29),
             },            
             114: {
                 title: "Balum",
                 description: "10,000 already? x1.6 nullology point gain.",
-                cost: new Decimal(5.5e29),
+                cost: new MetaNum(5.5e29),
             },
             115: {
                 title: "Lebicyc",
                 description: "x7 nullology and googology point gain.",
-                cost: new Decimal(1e30),
+                cost: new MetaNum(1e30),
             },
             121: {
                 title: "Fugathree",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(1e31),
+                cost: new MetaNum(1e31),
             },
             122: {
                 title: "Eyelash mite",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(2e31),
+                cost: new MetaNum(2e31),
             },
             123: {
                 title: "Octal-dust mite",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(5e31),
+                cost: new MetaNum(5e31),
             },            
             124: {
                 title: "Glerint",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(1e32),
+                cost: new MetaNum(1e32),
             },
             125: {
                 title: "Ma'akaŋ",
                 description: "x7 nullology and googology point gain.",
-                cost: new Decimal(2e32),
+                cost: new MetaNum(2e32),
             },
             131: {
                 title: "Lake Superior",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(2.5e33),
+                cost: new MetaNum(2.5e33),
             },
             132: {
                 title: "Yclebic",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(5e33),
+                cost: new MetaNum(5e33),
             },
             133: {
                 title: "Octal-cheese mite",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(1e34),
+                cost: new MetaNum(1e34),
             },            
             134: {
                 title: "Ibelcyc",
                 description: "x2 nullology point gain.",
-                cost: new Decimal(2e34),
+                cost: new MetaNum(2e34),
             },
             135: {
                 title: "Cherry cola on the rocks",
                 description: "x7 nullology and googology point gain.",
-                cost: new Decimal(5e34),
+                cost: new MetaNum(5e34),
             },
             141: {
                 title: "Pinky",
                 description: "Nullology points boost themselves.",
-                cost: new Decimal(5e35),
+                cost: new MetaNum(5e35),
                 effect() {
                     return player['n'].points.add(1).pow(0.01).div(player['n'].points.add(1).pow(0.01).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3864,7 +3864,7 @@ addLayer("n", {
             142: {
                 title: "Esupercub",
                 description: "Nullology points boost themselves again.",
-                cost: new Decimal(1e36),
+                cost: new MetaNum(1e36),
                 effect() {
                     return player['n'].points.add(1).pow(0.01).div(player['n'].points.add(1).pow(0.01).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3873,7 +3873,7 @@ addLayer("n", {
             143: {
                 title: "Agatone",
                 description: "Nullology points boost themselves again.",
-                cost: new Decimal(2e36),
+                cost: new MetaNum(2e36),
                 effect() {
                     return player['n'].points.add(1).pow(0.01).div(player['n'].points.add(1).pow(0.01).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3882,7 +3882,7 @@ addLayer("n", {
             144: {
                 title: "Twelve o'clousand",
                 description: "Nullology points boost themselves again.",
-                cost: new Decimal(4e36),
+                cost: new MetaNum(4e36),
                 effect() {
                     return player['n'].points.add(1).pow(0.01).div(player['n'].points.add(1).pow(0.01).max(1000).div(1000).pow(0.9)).min(1000000)
                 },
@@ -3891,47 +3891,47 @@ addLayer("n", {
             145: {
                 title: "Bicycle",
                 description: "x7 nullology and googology point gain.",
-                cost: new Decimal(1e37),
+                cost: new MetaNum(1e37),
             },
             151: {
                 title: "Ttit",
                 description: "x7 nullology and googology point gain.",
-                cost: new Decimal(1e44),
+                cost: new MetaNum(1e44),
             },
             152: {
                 title: "Fibonacci Straight",
                 description: "x7 nullology and googology point gain.",
-                cost: new Decimal(1e45),
+                cost: new MetaNum(1e45),
             },
             153: {
                 title: "Monlakh",
                 description: "x10 nullology and googology point gain.",
-                cost: new Decimal(1e46),
+                cost: new MetaNum(1e46),
             },
             154: {
                 title: "Ma'amul",
                 description: "x10 nullology and googology point gain.",
-                cost: new Decimal(1e47),
+                cost: new MetaNum(1e47),
             },
             155: {
                 title: "Odd John",
                 description: "x10 nullology and googology point gain.",
-                cost: new Decimal(1e48),
+                cost: new MetaNum(1e48),
             },
             161: {
                 title: "Quinine",
                 description: "x10 nullology and googology point gain.",
-                cost: new Decimal(2e49),
+                cost: new MetaNum(2e49),
             },
             162: {
                 title: "Lakh",
                 description: "100,000 already? x10 nullology and googology point gain.",
-                cost: new Decimal(2e50),
+                cost: new MetaNum(2e50),
             },
             163: {
                 title: "Spacus",
                 description: "x10 nullology and googology point gain.",
-                cost: new Decimal(3e51),
+                cost: new MetaNum(3e51),
             },
         },
         
@@ -3952,15 +3952,15 @@ addLayer("^", {
     branches: ['x'],
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-        total: new Decimal(0),
-        power: new Decimal(0),
-        expmult: new Decimal(1),
-        sqrtp: new Decimal(0),
+		points: new MetaNum(0),
+        total: new MetaNum(0),
+        power: new MetaNum(0),
+        expmult: new MetaNum(1),
+        sqrtp: new MetaNum(0),
     }},
     update(diff) {
         if (hasMilestone('^', 1)) {
-            let powerGain = Decimal.dOne;
+            let powerGain = MetaNum.dOne;
             powerGain = powerGain.times(buyableEffect('^',10005))
             powerGain = powerGain.times(buyableEffect('^',11));
             powerGain = powerGain.times(buyableEffect('^',12));
@@ -3969,7 +3969,7 @@ addLayer("^", {
             powerGain = powerGain.times(buyableEffect('^',15));
             powerGain = powerGain.times(player['^'].expmult);
             player[this.layer].power = player[this.layer].power.plus(powerGain.times(diff));
-            let expmultone = Decimal.dOne;
+            let expmultone = MetaNum.dOne;
             expmultone = expmultone.times(buyableEffect('^',21))
             expmultone = expmultone.times(buyableEffect('^',22))
             expmultone = expmultone.times(buyableEffect('^',23))
@@ -4050,9 +4050,9 @@ addLayer("^", {
             player[this.layer].expmult = expmultone;
         }
         if (inChallenge('^', 11) || inChallenge('^', 12) || inChallenge('^', 21)) {
-            if (inChallenge('^', 11)) sqrtpGain = new Decimal(player['x'].sp).pow(0.2).div(1e6);
-            if (inChallenge('^', 12)) sqrtpGain = new Decimal(player['x'].sp).pow(0.3).div(1e5);
-            if (inChallenge('^', 21)) sqrtpGain = new Decimal(player['x'].sp).pow(0.45).div(1e6);
+            if (inChallenge('^', 11)) sqrtpGain = new MetaNum(player['x'].sp).pow(0.2).div(1e6);
+            if (inChallenge('^', 12)) sqrtpGain = new MetaNum(player['x'].sp).pow(0.3).div(1e5);
+            if (inChallenge('^', 21)) sqrtpGain = new MetaNum(player['x'].sp).pow(0.45).div(1e6);
             sqrtpGain = sqrtpGain.times(buyableEffect('^',111))
             sqrtpGain = sqrtpGain.times(buyableEffect('^',112))
             sqrtpGain = sqrtpGain.times(buyableEffect('^',113))
@@ -4087,23 +4087,23 @@ addLayer("^", {
         }
     },
     color: "#9692FF",
-    requires: new Decimal(1e11), // Can be a function that takes requirement increases into account
+    requires: new MetaNum(1e11), // Can be a function that takes requirement increases into account
     resource: "exponentiation points", // Name of prestige currency
     baseResource: "subexponentiation points", // Name of resource prestige is based on
     baseAmount() {return player['x'].sp}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.2, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(10)
+        mult = new MetaNum(10)
         mult = mult.times(player['^'].expmult)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        exp = new Decimal(1)
+        exp = new MetaNum(1)
         return exp
     },
     row: 3, // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return (new Decimal(getBuyableAmount('+',145)).gte(1) || player[this.layer].total.gte(1))},
+    layerShown(){return (new MetaNum(getBuyableAmount('+',145)).gte(1) || player[this.layer].total.gte(1))},
     passiveGeneration() {return false},
     autoUpgrade() {return false},
     canBuyMax() {return false},
@@ -4134,7 +4134,7 @@ addLayer("^", {
     },
     buyables: {
         11: {
-            cost(x) { return new Decimal(100).mul(new Decimal(1.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(100).mul(new MetaNum(1.5).pow(new MetaNum(x))) },
             title: "Hexus",
             display() { return `+10% subexponential point and power gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4142,7 +4142,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4150,7 +4150,7 @@ addLayer("^", {
             purchaseLimit: 90,
         },
         12: {
-            cost(x) { return new Decimal(300).mul(new Decimal(1.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(300).mul(new MetaNum(1.5).pow(new MetaNum(x))) },
             title: "Fibonal",
             display() { return `+10% subexponential point and power gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4158,7 +4158,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4166,7 +4166,7 @@ addLayer("^", {
             purchaseLimit: 90,
         },
         13: {
-            cost(x) { return new Decimal(900).mul(new Decimal(1.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(900).mul(new MetaNum(1.5).pow(new MetaNum(x))) },
             title: "Binary-gobychunk",
             display() { return `+10% subexponential point and power gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4174,7 +4174,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4182,7 +4182,7 @@ addLayer("^", {
             purchaseLimit: 90,
         },
         14: {
-            cost(x) { return new Decimal(2700).mul(new Decimal(1.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2700).mul(new MetaNum(1.5).pow(new MetaNum(x))) },
             title: "Clover mite-crowd",
             display() { return `+10% subexponential point and power gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4190,7 +4190,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4198,7 +4198,7 @@ addLayer("^", {
             purchaseLimit: 90,
         },
         15: {
-            cost(x) { return new Decimal(8100).mul(new Decimal(1.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8100).mul(new MetaNum(1.5).pow(new MetaNum(x))) },
             title: "Gobybit",
             display() { return `+10% subexponential point and power gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4206,7 +4206,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4214,7 +4214,7 @@ addLayer("^", {
             purchaseLimit: 90,
         },
         21: {
-            cost(x) { return new Decimal(15000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(15000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Little squeaker",
             display() { return `+5% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4222,7 +4222,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4231,7 +4231,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         22: {
-            cost(x) { return new Decimal(500000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(500000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Duodecimal-doocol",
             display() { return `+5% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4239,7 +4239,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4248,7 +4248,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         23: {
-            cost(x) { return new Decimal(1500000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1500000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Undoocol",
             display() { return `+5% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4256,7 +4256,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4265,7 +4265,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         24: {
-            cost(x) { return new Decimal(1e7).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e7).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Fünftelbillion",
             display() { return `What a jump (in both ways)! +5% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4273,7 +4273,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4282,7 +4282,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         25: {
-            cost(x) { return new Decimal(5e9).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e9).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Ternary-minnowchunk",
             display() { return `+5% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4290,7 +4290,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4299,7 +4299,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         31: {
-            cost(x) { return new Decimal(1e10).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e10).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Heptus",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4307,7 +4307,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4316,7 +4316,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         32: {
-            cost(x) { return new Decimal(2e10).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e10).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Ternary-minnow",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4324,7 +4324,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4333,7 +4333,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         33: {
-            cost(x) { return new Decimal(3.5e10).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3.5e10).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Trillion",
             display() { return `WOW! A TRILLION??? +3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4341,7 +4341,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4350,7 +4350,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         34: {
-            cost(x) { return new Decimal(1e11).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e11).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Tera-Zeralum",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4358,7 +4358,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4367,7 +4367,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         35: {
-            cost(x) { return new Decimal(1.5e11).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e11).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Binary-gogolspeck",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4375,7 +4375,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4384,7 +4384,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         41: {
-            cost(x) { return new Decimal(3e11).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e11).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Fifteenbang",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4392,7 +4392,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4401,7 +4401,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         42: {
-            cost(x) { return new Decimal(1e12).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e12).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Tera-Unalum",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4409,7 +4409,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4418,7 +4418,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         43: {
-            cost(x) { return new Decimal(2e12).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e12).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Quadexiaa",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4426,7 +4426,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4435,7 +4435,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         44: {
-            cost(x) { return new Decimal(5e12).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e12).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Bit360",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4443,7 +4443,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4452,7 +4452,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         45: {
-            cost(x) { return new Decimal(3e17).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e17).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Megafugathree",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4460,7 +4460,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4469,7 +4469,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',2)}
         },
         51: {
-            cost(x) { return new Decimal(2e26).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e26).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Pentexian",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4477,7 +4477,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4486,7 +4486,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         52: {
-            cost(x) { return new Decimal(4e26).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(4e26).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Byllion",
             display() { return `Another jump! +3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4494,7 +4494,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4503,7 +4503,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         53: {
-            cost(x) { return new Decimal(6e26).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(6e26).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Fifan",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4511,7 +4511,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4520,7 +4520,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         54: {
-            cost(x) { return new Decimal(8e26).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e26).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Ternary-gobychunk",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4528,7 +4528,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4537,7 +4537,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         55: {
-            cost(x) { return new Decimal(1e27).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e27).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Onion",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4545,7 +4545,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4554,7 +4554,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         61: {
-            cost(x) { return new Decimal(2e27).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e27).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Bocchillion",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4562,7 +4562,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4571,7 +4571,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         62: {
-            cost(x) { return new Decimal(6e27).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(6e27).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Ternary-goby",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4579,7 +4579,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4588,7 +4588,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         63: {
-            cost(x) { return new Decimal(3.5e28).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3.5e28).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Integral-exaundevigintile",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4596,7 +4596,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4605,7 +4605,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         64: {
-            cost(x) { return new Decimal(3.5e29).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3.5e29).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Decus",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4613,7 +4613,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4622,7 +4622,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         65: {
-            cost(x) { return new Decimal(5e30).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e30).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Sptdoocol",
             display() { return `+3.125% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4630,7 +4630,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.03125).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4639,7 +4639,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         71: {
-            cost(x) { return new Decimal(5e35).mul(new Decimal(2.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e35).mul(new MetaNum(2.5).pow(new MetaNum(x))) },
             title: "Octal-guppychunk",
             display() { return `+20% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4647,7 +4647,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4656,7 +4656,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         72: {
-            cost(x) { return new Decimal(1e36).mul(new Decimal(2.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1e36).mul(new MetaNum(2.5).pow(new MetaNum(x))) },
             title: "Ramanujan constant",
             display() { return `+20% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4664,7 +4664,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4673,7 +4673,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         73: {
-            cost(x) { return new Decimal(2e36).mul(new Decimal(2.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2e36).mul(new MetaNum(2.5).pow(new MetaNum(x))) },
             title: "Sexagesimal-doocol",
             display() { return `+20% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4681,7 +4681,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4690,7 +4690,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         74: {
-            cost(x) { return new Decimal(4e36).mul(new Decimal(2.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(4e36).mul(new MetaNum(2.5).pow(new MetaNum(x))) },
             title: "Quintillion",
             display() { return `+20% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4698,7 +4698,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4707,7 +4707,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         75: {
-            cost(x) { return new Decimal(8e36).mul(new Decimal(2.5).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e36).mul(new MetaNum(2.5).pow(new MetaNum(x))) },
             title: "Exa-Zeralum",
             display() { return `+20% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4715,7 +4715,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.2).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4724,7 +4724,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',7)}
         },
         81: {
-            cost(x) { return new Decimal(7.5e40).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(7.5e40).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Long",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4732,7 +4732,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4741,7 +4741,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         82: {
-            cost(x) { return new Decimal(1.6e41).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.6e41).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Twenty-twos",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4749,7 +4749,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4758,7 +4758,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         83: {
-            cost(x) { return new Decimal(3.4e41).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3.4e41).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Gigagross",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4766,7 +4766,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4775,7 +4775,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         84: {
-            cost(x) { return new Decimal(8e41).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e41).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Eastillion",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4783,7 +4783,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4792,7 +4792,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         85: {
-            cost(x) { return new Decimal(1.8e42).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.8e42).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Binary-prawn",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4800,7 +4800,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4809,7 +4809,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         91: {
-            cost(x) { return new Decimal(4e42).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(4e42).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Vigintiv",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4817,7 +4817,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4826,7 +4826,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         92: {
-            cost(x) { return new Decimal(8e42).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(8e42).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "The amount of possible URL'S youtube can have",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4834,7 +4834,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4843,7 +4843,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         93: {
-            cost(x) { return new Decimal(1.6e43).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.6e43).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Olofa",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4851,7 +4851,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4860,7 +4860,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         94: {
-            cost(x) { return new Decimal(3e43).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e43).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Vigesine",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4868,7 +4868,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4877,7 +4877,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         95: {
-            cost(x) { return new Decimal(6e43).mul(new Decimal(25).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(6e43).mul(new MetaNum(25).pow(new MetaNum(x))) },
             title: "Guppy",
             display() { return `+50% Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4885,7 +4885,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].power.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
             buy() {
                 player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4894,7 +4894,7 @@ addLayer("^", {
             unlocked() {return hasMilestone('^',9)}
         },
         111: {
-            cost(x) { return new Decimal(0.25).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(0.25).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Megagross",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4902,7 +4902,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4910,7 +4910,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         112: {
-            cost(x) { return new Decimal(0.4).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(0.4).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Trdoocol",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4918,7 +4918,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4926,7 +4926,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         113: {
-            cost(x) { return new Decimal(0.55).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(0.55).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Juice",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4934,7 +4934,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4942,7 +4942,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         114: {
-            cost(x) { return new Decimal(0.75).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(0.75).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Octus",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4950,7 +4950,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4958,7 +4958,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         115: {
-            cost(x) { return new Decimal(1.25).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.25).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Octal-small fry",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4966,7 +4966,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4974,7 +4974,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         121: {
-            cost(x) { return new Decimal(3).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Quinary-guppy",
             display() { return `Another big jump! +5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4982,7 +4982,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -4990,7 +4990,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         122: {
-            cost(x) { return new Decimal(6).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(6).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Qdrdoocol",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -4998,7 +4998,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5006,7 +5006,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         123: {
-            cost(x) { return new Decimal(12).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(12).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Trishadara",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5014,7 +5014,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5022,7 +5022,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         124: {
-            cost(x) { return new Decimal(50).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(50).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "10 Letters",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5030,7 +5030,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5038,7 +5038,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         125: {
-            cost(x) { return new Decimal(200).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(200).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Eyelash mite-swarm",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5046,7 +5046,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5054,7 +5054,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         131: {
-            cost(x) { return new Decimal(25000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(25000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Ternary-gobycrumb",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5062,7 +5062,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5070,7 +5070,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         132: {
-            cost(x) { return new Decimal(40000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(40000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Dust mite-swarm",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5078,7 +5078,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5086,7 +5086,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         133: {
-            cost(x) { return new Decimal(55000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(55000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Binary-gogolchunk",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5094,7 +5094,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5102,7 +5102,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         134: {
-            cost(x) { return new Decimal(70000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(70000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Integral-dekapetaseptemdecile",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5110,7 +5110,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5118,7 +5118,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         135: {
-            cost(x) { return new Decimal(85000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(85000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Cheese mite-swarm",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5126,7 +5126,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5134,7 +5134,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         141: {
-            cost(x) { return new Decimal(100000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(100000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Quadrillion",
             display() { return `WOW! A QUADRILLION??? +5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5142,7 +5142,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5150,7 +5150,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         142: {
-            cost(x) { return new Decimal(125000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(125000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Peta-Zeralum",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5158,7 +5158,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5166,7 +5166,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         143: {
-            cost(x) { return new Decimal(150000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(150000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Gogolbit",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5174,7 +5174,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5182,7 +5182,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         144: {
-            cost(x) { return new Decimal(175000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(175000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Nonus",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5190,7 +5190,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5198,7 +5198,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         145: {
-            cost(x) { return new Decimal(200000).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(200000).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Clover mite-swarm",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5206,7 +5206,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5214,7 +5214,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         151: {
-            cost(x) { return new Decimal(2.5e9).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(2.5e9).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Guppybyte",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5222,7 +5222,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5230,7 +5230,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         152: {
-            cost(x) { return new Decimal(6.25e9).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(6.25e9).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Redhead",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5238,7 +5238,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5246,7 +5246,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         153: {
-            cost(x) { return new Decimal(1.5e10).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e10).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Pervushin's number",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5254,7 +5254,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5262,7 +5262,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         154: {
-            cost(x) { return new Decimal(3e10).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e10).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Byn-zeroptol",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5270,7 +5270,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5278,7 +5278,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         155: {
-            cost(x) { return new Decimal(5e10).mul(new Decimal(1.2).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e10).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Undecus",
             display() { return `+5% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5286,7 +5286,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.05).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5294,7 +5294,7 @@ addLayer("^", {
             purchaseLimit: 20,
         },
         161: {
-            cost(x) { return new Decimal(1.5e11).mul(new Decimal(1.4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e11).mul(new MetaNum(1.4).pow(new MetaNum(x))) },
             title: "Unnilexian",
             display() { return `+10% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5302,7 +5302,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5310,7 +5310,7 @@ addLayer("^", {
             purchaseLimit: 10,
         },
         162: {
-            cost(x) { return new Decimal(3e11).mul(new Decimal(1.4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(3e11).mul(new MetaNum(1.4).pow(new MetaNum(x))) },
             title: "Glemmillion",
             display() { return `+10% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5318,7 +5318,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5326,7 +5326,7 @@ addLayer("^", {
             purchaseLimit: 10,
         },
         163: {
-            cost(x) { return new Decimal(6e11).mul(new Decimal(1.4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(6e11).mul(new MetaNum(1.4).pow(new MetaNum(x))) },
             title: "Guppychunk",
             display() { return `+10% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5334,7 +5334,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5342,7 +5342,7 @@ addLayer("^", {
             purchaseLimit: 10,
         },
         164: {
-            cost(x) { return new Decimal(1.5e12).mul(new Decimal(1.4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(1.5e12).mul(new MetaNum(1.4).pow(new MetaNum(x))) },
             title: "Decamel",
             display() { return `+10% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5350,7 +5350,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5358,7 +5358,7 @@ addLayer("^", {
             purchaseLimit: 10,
         },
         165: {
-            cost(x) { return new Decimal(5e12).mul(new Decimal(1.4).pow(new Decimal(x))) },
+            cost(x) { return new MetaNum(5e12).mul(new MetaNum(1.4).pow(new MetaNum(x))) },
             title: "Ternary-gogolspeck",
             display() { return `+10% root point gain and exponential multiplier.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5366,7 +5366,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].sqrtp.gte(this.cost()) },
             effect(){
-                return new Decimal(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.1).add(1)},
             buy() {
                 player[this.layer].sqrtp = player[this.layer].sqrtp.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5374,7 +5374,7 @@ addLayer("^", {
             purchaseLimit: 10,
         },
         10001: {
-            cost(x) { return new Decimal(1).mul(new Decimal(2).pow(x)) },
+            cost(x) { return new MetaNum(1).mul(new MetaNum(2).pow(x)) },
             title: "Cardinality of the Power set of n",
             display() { return `x5 succession point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5382,7 +5382,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(5).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(5).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5390,7 +5390,7 @@ addLayer("^", {
             purchaseLimit: 50,
         },
         10002: {
-            cost(x) { return new Decimal(1.5).mul(new Decimal(2).pow(x)) },
+            cost(x) { return new MetaNum(1.5).mul(new MetaNum(2).pow(x)) },
             title: "f2(n)",
             display() { return `x5 addition point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5398,7 +5398,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(5).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(5).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5406,7 +5406,7 @@ addLayer("^", {
             purchaseLimit: 50,
         },
         10003: {
-            cost(x) { return new Decimal(2).mul(new Decimal(2).pow(x)) },
+            cost(x) { return new MetaNum(2).mul(new MetaNum(2).pow(x)) },
             title: "n!",
             display() { return `x5 multiplication point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5414,7 +5414,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(5).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(5).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5422,7 +5422,7 @@ addLayer("^", {
             purchaseLimit: 50,
         },
         10004: {
-            cost(x) { return new Decimal(3).mul(new Decimal(2).pow(x)) },
+            cost(x) { return new MetaNum(3).mul(new MetaNum(2).pow(x)) },
             title: "n$ (Sloane and Plouffe)",
             display() { return `x2 subexponentiation point gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5430,7 +5430,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(2).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5438,7 +5438,7 @@ addLayer("^", {
             purchaseLimit: 50,
         },
         10005: {
-            cost(x) { return new Decimal(5).mul(new Decimal(3).pow(x)) },
+            cost(x) { return new MetaNum(5).mul(new MetaNum(3).pow(x)) },
             title: "T(n)",
             display() { return `x2 power gain per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5446,7 +5446,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(2).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(2).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
@@ -5454,7 +5454,7 @@ addLayer("^", {
             purchaseLimit: 50,
         },
         10006: {
-            cost(x) { return new Decimal(1e16).mul(new Decimal(100).pow(x)) },
+            cost(x) { return new MetaNum(1e16).mul(new MetaNum(100).pow(x)) },
             title: "H(n)",
             display() { return `x1.5 Exponential Multiplier per level.
             <b>Cost: </b>` + format(this.cost()) + `
@@ -5462,7 +5462,7 @@ addLayer("^", {
             <b>Effect: </b>` + format(this.effect()) + 'x'},
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             effect(){
-                return new Decimal(1.5).pow(getBuyableAmount(this.layer,this.id))},
+                return new MetaNum(1.5).pow(getBuyableAmount(this.layer,this.id))},
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost()).max(0)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
