@@ -12,13 +12,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.9.2",
+	num: "0.10",
 	name: "Preparations",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.9.2: Preparations</h3><br>
+	<h3>v0.10: Preparations</h3><br>
 		- Changed the big number library to MetaNum.<br>
+		- Added achievements.<br>
+		- Added a new theme.<br>
 		- Endgame: The same as v0.9.<br>
 	<h3>v0.9.1</h3><br>
 		- Added some clarification.<br>

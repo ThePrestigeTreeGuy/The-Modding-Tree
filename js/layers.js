@@ -1,3 +1,137 @@
+addLayer("a", {
+    name: "achievements", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "A", // This appears on the layer's node. Default is the id with the first letter capitalized
+    startData() { return {
+        unlocked: true,
+        points: new MetaNum(0)
+    }},
+    color: "#FFFF00",
+    resource: "achievements", // Name of prestige currency
+    row: "side", // Row the layer is in on the tree (0 is the first row)
+    achievements: {
+        11: {
+            name: "The Start",
+            tooltip: "Get 1 succession point.",
+            done() {return player['S'].points.gte(1)}
+        },
+        12: {
+            name: "Hey guys!",
+            tooltip: "Buy One.",
+            done() {return hasUpgrade('S',44)}
+        },
+        13: {
+            name: "The Fast-Growing Start",
+            tooltip: "Buy f0(n)",
+            done() {return getBuyableAmount('S',11).gte(1)}
+        },
+        14: {
+            name: "Add-icted",
+            tooltip: "Get 1 addition point.",
+            done() {return player['+'].points.gte(1)}
+        },
+        15: {
+            name: "D minus",
+            tooltip: "Get 1 subtraction point.",
+            done() {return player['-'].points.gte(1)}
+        },
+        16: {
+            name: "A plus",
+            tooltip: "Get 250 addition points.",
+            done() {return player['+'].points.gte(250)}
+        },
+        17: {
+            name: "The Repeated Fast-Growing Start",
+            tooltip: "Buy f0^m(n).",
+            done() {return getBuyableAmount('+',11).gte(1)}
+        },
+        18: {
+            name: "Count to (Negative) Ten",
+            tooltip: "Get 10 subtraction points.",
+            done() {return player['-'].points.gte(10)}
+        },
+        21: {
+            name: "Multiplied",
+            tooltip: "Get 1 multiplication point.",
+            done() {return player['x'].points.gte(1)}
+        },
+        22: {
+            name: "Let's go somewhere more casual!",
+            tooltip: "Get f1(n).",
+            done() {return getBuyableAmount('x',11).gte(1)}
+        },
+        23: {
+            name: "Just Short of Googol",
+            tooltip: "Get 1 division point.",
+            done() {return player['÷'].points.gte(1)}
+        },
+        24: {
+            name: "Nullification I",
+            tooltip: "Buy Very Unreasonable.",
+            done() {return hasUpgrade('÷',13)}
+        },
+        25: {
+            name: "Nullification II",
+            tooltip: "Get 10,000,000,000 nullology points.",
+            done() {return player['n'].points.gte(1e10)}
+        },
+        26: {
+            name: "Nullification III",
+            tooltip: "Get 100,000,000,000,000,000,000 nullology points.",
+            done() {return player['n'].points.gte(1e20)}
+        },
+        27: {
+            name: "Nullification IV",
+            tooltip: "Get 1e30 nullology points.",
+            done() {return player['n'].points.gte(1e30)}
+        },
+        28: {
+            name: "Nullification V",
+            tooltip: "Get 1e50 nullology points.",
+            done() {return player['n'].points.gte(1e50)}
+        },
+        31: {
+            name: "Subexponentiated",
+            tooltip: "Get 1 subexponentiation point.",
+            done() {return player['x'].sp.gte(1)}
+        },
+        32: {
+            name: "Elongated Runs",
+            tooltip: "Get Exponentiation Tier 1.",
+            done() {return hasMilestone('^',1)}
+        },
+        33: {
+            name: "Medium Runs",
+            tooltip: "Get Exponentiation Tier 2.",
+            done() {return hasMilestone('^',2)}
+        },
+        34: {
+            name: "Short Runs",
+            tooltip: "Get Exponentiation Tier 3.",
+            done() {return hasMilestone('^',3)}
+        },
+        35: {
+            name: "Radical",
+            tooltip: "Get Exponentiation Tier 5.",
+            done() {return hasMilestone('^',5)}
+        },
+        36: {
+            name: "More Radical",
+            tooltip: "Get Exponentiation Tier 6.",
+            done() {return hasMilestone('^',6)}
+        },
+        37: {
+            name: "Not yet!",
+            tooltip: "Get Exponentiation Tier 7.",
+            done() {return hasMilestone('^',7)}
+        },
+        38: {
+            name: "It's time for the... Fourth Root!",
+            tooltip: "Get Exponentiation Tier 8.",
+            done() {return hasMilestone('^',8)}
+        },
+    },
+    layerShown() {return true}
+})
 addLayer("S", {
     name: "succession points", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "S", // This appears on the layer's node. Default is the id with the first letter capitalized
@@ -2664,7 +2798,7 @@ addLayer("x", {
     }},
     update(diff) {
         if (hasUpgrade('x', 121) || (player['^'].total.gte(1) && !inChallenge('^',11) && !inChallenge('^',12) && !inChallenge('^',21))) {
-            let spGain = MetaNum.dOne;
+            let spGain = decimalOne;
             spGain = spGain.times(buyableEffect('x',21));
             if (hasUpgrade('S',121)) spGain = spGain.times(upgradeEffect('S',121));
             if (hasUpgrade('S',122)) spGain = spGain.times(upgradeEffect('S',122));
@@ -3960,7 +4094,7 @@ addLayer("^", {
     }},
     update(diff) {
         if (hasMilestone('^', 1)) {
-            let powerGain = MetaNum.dOne;
+            let powerGain = decimalOne;
             powerGain = powerGain.times(buyableEffect('^',10005))
             powerGain = powerGain.times(buyableEffect('^',11));
             powerGain = powerGain.times(buyableEffect('^',12));
@@ -3969,7 +4103,7 @@ addLayer("^", {
             powerGain = powerGain.times(buyableEffect('^',15));
             powerGain = powerGain.times(player['^'].expmult);
             player[this.layer].power = player[this.layer].power.plus(powerGain.times(diff));
-            let expmultone = MetaNum.dOne;
+            let expmultone = decimalOne;
             expmultone = expmultone.times(buyableEffect('^',21))
             expmultone = expmultone.times(buyableEffect('^',22))
             expmultone = expmultone.times(buyableEffect('^',23))
