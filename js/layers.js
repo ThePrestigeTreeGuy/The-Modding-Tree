@@ -3,7 +3,7 @@ addLayer("a", {
     symbol: "A", // This appears on the layer's node. Default is the id with the first letter capitalized
     startData() { return {
         unlocked: true,
-        points: new MetaNum(0)
+        points: 0
     }},
     color: "#FFFF00",
     resource: "achievements", // Name of prestige currency
