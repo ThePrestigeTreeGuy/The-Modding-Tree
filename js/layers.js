@@ -6,10 +6,6 @@ addLayer("a", {
         points: new MetaNum(0)
     }},
     color: "#FFFF00",
-    update(diff) {
-        ach = player[this.layer].achievements.length
-        player[this.layer].points = new MetaNum(ach)
-    },
     resource: "achievements", // Name of prestige currency
     row: "side", // Row the layer is in on the tree (0 is the first row)
     achievements: {
@@ -17,6 +13,7 @@ addLayer("a", {
             name: "The Start",
             tooltip: "Get 1 succession point.",
             done() {return player['S'].points.gte(1)},
+            effect() {player[this.layer].points = player[this.layer].achievements.length}
         },
         12: {
             name: "Hey guys!",
