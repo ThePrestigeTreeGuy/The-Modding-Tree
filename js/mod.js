@@ -12,11 +12,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.10.1",
-	name: "Preparations",
+	num: "0.11",
+	name: "Based Comeback",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.11: Based Comeback</h3><br>
+		- Added a lot of buyables, two challenges, and three milestones. <br>
+		- Added the base feature.<br>
+		- Endgame: 1.000 x 10^30, 1e177 subexponentiation points.<br>
 	<h3>v0.10.1</h3><br>
 		- Achievements are now visible, even if they are not unlocked.<br>
 		- Endgame: The same as v0.9.<br>
@@ -197,7 +201,9 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	function () {if (inChallenge('^',21)) return `Your number is ∜` + String(player['S'].number)
+	function () {if (inChallenge('^',31)) return `Your number is √∜` + String(player['S'].number)
+        else if (inChallenge('^',22)) return `Your number is √∛` + String(player['S'].number)
+        else if (inChallenge('^',21)) return `Your number is ∜` + String(player['S'].number)
         else if (inChallenge('^',12)) return `Your number is ∛` + String(player['S'].number)
         else if (inChallenge('^',11)) return `Your number is √` + String(player['S'].number)
         else return `Your number is ` + String(player['S'].number)}
@@ -205,7 +211,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player['^'].power.gte("e44")
+	return player['x'].sp.gte(1e177)
 }
 
 
