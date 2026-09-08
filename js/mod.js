@@ -12,26 +12,26 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.11",
+	num: "0.11.1",
 	name: "Based Comeback",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.11.1</h3><br>
+		- Changed the changelog.<br>
+		- Removed 5 power buyables (they didn't do anything).<br>
 	<h3>v0.11: Based Comeback</h3><br>
 		- Added a lot of buyables, two challenges, and three milestones. <br>
 		- Added the base feature.<br>
 		- Endgame: 1.000 x 10^30, 1e177 subexponentiation points.<br>
 	<h3>v0.10.1</h3><br>
 		- Achievements are now visible, even if they are not unlocked.<br>
-		- Endgame: The same as v0.9.<br>
 	<h3>v0.10: Preparations</h3><br>
 		- Changed the big number library to MetaNum.<br>
 		- Added achievements.<br>
 		- Added a new theme.<br>
-		- Endgame: The same as v0.9.<br>
 	<h3>v0.9.1</h3><br>
 		- Added some clarification.<br>
-		- Endgame: The same as v0.9.<br>
 	<h3>v0.9: The Radical Update</h3><br>
 		- Added a lot of buyables, three challenges, and four milestones. <br>
 		- Added the root feature. <br>
@@ -42,10 +42,8 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Changed the succession, addition, division, and nullology reset layers. <br>
 		- Slightly changed the UI. <br>
 		- Fixed a bug. <br>
-		- Endgame: The same as v0.7.<br>
 	<h3>v0.7.1</h3><br>
 		- Fixed a bug.<br>
-		- Endgame: The same as v0.7.<br>
 	<h3>v0.7: Exponentiation</h3><br>
 		- Added a lot of buyables and five milestones.<br>
 		- Added exponentiation points, power, and Exponential Multiplier.<br>
