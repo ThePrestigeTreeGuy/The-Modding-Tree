@@ -12,11 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.11.1",
+	num: "0.11.2",
 	name: "Based Comeback",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.11.2</h3><br>
+		- Added back the 5 power buyables.<br>
+		- Changed the Exponential Tier 12 effect.<br>
 	<h3>v0.11.1</h3><br>
 		- Changed the changelog.<br>
 		- Removed 5 power buyables (they didn't do anything).<br>

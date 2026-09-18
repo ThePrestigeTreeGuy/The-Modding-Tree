@@ -574,6 +574,11 @@ addLayer("S", {
         if (getBuyableAmount('^',184).gte(1)) player[this.layer].number = "3,833,759,992,447,475,122,176"
         if (getBuyableAmount('^',185).gte(1)) player[this.layer].number = "4,722,366,482,869,645,213,696"
         if (getBuyableAmount('x',134).gte(1)) player[this.layer].number = "6,140,942,214,464,815,497,216"
+        if (getBuyableAmount('^',101).gte(1)) player[this.layer].number = "7,180,192,468,708,211,294,208"
+        if (getBuyableAmount('^',102).gte(1)) player[this.layer].number = "10,000,000,000,000,000,000,000"
+        if (getBuyableAmount('^',103).gte(1)) player[this.layer].number = "14,348,907,000,000,000,000,000"
+        if (getBuyableAmount('^',104).gte(1)) player[this.layer].number = "35,704,672,260,000,000,000,000"
+        if (getBuyableAmount('^',105).gte(1)) player[this.layer].number = "37,778,931,862,957,161,709,568"
         if (getBuyableAmount('x',1001).gte(1)) player[this.layer].number = "46,005,119,909,369,701,466,112"
         if (getBuyableAmount('x',1002).gte(1)) player[this.layer].number = "70,000,000,000,000,000,000,000"
         if (getBuyableAmount('x',1003).gte(1)) player[this.layer].number = "221,073,919,720,733,357,899,776"
@@ -4823,6 +4828,11 @@ addLayer("^", {
             expmultone = expmultone.times(buyableEffect('^',93))
             expmultone = expmultone.times(buyableEffect('^',94))
             expmultone = expmultone.times(buyableEffect('^',95))
+            expmultone = expmultone.times(buyableEffect('^',101))
+            expmultone = expmultone.times(buyableEffect('^',102))
+            expmultone = expmultone.times(buyableEffect('^',103))
+            expmultone = expmultone.times(buyableEffect('^',104))
+            expmultone = expmultone.times(buyableEffect('^',105))
             expmultone = expmultone.times(buyableEffect('^',171))
             expmultone = expmultone.times(buyableEffect('^',172))
             expmultone = expmultone.times(buyableEffect('^',173))
@@ -4843,6 +4853,7 @@ addLayer("^", {
             expmultone = expmultone.times(buyableEffect('^',203))
             expmultone = expmultone.times(buyableEffect('^',204))
             expmultone = expmultone.times(buyableEffect('^',205))
+            if (hasMilestone('^',12)) expmultone = expmultone.div(243)
             expmultone = expmultone.pow(new MetaNum(player[this.layer].base).log10())
             if (inChallenge('^', 11)) expmultone = expmultone.pow(0.5)
             if (inChallenge('^', 12)) expmultone = expmultone.pow(0.3333333333333)
@@ -5727,6 +5738,91 @@ addLayer("^", {
             purchaseLimit: 2,
             unlocked() {return hasMilestone('^',9)}
         },
+        101: {
+            cost(x) { return new MetaNum(2.5e54).mul(new MetaNum(10).pow(new MetaNum(x))) },
+            title: "Tredecus",
+            display() { return `+50% Exponential Multiplier per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].power.gte(this.cost()) },
+            effect(){
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+            buy() {
+                player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 4,
+            unlocked() {return hasMilestone('^',10)}
+        },
+        102: {
+            cost(x) { return new MetaNum(7.5e54).mul(new MetaNum(10).pow(new MetaNum(x))) },
+            title: "Goonrol",
+            display() { return `+50% Exponential Multiplier per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].power.gte(this.cost()) },
+            effect(){
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+            buy() {
+                player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 4,
+            unlocked() {return hasMilestone('^',10)}
+        },
+        103: {
+            cost(x) { return new MetaNum(2.25e55).mul(new MetaNum(10).pow(new MetaNum(x))) },
+            title: "Googoxvy",
+            display() { return `+50% Exponential Multiplier per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].power.gte(this.cost()) },
+            effect(){
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+            buy() {
+                player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 4,
+            unlocked() {return hasMilestone('^',10)}
+        },
+        104: {
+            cost(x) { return new MetaNum(6.75e55).mul(new MetaNum(10).pow(new MetaNum(x))) },
+            title: "Southtillion",
+            display() { return `+50% Exponential Multiplier per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].power.gte(this.cost()) },
+            effect(){
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+            buy() {
+                player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 4,
+            unlocked() {return hasMilestone('^',10)}
+        },
+        105: {
+            cost(x) { return new MetaNum(1.5e56).mul(new MetaNum(10).pow(new MetaNum(x))) },
+            title: "Minnowbyte",
+            display() { return `+50% Exponential Multiplier per level.
+            <b>Cost: </b>` + format(this.cost()) + `
+            <b>Amount: </b>` + format(getBuyableAmount(this.layer,this.id)) + "/" + format(tmp[this.layer].buyables[this.id].purchaseLimit) +`
+            <b>Effect: </b>` + format(this.effect()) + 'x'},
+            canAfford() { return player[this.layer].power.gte(this.cost()) },
+            effect(){
+                return new MetaNum(getBuyableAmount(this.layer, this.id)).mul(0.5).add(1)},
+            buy() {
+                player[this.layer].power = player[this.layer].power.sub(this.cost()).max(0)
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+            },
+            purchaseLimit: 4,
+            unlocked() {return hasMilestone('^',10)}
+        },
         111: {
             cost(x) { return new MetaNum(0.25).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Megagross",
@@ -5775,6 +5871,7 @@ addLayer("^", {
             },
             purchaseLimit: 20,
         },
+
         114: {
             cost(x) { return new MetaNum(0.75).mul(new MetaNum(1.2).pow(new MetaNum(x))) },
             title: "Octus",
@@ -6744,7 +6841,7 @@ addLayer("^", {
         10: {
             requirementDescription: "Exponential Tier 10 [10^35 exponentiation points]",
             effectDescription: `Unlock the base. <br> Unlock Sixth Root.<br>
-            Unlock more root buyables.`,
+            Unlock more power and root buyables.`,
             done() { return player[this.layer].points.gte(1e35) },
             unlocked() {return hasMilestone('^',9)}
         },
@@ -6756,7 +6853,7 @@ addLayer("^", {
         },
         12: {
             requirementDescription: "Exponential Tier 12 [10^68 exponentiation points]",
-            effectDescription: `Unlock Eighth Root.<br>Unlock more root and subexponential point buyables.<br>Increasing your base no longer resets anything.`,
+            effectDescription: `Unlock Eighth Root.<br>Unlock more root and subexponential point buyables.<br>Increasing your base no longer resets anything.<br>Exponential Multiplier is divided by 243.`,
             done() { return player[this.layer].points.gte(1e68) },
             unlocked() {return hasMilestone('^',11)}
         },
